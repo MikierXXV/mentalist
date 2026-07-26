@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 
 // `base` debe coincidir con el nombre del repositorio en GitHub Pages
-// (https://<usuario>.github.io/<repo>/). Se puede sobrescribir sin tocar
-// este archivo exportando BASE_PATH antes de `npm run build`.
-const base = process.env.BASE_PATH ?? '/mentalista/';
+// (https://<usuario>.github.io/<repo>/). En CI lo fija el workflow a partir
+// del nombre real del repositorio; esto es solo el valor para desarrollo.
+const base = process.env.BASE_PATH ?? '/mentalist/';
 
 export default defineConfig({
   base,

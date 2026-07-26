@@ -98,8 +98,10 @@ Para activarlo:
 2. En **Settings → Pages**, poner **Source: GitHub Actions**.
 
 El workflow pasa `BASE_PATH=/<nombre-del-repo>/` al build, así que la ruta base se ajusta sola
-al nombre del repositorio. En local, `vite.config.ts` usa `/mentalista/` por defecto; para
+al nombre del repositorio. En local, `vite.config.ts` usa `/mentalist/` por defecto; para
 construir con otra ruta, `BASE_PATH=/otra/ npm run build`.
+
+Publicado en <https://mikierxxv.github.io/mentalist/>.
 
 ## Accesibilidad
 
