@@ -4,7 +4,8 @@
   "titulo": "Recuperar el control de tu atención",
   "gancho": "Hay industrias enteras cuyo producto eres tú mirando. No es una metáfora: es el modelo de negocio.",
   "familia": "percepcion",
-  "visualizacion": "focus-field",
+  "visualizacion": "captura",
+  "visualizacion_alt": "Un punto de atención disputado por captadores que se encienden a intervalos impredecibles; con el foco protegido, vuelve al centro y se mantiene.",
   "explicacion_didactica": [
     "Si la atención es un recurso escaso y casi todo lo que percibes depende de dónde la pongas, entonces quien decide dónde la pones tiene una influencia enorme sobre tu versión de la realidad. Y esa decisión, cada vez más, no la tomas tú.",
     "Los mecanismos que se usan para capturarla no son misteriosos: recompensa impredecible —el mismo principio que hace adictiva una máquina tragaperras—, interrupción constante que impide entrar en profundidad, y una selección de contenidos optimizada no para informarte sino para retenerte. La indignación retiene mejor que el matiz. El sistema no tiene una opinión: tiene una métrica.",
@@ -17,6 +18,8 @@
     "tipo_atribucion": "formulacion_propia",
     "resumen": "El libro Inteligencia Natural se plantea, según su descripción editorial, como una guía para detectar influencias ocultas, sesgos y engaños mentales, reconocer las dinámicas de manipulación psicológica cotidiana, fortalecer el pensamiento crítico y recuperar el control de la propia atención, con ejercicios prácticos y técnicas trasladadas del mentalismo profesional a la vida diaria.",
     "fuente_id": "libro-arcopress",
-    "fuentes_extra": ["nota-prensa-arcopress"]
+    "fuentes_extra": [
+      "nota-prensa-arcopress"
+    ]
   }
 }

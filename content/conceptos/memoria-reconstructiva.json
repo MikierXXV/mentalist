@@ -4,7 +4,8 @@
   "titulo": "Los recuerdos son copias de copias",
   "gancho": "No abres el archivo. Lo vuelves a montar cada vez, y cada montaje deja huella.",
   "familia": "memoria",
-  "visualizacion": "reconstruction",
+  "visualizacion": "copia-de-copia",
+  "visualizacion_alt": "Una figura de puntos que se disgrega y se rearma en cada ciclo partiendo de su propia reconstrucción anterior, junto al fantasma tenue e inmóvil del original.",
   "explicacion_didactica": [
     "La metáfora del disco duro nos ha hecho mucho daño. Sugiere que recordar es localizar un archivo y abrirlo intacto, y que la única avería posible es no encontrarlo.",
     "La memoria no funciona así. Recordar es reconstruir: el cerebro reúne fragmentos dispersos —una imagen, un olor, una emoción, lo que sabe en general de situaciones parecidas— y con ellos ensambla una escena coherente en ese momento. Lo que experimentas como recuerdo es el resultado del montaje, no un original guardado.",

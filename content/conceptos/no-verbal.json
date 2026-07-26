@@ -4,7 +4,8 @@
   "titulo": "El cuerpo contesta antes que la boca",
   "gancho": "Hay una conversación paralela ocurriendo, y ninguno de los dos la está manteniendo a propósito.",
   "familia": "lectura",
-  "visualizacion": "mirror-signal",
+  "visualizacion": "dos-canales",
+  "visualizacion_alt": "Dos carriles entre dos personas: arriba el verbal, lento y en paquetes espaciados; abajo el corporal, denso y continuo, que alcanza al receptor bastante antes.",
   "explicacion_didactica": [
     "Mientras hablamos ocurre un segundo intercambio que casi nadie está gestionando de forma deliberada: postura, ritmo, distancia, tono, hacia dónde apuntan los pies, cuánto tarda alguien en responder. Ese canal se emite y se lee en gran medida fuera del foco consciente.",
     "Un ejemplo bien documentado es el destello de cejas: una elevación brevísima, de una fracción de segundo, que hacemos al reconocer a alguien con quien no hay conflicto. Aparece en culturas muy distintas y pasa completamente inadvertida. Pero su ausencia no pasa inadvertida: si alguien te saluda con la cara inmóvil, registras algo raro, frío o levemente hostil, y normalmente no sabes decir qué ha sido.",
@@ -18,6 +19,8 @@
     "resumen": "Botía sostiene que el lenguaje corporal lo interpreta el subconsciente sin que intervengamos: pone como ejemplo que levantar las cejas al saludar genera confianza, mientras que omitir ese gesto produce rechazo. Relaciona con ello esa intuición difusa de que alguien «nos da mala espina» sin poder justificarla racionalmente.",
     "cita_breve": "una mirada casi de psicópata",
     "fuente_id": "cope-subconsciente",
-    "fuentes_extra": ["regil-leer-la-mente"]
+    "fuentes_extra": [
+      "regil-leer-la-mente"
+    ]
   }
 }

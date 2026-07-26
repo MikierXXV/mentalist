@@ -23,7 +23,7 @@ export function renderEnlaces(): string {
   return /* html */ `
     <section id="oficial" class="contenedor scroll-mt-16 py-20" aria-labelledby="titulo-oficial">
       <h2 id="titulo-oficial" class="titulo-seccion">Ir a la fuente</h2>
-      <p class="mt-4 max-w-lectura leading-relaxed text-bruma">${esc(notaEnlaces)}</p>
+      <p class="mt-4 max-w-lectura leading-relaxed text-tenue">${esc(notaEnlaces)}</p>
       <ul class="mt-10 grid gap-4 sm:grid-cols-2">${items}</ul>
     </section>
   `;
@@ -31,8 +31,8 @@ export function renderEnlaces(): string {
 
 export function renderFooter(): string {
   return /* html */ `
-    <footer class="mt-10 border-t border-white/10 py-12">
-      <div class="contenedor max-w-lectura text-sm leading-relaxed text-bruma/80">
+    <footer class="linea mt-10 border-t py-12">
+      <div class="contenedor max-w-lectura text-sm leading-relaxed text-tenue">
         <p>
           Proyecto divulgativo independiente, sin vinculación oficial con Javier Botía,
           con Arcopress ni con ninguno de los medios citados. Todas las explicaciones

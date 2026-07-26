@@ -4,7 +4,8 @@
   "titulo": "Cómo se desmonta a un vidente",
   "gancho": "Un mentalista te dice que va a fingir. El problema empieza cuando alguien cobra por no decírtelo.",
   "familia": "lectura",
-  "visualizacion": "mirror-signal",
+  "visualizacion": "precision",
+  "visualizacion_alt": "Un cono proyectado sobre un campo de personas: muy abierto abarca a casi todas, y al subir la precisión exigida se estrecha hasta no alcanzar a ninguna.",
   "explicacion_didactica": [
     "La diferencia entre un mentalista y un vidente no está en la técnica. Puede ser exactamente la misma. Está en el contrato: uno declara que lo que hace es un espectáculo y el otro afirma que tiene un don, cobra en consecuencia y suele encontrar a su cliente en el peor momento de su vida.",
     "Las herramientas son las que ya conoces. Afirmaciones que valen para casi todo el mundo pero suenan personales. Calibración sobre la reacción del otro. Preguntas disfrazadas de revelaciones. Y una memoria selectiva —la del cliente— que retendrá los tres aciertos y disolverá los veinte fallos.",
@@ -17,6 +18,8 @@
     "tipo_atribucion": "tema_de_episodio",
     "resumen": "Entre los asuntos del episodio figura desenmascarar los recursos que emplean los videntes y advertir del peligro de ser manipulado sin saberlo, junto a las técnicas de mentalismo, hipnosis y lenguaje corporal que se comentan a lo largo de la conversación.",
     "fuente_id": "lfde-uri-sabat",
-    "fuentes_extra": ["roca-project-78"]
+    "fuentes_extra": [
+      "roca-project-78"
+    ]
   }
 }

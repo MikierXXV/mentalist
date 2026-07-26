@@ -4,7 +4,8 @@
   "titulo": "Tu mente cree que decide",
   "gancho": "«Elige el número que quieras.» La libertad es real. El reparto de probabilidades, no.",
   "familia": "memoria",
-  "visualizacion": "reconstruction",
+  "visualizacion": "distribucion",
+  "visualizacion_alt": "Seis círculos idénticos entre los que elegir; uno de ellos ha recibido antes una preparación casi imperceptible, que se revela al terminar de elegir.",
   "explicacion_didactica": [
     "Cuando alguien te dice que elijas libremente, sientes que la elección es tuya y no te equivocas: nadie te está sujetando la mano. Lo que ocurre es otra cosa. La sensación de libertad no garantiza que el resultado sea impredecible.",
     "Pedir a la gente que piense «un número cualquiera del 1 al 10» produce una distribución muy desigual, con unos pocos números acaparando la mayoría de las respuestas. No hay manipulación: hay estadística de cómo funcionan las mentes humanas. Somos originales de formas bastante parecidas entre nosotros.",

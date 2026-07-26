@@ -4,7 +4,8 @@
   "titulo": "El enano y el gigante",
   "gancho": "Una parte de ti razona y cree que manda. La otra hace casi todo el trabajo y no consulta.",
   "familia": "memoria",
-  "visualizacion": "reconstruction",
+  "visualizacion": "enano-y-gigante",
+  "visualizacion_alt": "Un punto dorado pequeño que sigue al cursor, atado a una masa enorme y tenue; cuando la masa se agita, arrastra al punto sin que el cursor pueda sujetarlo.",
   "explicacion_didactica": [
     "La experiencia de tener una mente es engañosamente ordenada: parece que hay un yo que delibera, decide y ejecuta. Pero ese yo deliberante es una capa fina montada sobre una maquinaria enorme que funciona sola.",
     "Casi todo lo que te mantiene operativo ocurre sin ti: el reconocimiento de una cara conocida, la gramática de la frase que estás a punto de decir, el equilibrio al bajar un escalón, la evaluación instantánea de si un sitio es seguro. Nada de eso se razona. Se resuelve antes, y llega ya resuelto.",
@@ -18,6 +19,8 @@
     "resumen": "Botía recurre a una metáfora propia, la del enano y el gigante: la consciencia sería el enano —la lógica, la sensación de estar al mando— y el subconsciente, el gigante, incomparablemente más poderoso. De ahí su conclusión sobre quién gana cuando los dos van en direcciones distintas.",
     "cita_breve": "si el gigante entra en pánico, el enano no tiene cómo agarrarlo",
     "fuente_id": "cope-subconsciente",
-    "fuentes_extra": ["no-solo-exito"]
+    "fuentes_extra": [
+      "no-solo-exito"
+    ]
   }
 }

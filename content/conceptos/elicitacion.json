@@ -4,7 +4,8 @@
   "titulo": "Para saber, no preguntes: afirma",
   "gancho": "La pregunta activa las defensas. El error, en cambio, activa las ganas de corregirlo.",
   "familia": "lectura",
-  "visualizacion": "mirror-signal",
+  "visualizacion": "correccion",
+  "visualizacion_alt": "Dos nodos conversando: al preguntar, el receptor se encoge y devuelve un hilo mínimo; al afirmar algo incorrecto, se abre y emite una ráfaga mucho más densa.",
   "explicacion_didactica": [
     "Preguntar es la forma más obvia de obtener información y una de las peores. En cuanto alguien detecta que está siendo interrogado, aunque sea de forma amable, cambia de modo: calcula, filtra, decide cuánto conviene decir. La pregunta anuncia que hay algo en juego.",
     "La elicitación invierte el movimiento. En vez de preguntar, se afirma algo —con naturalidad y con seguridad— que es ligeramente incorrecto. Y entonces entra en juego una de las pulsiones más fiables del ser humano: la incomodidad ante el error ajeno cuando uno sabe la respuesta correcta.",

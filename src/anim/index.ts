@@ -63,6 +63,35 @@ export function animarVista(raiz: HTMLElement): void {
   ScrollTrigger.refresh();
 }
 
+/**
+ * Revela el bloque de la visualización. Si ya está en pantalla se muestra al
+ * momento; si no, espera a que el lector llegue tras terminar el texto.
+ */
+export function revelarBloqueViz(bloque: HTMLElement): void {
+  const mostrar = () => {
+    bloque.dataset.revelado = 'true';
+  };
+
+  if (movimientoReducido()) {
+    mostrar();
+    return;
+  }
+
+  const observador = new IntersectionObserver(
+    (entradas) => {
+      if (!entradas.some((entrada) => entrada.isIntersecting)) return;
+      mostrar();
+      observador.disconnect();
+    },
+    { threshold: 0.12 },
+  );
+  observador.observe(bloque);
+
+  // Red de seguridad: si el bloque nunca entra en vista —ventanas muy altas,
+  // usuario que no baja— no debe quedarse invisible para siempre.
+  setTimeout(mostrar, 6000);
+}
+
 /** Despliegue suave del bloque de la capa oficial al abrir su `<details>`. */
 export function animarDetalles(raiz: HTMLElement): void {
   raiz.querySelectorAll<HTMLDetailsElement>('details[data-oficial]').forEach((detalle) => {

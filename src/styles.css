@@ -3,12 +3,42 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    color-scheme: dark;
+  /*
+   * Paleta en canales RGB sueltos para que Tailwind pueda componer opacidad.
+   * Los mismos valores están replicados en src/tema.ts, que es donde los leen
+   * los materiales de Three.js.
+   */
+  :root,
+  :root[data-theme='dark'] {
+    --color-fondo: 11 13 18;
+    --color-superficie: 20 24 33;
+    --color-texto: 244 241 234;
+    --color-tenue: 138 143 156;
+    --color-acento: 201 162 39;
+    --color-acento-claro: 232 200 90;
+    --color-borde: 255 255 255;
+    --opacidad-borde: 0.1;
+    --velo: 255 255 255;
+    --aura: 0.1;
+  }
+
+  :root[data-theme='light'] {
+    --color-fondo: 247 244 237;
+    --color-superficie: 255 255 255;
+    --color-texto: 27 29 36;
+    --color-tenue: 95 100 112;
+    /* Dorado oscurecido: sobre papel, el original no llega a contraste AA. */
+    --color-acento: 154 123 18;
+    --color-acento-claro: 201 162 39;
+    --color-borde: 27 29 36;
+    --opacidad-borde: 0.14;
+    --velo: 27 29 36;
+    --aura: 0.05;
   }
 
   html {
     scroll-behavior: smooth;
+    background-color: rgb(var(--color-fondo));
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -28,16 +58,22 @@
   body {
     background-image: radial-gradient(
       ellipse 80% 50% at 50% -10%,
-      rgba(201, 162, 39, 0.1),
+      rgb(var(--color-acento) / var(--aura)),
       transparent 70%
     );
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background-color 0.35s ease, color 0.35s ease;
   }
 
   :focus-visible {
-    outline: 2px solid theme('colors.senalClara');
+    outline: 2px solid rgb(var(--color-acento-claro));
     outline-offset: 3px;
     border-radius: 2px;
+  }
+
+  ::selection {
+    background: rgb(var(--color-acento) / 0.3);
   }
 }
 
@@ -47,30 +83,35 @@
   }
 
   .titulo-seccion {
-    @apply font-display text-3xl font-normal tracking-tight text-papel sm:text-4xl;
+    @apply font-display text-3xl font-normal tracking-tight text-texto sm:text-4xl;
   }
 
-  .texto-suave {
-    @apply text-bruma;
+  /* Superficies: un solo lugar donde se decide el aspecto de "tarjeta". */
+  .superficie {
+    @apply rounded-lg border bg-[rgb(var(--velo)/0.02)];
+    border-color: rgb(var(--color-borde) / var(--opacidad-borde));
   }
 
-  /* Tarjeta del índice de conceptos. */
+  .linea {
+    border-color: rgb(var(--color-borde) / var(--opacidad-borde));
+  }
+
   .tarjeta {
-    @apply relative flex h-full w-full flex-col gap-3 rounded-lg border border-white/10
-      bg-white/[0.02] p-5 text-left transition-colors duration-300
-      hover:border-senal/50 hover:bg-white/[0.05];
+    @apply superficie relative flex h-full w-full flex-col gap-3 p-5 text-left
+      transition-colors duration-300 hover:border-acento/50
+      hover:bg-[rgb(var(--velo)/0.06)];
   }
 
   .tarjeta__numero {
-    @apply font-display text-sm text-senal/70;
+    @apply font-display text-sm text-acento/70;
   }
 
   .tarjeta__titulo {
-    @apply font-display text-xl leading-snug text-papel;
+    @apply font-display text-xl leading-snug text-texto;
   }
 
   .tarjeta__gancho {
-    @apply text-sm leading-relaxed text-bruma;
+    @apply text-sm leading-relaxed text-tenue;
   }
 
   .distintivo {
@@ -79,60 +120,139 @@
   }
 
   .distintivo--texto {
-    @apply border-senal/40 text-senal;
+    @apply border-acento/40 text-acento;
   }
 
   .distintivo--podcast {
-    @apply border-dashed border-bruma/50 text-bruma;
+    @apply border-dashed border-tenue/50 text-tenue;
   }
 
-  /* Cuerpo de lectura de la ficha. */
   .prosa p {
-    @apply mb-5 max-w-lectura text-[1.0625rem] leading-[1.75] text-papel/85;
+    @apply mb-5 max-w-lectura text-[1.0625rem] leading-[1.75] text-texto/85;
   }
 
   .prosa p:last-child {
     @apply mb-0;
   }
 
-  /* Capa oficial: dos variantes visualmente distintas según la solidez de la fuente. */
   .oficial {
     @apply rounded-lg border p-5 sm:p-6;
   }
 
   .oficial--propia {
-    @apply border-senal/30 bg-senal/[0.06];
+    @apply border-acento/30 bg-acento/[0.07];
   }
 
   .oficial--episodio {
-    @apply border-dashed border-bruma/40 bg-white/[0.02];
+    @apply border-dashed bg-[rgb(var(--velo)/0.02)];
+    border-color: rgb(var(--color-tenue) / 0.4);
   }
 
   .cita {
-    @apply my-4 border-l-2 border-senal pl-4 font-display text-lg italic leading-relaxed text-papel;
+    @apply my-4 border-l-2 border-acento pl-4 font-display text-lg italic leading-relaxed text-texto;
   }
 
   .nota-matiz {
-    @apply rounded-lg border-l-2 border-bruma/60 bg-white/[0.03] px-5 py-4
-      text-sm leading-relaxed text-bruma;
+    @apply rounded-lg border-l-2 bg-[rgb(var(--velo)/0.03)] px-5 py-4
+      text-sm leading-relaxed text-tenue;
+    border-color: rgb(var(--color-tenue) / 0.6);
   }
 
   .enlace-fuente {
-    @apply inline-flex items-center gap-1.5 text-sm text-senal underline
-      decoration-senal/40 underline-offset-4 transition-colors hover:decoration-senal;
+    @apply inline-flex items-center gap-1.5 text-sm text-acento underline
+      decoration-acento/40 underline-offset-4 transition-colors hover:decoration-acento;
   }
 
   .boton {
-    @apply inline-flex items-center gap-2 rounded-full border border-senal/50 px-5 py-2.5
-      text-sm text-senal transition-colors hover:bg-senal hover:text-tinta;
+    @apply inline-flex items-center gap-2 rounded-full border border-acento/50 px-5 py-2.5
+      text-sm text-acento transition-colors hover:bg-acento hover:text-fondo;
+  }
+
+  /* Botón de filtro / conmutador, con estado en aria-pressed. */
+  .pildora {
+    @apply inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm
+      text-tenue transition-colors;
+    border-color: rgb(var(--color-borde) / var(--opacidad-borde));
+  }
+
+  .pildora:hover {
+    @apply text-texto;
+    border-color: rgb(var(--color-acento) / 0.5);
+  }
+
+  .pildora[aria-pressed='true'] {
+    @apply border-acento bg-acento/10 text-acento;
+  }
+
+  .pildora__cuenta {
+    @apply rounded-full bg-[rgb(var(--velo)/0.08)] px-2 py-0.5 text-[11px] tabular-nums;
+  }
+
+  .campo {
+    @apply w-full rounded-full border bg-[rgb(var(--velo)/0.03)] px-5 py-2.5 text-sm
+      text-texto placeholder:text-tenue/70;
+    border-color: rgb(var(--color-borde) / var(--opacidad-borde));
   }
 }
 
-/* Contenedor de las visualizaciones Three.js. */
+/* Lienzos de las visualizaciones. */
 .lienzo-viz {
-  @apply relative aspect-[16/9] w-full overflow-hidden rounded-lg border border-white/10 bg-black/40;
+  @apply superficie relative w-full overflow-hidden bg-[rgb(var(--color-fondo))];
+  aspect-ratio: 16 / 9;
+  min-height: 260px;
 }
 
 .lienzo-viz canvas {
   @apply block h-full w-full;
+  touch-action: pan-y;
+}
+
+/* El bloque interactivo entra con un fundido cuando la escena ya tiene forma. */
+.bloque-viz {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.bloque-viz[data-revelado='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bloque-viz {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Esqueleto mientras baja el chunk de Three.js. */
+.esqueleto {
+  @apply absolute inset-0 grid place-items-center px-6 text-center text-sm text-tenue;
+}
+
+.esqueleto::before {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(var(--velo) / 0.05) 50%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  animation: barrido 1.6s ease-in-out infinite;
+}
+
+@keyframes barrido {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .esqueleto::before {
+    animation: none;
+  }
 }

@@ -18,7 +18,7 @@ function tarjeta(concepto: Concepto): string {
     <li data-anim="tarjeta">
       <a class="tarjeta group" href="${rutaConcepto(concepto.id)}" data-tarjeta="${esc(concepto.id)}">
         <span class="tarjeta__numero">${numero}</span>
-        <h3 class="tarjeta__titulo group-hover:text-senalClara">${esc(concepto.titulo)}</h3>
+        <h3 class="tarjeta__titulo group-hover:text-acentoClaro">${esc(concepto.titulo)}</h3>
         <p class="tarjeta__gancho">${esc(concepto.gancho)}</p>
         <span class="mt-auto pt-3">${distintivoFuente(concepto)}</span>
       </a>
@@ -34,7 +34,7 @@ export function renderIndice(): string {
         <section class="mt-16 first:mt-0" aria-labelledby="familia-${grupo.familia}">
           <h3
             id="familia-${grupo.familia}"
-            class="mb-6 border-b border-white/10 pb-3 font-display text-sm uppercase tracking-[0.2em] text-senal"
+            class="linea mb-6 border-b pb-3 font-display text-sm uppercase tracking-[0.2em] text-acento"
           >
             ${esc(grupo.titulo)}
           </h3>
@@ -47,9 +47,9 @@ export function renderIndice(): string {
     .join('');
 
   return /* html */ `
-    <section id="conceptos" class="contenedor scroll-mt-16 py-20" aria-labelledby="titulo-conceptos">
+    <section id="conceptos" class="contenedor scroll-mt-20 py-20" aria-labelledby="titulo-conceptos">
       <h2 id="titulo-conceptos" class="titulo-seccion">Los conceptos</h2>
-      <p class="mt-4 max-w-lectura leading-relaxed text-bruma">
+      <p class="mt-4 max-w-lectura leading-relaxed text-tenue">
         Cada ficha tiene dos capas. Primero, una explicación propia del fenómeno,
         escrita desde cero. Después, plegado, cómo aparece el tema en la fuente
         original. Las tarjetas marcadas como

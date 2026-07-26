@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Comprueba las reglas editoriales del proyecto sobre los archivos de `content/`.
+ * Comprueba las reglas editoriales del proyecto sobre los archivos de `content/`
+ * y la coherencia entre contenido y código.
  *
  * Es la misma batería que `validarContenido()` corre en el navegador durante el
  * desarrollo, pero ejecutable sin navegador para poder usarla en CI antes del
@@ -14,10 +15,10 @@ const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR_CONCEPTOS = join(RAIZ, 'content', 'conceptos');
 const MAX_PALABRAS_CITA = 15;
 const TIPOS_ATRIBUCION = ['formulacion_propia', 'tema_de_episodio'];
-const VISUALIZACIONES = ['focus-field', 'resonance', 'mirror-signal', 'reconstruction'];
 const FAMILIAS = ['percepcion', 'influencia', 'lectura', 'memoria'];
 
 const leerJson = (ruta) => JSON.parse(readFileSync(ruta, 'utf8'));
+const leerTexto = (ruta) => readFileSync(ruta, 'utf8');
 
 const fuentes = leerJson(join(RAIZ, 'content', 'fuentes.json'));
 const archivos = readdirSync(DIR_CONCEPTOS).filter((f) => f.endsWith('.json'));
@@ -26,12 +27,26 @@ const conceptos = archivos.map((archivo) => ({
   datos: leerJson(join(DIR_CONCEPTOS, archivo)),
 }));
 
+const idsConcepto = new Set(conceptos.map((c) => c.datos.id));
+
+/**
+ * Ids de visualización que el runtime sabe cargar. Se leen del propio archivo
+ * en vez de duplicar la lista: si allí se añade una y aquí no, el desajuste
+ * saldría como falso error.
+ */
+const runtime = leerTexto(join(RAIZ, 'src', 'viz', 'runtime.ts'));
+const VISUALIZACIONES = new Set(
+  [...runtime.matchAll(/^\s*'?([a-z-]+)'?:\s*\(\)\s*=>\s*import\('\.\//gm)].map(
+    (m) => m[1],
+  ),
+);
+
 const errores = [];
 const ordenes = new Map();
+const visualizaciones = new Map();
 
 for (const { archivo, datos } of conceptos) {
-  const marca = `${archivo}`;
-  const fallo = (mensaje) => errores.push(`${marca}: ${mensaje}`);
+  const fallo = (mensaje) => errores.push(`${archivo}: ${mensaje}`);
 
   if (datos.id !== archivo.replace(/\.json$/, '')) {
     fallo(`el id "${datos.id}" no coincide con el nombre del archivo`);
@@ -39,9 +54,20 @@ for (const { archivo, datos } of conceptos) {
   if (!FAMILIAS.includes(datos.familia)) {
     fallo(`familia desconocida: "${datos.familia}"`);
   }
-  if (!VISUALIZACIONES.includes(datos.visualizacion)) {
-    fallo(`visualización desconocida: "${datos.visualizacion}"`);
+  if (!VISUALIZACIONES.has(datos.visualizacion)) {
+    fallo(`visualización no registrada en el runtime: "${datos.visualizacion}"`);
   }
+  if (!datos.visualizacion_alt?.trim()) {
+    fallo('la visualización no tiene texto alternativo');
+  }
+  // La regresión que motivó rehacer las escenas: fichas compartiendo la misma.
+  if (visualizaciones.has(datos.visualizacion)) {
+    fallo(
+      `repite la visualización "${datos.visualizacion}", ya usada por ${visualizaciones.get(datos.visualizacion)}`,
+    );
+  }
+  visualizaciones.set(datos.visualizacion, archivo);
+
   if (!Array.isArray(datos.explicacion_didactica) || !datos.explicacion_didactica.length) {
     fallo('sin explicación didáctica');
   }
@@ -93,6 +119,17 @@ for (const [id, fuente] of Object.entries(fuentes)) {
   }
 }
 
+// Las zonas del cerebro enlazan a fichas: comprobamos que existan todas.
+const regiones = leerTexto(join(RAIZ, 'src', 'viz', 'regiones.ts'));
+const bloqueConceptos = [...regiones.matchAll(/conceptos:\s*\[([^\]]*)\]/g)];
+for (const [, lista] of bloqueConceptos) {
+  for (const [, id] of lista.matchAll(/'([^']+)'/g)) {
+    if (!idsConcepto.has(id)) {
+      errores.push(`regiones.ts: la zona enlaza a un concepto inexistente: "${id}"`);
+    }
+  }
+}
+
 if (errores.length) {
   console.error(`\n✗ ${errores.length} problema(s) de contenido:\n`);
   for (const error of errores) console.error(`  · ${error}`);
@@ -107,6 +144,7 @@ const episodios = conceptos.filter(
 
 console.log(
   `✓ ${conceptos.length} conceptos válidos · ` +
+    `${visualizaciones.size} visualizaciones distintas · ` +
     `${Object.keys(fuentes).length} fuentes · ` +
     `${conCita} con cita textual · ` +
     `${episodios} enmarcados como tema de episodio`,

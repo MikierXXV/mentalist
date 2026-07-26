@@ -1,31 +1,191 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inteligencia Natural — conceptos de percepcion, sugestion y persuasion</title>
+    <title>Inteligencia Natural — conceptos de percepción, sugestión y persuasión</title>
     <meta
       name="description"
-      content="Sitio divulgativo independiente sobre los conceptos de psicologia, percepcion y persuasion que el mentalista Javier Botia expone publicamente. Cada concepto, explicado paso a paso y con enlace a su fuente."
+      content="Sitio divulgativo independiente sobre los conceptos de psicología, percepción y persuasión que el mentalista Javier Botía expone públicamente. Cada concepto, explicado paso a paso y con enlace a su fuente."
     />
-    <meta name="color-scheme" content="dark" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230b0d12'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23c9a227'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%238a8f9c' stroke-width='1.5'/%3E%3C/svg%3E"
     />
+
+    <!--
+      Tema antes del primer pintado. Si esto fuese a parar al bundle, quien navega
+      en oscuro recibiría un fogonazo blanco mientras se descarga el módulo.
+    -->
+    <script>
+      (function () {
+        var elegido = null;
+        try {
+          elegido = localStorage.getItem('inteligencia-natural:tema');
+        } catch (e) {
+          elegido = null;
+        }
+        var oscuro = elegido
+          ? elegido === 'oscuro'
+          : !window.matchMedia('(prefers-color-scheme: light)').matches;
+        document.documentElement.dataset.theme = oscuro ? 'dark' : 'light';
+        document.documentElement.style.colorScheme = oscuro ? 'dark' : 'light';
+      })();
+    </script>
+
+    <!--
+      CSS crítico. En desarrollo Vite inyecta la hoja principal por JavaScript, así
+      que sin esto el enlace de salto y el contenido se pintan sin estilo durante
+      unos milisegundos. Aquí está lo justo para que el primer fotograma ya sea el
+      definitivo.
+    -->
+    <style>
+      :root,
+      :root[data-theme='dark'] {
+        --arranque-fondo: #0b0d12;
+        --arranque-texto: #f4f1ea;
+        --arranque-tenue: #8a8f9c;
+      }
+      :root[data-theme='light'] {
+        --arranque-fondo: #f7f4ed;
+        --arranque-texto: #1b1d24;
+        --arranque-tenue: #5f6470;
+      }
+      html {
+        background: var(--arranque-fondo);
+      }
+      body {
+        margin: 0;
+        background: var(--arranque-fondo);
+        color: var(--arranque-texto);
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      }
+      /* El enlace de salto solo existe visualmente cuando recibe foco. */
+      .salto {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .salto:focus {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 90;
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0.6rem 1.1rem;
+        clip: auto;
+        border-radius: 999px;
+        background: #c9a227;
+        color: #0b0d12;
+        font-size: 0.875rem;
+      }
+
+      #cargador {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        gap: 1.5rem;
+        background: var(--arranque-fondo);
+        transition: opacity 0.5s ease;
+      }
+      #cargador[data-saliendo='true'] {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #cargador .marca {
+        display: grid;
+        place-items: center;
+        gap: 1.25rem;
+        text-align: center;
+      }
+      #cargador svg {
+        width: 68px;
+        height: 68px;
+      }
+      #cargador .anillo {
+        fill: none;
+        stroke: var(--arranque-tenue);
+        stroke-width: 1.5;
+        opacity: 0.5;
+        transform-origin: 32px 32px;
+        animation: cargador-anillo 2.4s ease-in-out infinite;
+      }
+      #cargador .nucleo {
+        fill: #c9a227;
+        transform-origin: 32px 32px;
+        animation: cargador-nucleo 2.4s ease-in-out infinite;
+      }
+      #cargador p {
+        margin: 0;
+        font-size: 0.72rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--arranque-tenue);
+      }
+      @keyframes cargador-anillo {
+        0%,
+        100% {
+          transform: scale(0.82);
+          opacity: 0.25;
+        }
+        50% {
+          transform: scale(1);
+          opacity: 0.65;
+        }
+      }
+      @keyframes cargador-nucleo {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(0.72);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #cargador .anillo,
+        #cargador .nucleo {
+          animation: none;
+        }
+        #cargador {
+          transition: none;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-tinta text-papel font-cuerpo antialiased">
-    <a
-      href="#contenido"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-senal focus:px-4 focus:py-2 focus:text-tinta"
-      >Saltar al contenido</a
-    >
+  <body class="bg-fondo font-cuerpo text-texto antialiased">
+    <div id="cargador" role="status" aria-live="polite">
+      <div class="marca">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle class="anillo" cx="32" cy="32" r="26" />
+          <circle class="anillo" cx="32" cy="32" r="18" style="animation-delay: -0.8s" />
+          <circle class="nucleo" cx="32" cy="32" r="7" />
+        </svg>
+        <p>Inteligencia Natural</p>
+      </div>
+    </div>
+
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+
     <div
       id="progreso"
-      class="fixed inset-x-0 top-0 z-40 h-[2px] origin-left scale-x-0 bg-senal"
+      class="fixed inset-x-0 top-0 z-40 h-[2px] origin-left scale-x-0 bg-acento"
       aria-hidden="true"
     ></div>
+
+    <div id="cabecera"></div>
     <div id="app"></div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

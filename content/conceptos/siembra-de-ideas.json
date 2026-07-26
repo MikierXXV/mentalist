@@ -4,7 +4,8 @@
   "titulo": "Sembrar una idea y que la creas tuya",
   "gancho": "Lo eficaz no es meterte una idea en la cabeza. Es que no recuerdes de dónde salió.",
   "familia": "influencia",
-  "visualizacion": "mirror-signal",
+  "visualizacion": "siembra",
+  "visualizacion_alt": "Partículas que entran desde fuera marcadas en dorado como ajenas y van perdiendo esa marca hasta volverse indistinguibles de las del grupo interior.",
   "explicacion_didactica": [
     "Una idea que llega marcada como ajena se evalúa. Una idea que se siente propia se defiende. Toda la diferencia está ahí, y el trabajo consiste en pasar la idea de la primera categoría a la segunda.",
     "El mecanismo de base es el escurrimiento de la fuente: el contenido y su procedencia se guardan por separado, y la procedencia se pierde mucho antes. A los tres días recuerdas perfectamente el dato y ya no recuerdas si lo leíste, te lo contaron o lo dedujiste. En ese momento el dato queda huérfano y tu mente le asigna el origen más disponible, que sueles ser tú.",

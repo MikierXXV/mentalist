@@ -4,7 +4,8 @@
   "titulo": "Solo ves donde miras",
   "gancho": "La atención no es un foco que ilumina la sala: es una linterna estrecha en una habitación a oscuras.",
   "familia": "percepcion",
-  "visualizacion": "focus-field",
+  "visualizacion": "linterna",
+  "visualizacion_alt": "Un campo de puntos en el que solo la zona señalada por el cursor se resuelve en nitidez, mientras el resto queda difuso sin llegar a apagarse.",
   "explicacion_didactica": [
     "Existe una sensación muy convincente y muy equivocada: la de que somos conscientes de todo lo que ocurre en nuestro campo de visión, y de que si algo llamativo pasara delante, lo veríamos sin remedio.",
     "La investigación sobre ceguera por falta de atención dice lo contrario. Cuando las personas se concentran en una tarea concreta —contar pases de un balón, seguir un objeto—, una proporción enorme no advierte sucesos perfectamente visibles y objetivamente raros que ocurren en el centro de la escena. No es que los vean y los olviden: es que no llegan a existir para ellas.",

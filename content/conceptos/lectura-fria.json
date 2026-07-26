@@ -4,7 +4,8 @@
   "titulo": "Quién rellena los huecos",
   "gancho": "El acierto lo pones tú. El otro solo tiene que dejar el espacio bien colocado.",
   "familia": "lectura",
-  "visualizacion": "mirror-signal",
+  "visualizacion": "rellenar-huecos",
+  "visualizacion_alt": "Un contorno vago y discontinuo que se completa con partículas que ascienden desde el lado del espectador hasta convertirlo en una figura nítida.",
   "explicacion_didactica": [
     "La lectura fría es el conjunto de recursos que permiten dar la impresión de saber mucho sobre alguien a quien acabas de conocer. Y su ingrediente principal no está en quien habla, sino en quien escucha.",
     "La pieza básica es la afirmación de doble filo: enunciados que describen una tensión que casi todo el mundo reconoce en sí mismo. «Hay una parte de ti que necesita a la gente y otra que necesita desaparecer un rato». «Eres exigente contigo, más de lo que los demás imaginan». Suenan específicas y no lo son: son ciertas para casi cualquiera, porque casi todos vivimos esas dos caras.",

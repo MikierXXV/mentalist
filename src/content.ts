@@ -17,11 +17,24 @@ export type TipoAtribucion = 'formulacion_propia' | 'tema_de_episodio';
 
 export type Familia = 'percepcion' | 'influencia' | 'lectura' | 'memoria';
 
+/** Una por concepto; los ids los resuelve `src/viz/runtime.ts`. */
 export type Visualizacion =
-  | 'focus-field'
-  | 'resonance'
-  | 'mirror-signal'
-  | 'reconstruction';
+  | 'punto-ciego'
+  | 'linterna'
+  | 'expectativa'
+  | 'correccion'
+  | 'rellenar-huecos'
+  | 'copia-de-copia'
+  | 'eco'
+  | 'dos-canales'
+  | 'enano-y-gigante'
+  | 'captura'
+  | 'distribucion'
+  | 'estrechamiento'
+  | 'siembra'
+  | 'microexpresion'
+  | 'precision'
+  | 'donde-vive-el-efecto';
 
 export interface Fuente {
   id: string;
@@ -47,6 +60,8 @@ export interface Concepto {
   gancho: string;
   familia: Familia;
   visualizacion: Visualizacion;
+  /** Descripción textual de la escena; el lienzo es decorativo. */
+  visualizacion_alt: string;
   explicacion_didactica: string[];
   experimento?: string;
   nota_matiz?: string;
@@ -131,6 +146,17 @@ export function fuentesUsadas(): Map<TipoFuente, Fuente[]> {
   return agrupadas;
 }
 
+/** Índice inverso: qué conceptos citan una fuente dada. */
+export function conceptosPorFuente(fuenteId: string): Concepto[] {
+  return conceptos.filter((concepto) => {
+    const oficial = concepto.explicacion_oficial;
+    return (
+      oficial.fuente_id === fuenteId ||
+      (oficial.fuentes_extra ?? []).includes(fuenteId)
+    );
+  });
+}
+
 export function conceptosPorFamilia(): Array<{
   familia: Familia;
   titulo: string;
@@ -151,6 +177,7 @@ export function conceptosPorFamilia(): Array<{
 export function validarContenido(): string[] {
   const errores: string[] = [];
   const vistos = new Set<string>();
+  const visualizaciones = new Map<string, string>();
 
   for (const concepto of conceptos) {
     const prefijo = `[${concepto.id}]`;
@@ -161,6 +188,19 @@ export function validarContenido(): string[] {
     if (!concepto.explicacion_didactica.length) {
       errores.push(`${prefijo} sin explicación didáctica`);
     }
+
+    if (!concepto.visualizacion_alt?.trim()) {
+      errores.push(`${prefijo} la visualización no tiene texto alternativo`);
+    }
+
+    // La regresión que motivó rehacerlas: varias fichas compartiendo escena.
+    const duenoPrevio = visualizaciones.get(concepto.visualizacion);
+    if (duenoPrevio) {
+      errores.push(
+        `${prefijo} repite la visualización "${concepto.visualizacion}", ya usada por ${duenoPrevio}`,
+      );
+    }
+    visualizaciones.set(concepto.visualizacion, concepto.id);
 
     const oficial = concepto.explicacion_oficial;
 

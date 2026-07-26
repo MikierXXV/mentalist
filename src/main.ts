@@ -1,16 +1,21 @@
 import './styles.css';
 
 import { conceptos, obtenerConcepto, validarContenido } from './content';
+import { seguirPreferenciaDelSistema } from './tema';
+import { montarCabecera } from './ui/cabecera';
+import { retirarCargador } from './ui/cargador';
 import { renderHero } from './ui/hero';
+import { activarCerebro, renderCerebro } from './ui/cerebro-seccion';
 import { renderIndice } from './ui/indice';
 import { renderFicha } from './ui/ficha';
-import { renderFuentes } from './ui/fuentes';
+import { activarFuentes, renderFuentes } from './ui/fuentes';
 import { renderEnlaces, renderFooter } from './ui/enlaces';
 import {
   animarDetalles,
   animarVista,
   iniciarProgreso,
   limpiarAnimaciones,
+  revelarBloqueViz,
 } from './anim';
 import { montarViz, type VizMontada } from './viz/runtime';
 
@@ -18,15 +23,16 @@ const app = document.getElementById('app');
 if (!app) throw new Error('Falta el contenedor #app');
 
 // El router recrea el DOM en cada vista, así que la restauración automática de
-// scroll del navegador aterriza en un documento que ya no es el mismo: al
-// recargar la URL de una ficha dejaba la página a media altura.
+// scroll del navegador aterriza en un documento que ya no es el mismo.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-let vizActiva: VizMontada | undefined;
+/** Escenas 3D vivas en la vista actual; se destruyen al cambiar de ruta. */
+let escenas: VizMontada[] = [];
 
 function renderInicio(): string {
   return `<main id="contenido">
     ${renderHero()}
+    ${renderCerebro()}
     ${renderIndice()}
     ${renderFuentes()}
     ${renderEnlaces()}
@@ -38,7 +44,7 @@ function renderNoEncontrado(): string {
   return /* html */ `
     <main id="contenido" class="contenedor py-32">
       <h1 class="titulo-seccion">Ese concepto no existe</h1>
-      <p class="mt-4 text-bruma">
+      <p class="mt-4 text-tenue">
         Puede que el enlace esté mal o que la ficha se haya renombrado.
       </p>
       <p class="mt-8"><a class="boton" href="#conceptos">Volver al índice</a></p>
@@ -52,16 +58,43 @@ function idDesdeHash(): string | undefined {
   return coincidencia?.[1];
 }
 
-async function montarVisualizacion(): Promise<void> {
-  const contenedor = app!.querySelector<HTMLElement>('[data-viz]');
-  const id = contenedor?.dataset.viz;
-  if (!contenedor || !id) return;
-  vizActiva = await montarViz(contenedor, id);
+/**
+ * Monta la escena de una ficha. Arranca de inmediato, mientras el lector está en
+ * los primeros párrafos, de modo que al llegar abajo la visualización ya tiene
+ * forma: entonces se revela con un fundido en vez de aparecer arrancando.
+ */
+async function montarVizFicha(): Promise<void> {
+  const lienzo = app!.querySelector<HTMLElement>('[data-viz]');
+  const bloque = app!.querySelector<HTMLElement>('[data-bloque-viz]');
+  const controles = app!.querySelector<HTMLElement>('[data-controles-viz]');
+  const id = lienzo?.dataset.viz;
+  if (!lienzo || !id) return;
+
+  const montada = await montarViz(lienzo, id, {
+    controles,
+    alEstarLista() {
+      lienzo.querySelector('[data-esqueleto]')?.remove();
+      if (bloque) revelarBloqueViz(bloque);
+    },
+  });
+  if (montada) escenas.push(montada);
+}
+
+function montarEscenasInicio(): void {
+  const cerebro = activarCerebro(app!);
+  if (cerebro) escenas.push(cerebro);
+
+  const fondo = app!.querySelector<HTMLElement>('[data-viz-fondo]');
+  if (fondo) {
+    void montarViz(fondo, 'cerebro-fondo').then((montada) => {
+      if (montada) escenas.push(montada);
+    });
+  }
 }
 
 async function enrutar(): Promise<void> {
-  vizActiva?.destruir();
-  vizActiva = undefined;
+  for (const escena of escenas) escena.destruir();
+  escenas = [];
   limpiarAnimaciones();
 
   const id = idDesdeHash();
@@ -72,11 +105,13 @@ async function enrutar(): Promise<void> {
     document.title = concepto
       ? `${concepto.titulo} · Inteligencia Natural`
       : 'Concepto no encontrado · Inteligencia Natural';
-    if (concepto) void montarVisualizacion();
+    if (concepto) void montarVizFicha();
   } else {
     app!.innerHTML = renderInicio();
     document.title =
       'Inteligencia Natural — conceptos de percepción, sugestión y persuasión';
+    activarFuentes(app!);
+    montarEscenasInicio();
   }
 
   animarVista(app!);
@@ -84,14 +119,11 @@ async function enrutar(): Promise<void> {
 
   // El posicionamiento va después de animarVista: ScrollTrigger.refresh()
   // restaura el scroll previo, así que hacerlo antes no serviría de nada.
-  // El rAF adicional espera a que el layout de la vista nueva esté resuelto.
   requestAnimationFrame(() => {
     if (id) {
       window.scrollTo({ top: 0, behavior: 'auto' });
       return;
     }
-    // Los anclajes de la portada (#conceptos, #fuentes) tienen que seguir
-    // funcionando al volver desde una ficha, con el DOM recién recreado.
     const hash = window.location.hash;
     const destino = hash.length > 1 ? document.querySelector(hash) : null;
     if (destino) destino.scrollIntoView({ block: 'start' });
@@ -113,5 +145,7 @@ if (import.meta.env.DEV) {
   }
 }
 
+seguirPreferenciaDelSistema();
+montarCabecera();
 iniciarProgreso();
-void enrutar();
+void enrutar().then(retirarCargador);

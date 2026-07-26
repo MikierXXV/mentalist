@@ -4,7 +4,8 @@
   "titulo": "La percepción no es una cámara",
   "gancho": "Crees que registras el mundo. En realidad lo fabricas, y lo haces a toda velocidad.",
   "familia": "percepcion",
-  "visualizacion": "focus-field",
+  "visualizacion": "punto-ciego",
+  "visualizacion_alt": "Un patrón regular de puntos con un hueco que se percibe continuo; al acercar el cursor, los puntos que ocupan ese hueco se encienden en dorado y se delatan como relleno.",
   "explicacion_didactica": [
     "Damos por hecho que percibir es algo parecido a grabar: los ojos capturan, los oídos registran y el cerebro almacena una copia razonablemente fiel de lo que había delante. Es una idea cómoda y es falsa.",
     "Lo que llega a los sentidos es un caudal enorme, ruidoso e incompleto. La retina tiene un punto ciego. El oído recorta. La visión nítida ocupa apenas la zona del tamaño de una uña con el brazo estirado; el resto de tu campo visual es una mancha de baja resolución que tu cerebro rellena sin pedirte permiso.",
