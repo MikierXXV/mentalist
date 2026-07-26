@@ -92,8 +92,15 @@ Requiere Node 20 o superior.
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) construye y publica en GitHub
 Pages en cada push a `main`.
 
-El workflow activa Pages por su cuenta la primera vez (`configure-pages` con `enablement: true`),
-así que basta con hacer push de `main`: no hay que tocar **Settings → Pages** a mano.
+El workflow intenta activar Pages por su cuenta la primera vez (`configure-pages` con
+`enablement: true`). Eso solo funciona si el repositorio deja escribir al `GITHUB_TOKEN`. Si el
+primer despliegue falla con `Resource not accessible by integration`, basta con una de estas dos
+cosas, una sola vez:
+
+- **Settings → Pages → Source: GitHub Actions**, o
+- **Settings → Actions → General → Workflow permissions → Read and write permissions**.
+
+Después, relanzar el workflow desde la pestaña **Actions**.
 
 El workflow pasa `BASE_PATH=/<nombre-del-repo>/` al build, así que la ruta base se ajusta sola
 al nombre del repositorio. En local, `vite.config.ts` usa `/mentalist/` por defecto; para
