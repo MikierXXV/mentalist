@@ -185,6 +185,12 @@
 
     <div id="cabecera"></div>
     <div id="app"></div>
+    <!--
+      El pie vive fuera de #app: el aviso legal y el copyright tienen que estar
+      en todas las vistas, también en las fichas, que son las que contienen las
+      paráfrasis y las citas. Además así el router no lo recrea en cada ruta.
+    -->
+    <div id="pie"></div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

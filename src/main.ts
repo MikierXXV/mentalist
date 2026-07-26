@@ -36,8 +36,7 @@ function renderInicio(): string {
     ${renderIndice()}
     ${renderFuentes()}
     ${renderEnlaces()}
-  </main>
-  ${renderFooter()}`;
+  </main>`;
 }
 
 function renderNoEncontrado(): string {
@@ -147,5 +146,11 @@ if (import.meta.env.DEV) {
 
 seguirPreferenciaDelSistema();
 montarCabecera();
+
+// Se monta una sola vez, fuera del router: el aviso legal debe estar en todas
+// las vistas, y en las fichas es donde más falta hace.
+const pie = document.getElementById('pie');
+if (pie) pie.innerHTML = renderFooter();
+
 iniciarProgreso();
 void enrutar().then(retirarCargador);
