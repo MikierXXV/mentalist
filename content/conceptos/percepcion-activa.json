@@ -1,0 +1,22 @@
+{
+  "id": "percepcion-activa",
+  "orden": 1,
+  "titulo": "La percepción no es una cámara",
+  "gancho": "Crees que registras el mundo. En realidad lo fabricas, y lo haces a toda velocidad.",
+  "familia": "percepcion",
+  "visualizacion": "focus-field",
+  "explicacion_didactica": [
+    "Damos por hecho que percibir es algo parecido a grabar: los ojos capturan, los oídos registran y el cerebro almacena una copia razonablemente fiel de lo que había delante. Es una idea cómoda y es falsa.",
+    "Lo que llega a los sentidos es un caudal enorme, ruidoso e incompleto. La retina tiene un punto ciego. El oído recorta. La visión nítida ocupa apenas la zona del tamaño de una uña con el brazo estirado; el resto de tu campo visual es una mancha de baja resolución que tu cerebro rellena sin pedirte permiso.",
+    "Ante ese material pobre, el cerebro no espera: apuesta. Toma el fragmento que tiene, lo compara con todo lo que ya sabe del mundo y construye la versión más probable. Esa construcción es lo que tú experimentas como «ver». No es el dato: es la mejor hipótesis sobre el dato.",
+    "La analogía útil no es la cámara, es el restaurador de cuadros. Ante un lienzo con agujeros, el restaurador no inventa al azar: completa siguiendo el estilo, el color y la lógica de lo que sí se conserva. El resultado es coherente, es convincente y, en las zonas que estaban rotas, no es exactamente lo que pintó el autor.",
+    "Por eso la percepción se puede dirigir. Quien conoce las reglas con las que el cerebro completa los huecos puede elegir qué fragmentos te entrega y confiar en que tú harás el resto del trabajo. No hace falta engañar a tus ojos: basta con darles material para que tú mismo construyas la conclusión deseada."
+  ],
+  "experimento": "Fija la vista en una palabra de esta frase y, sin mover los ojos, intenta leer la línea de abajo. No puedes, aunque juraras que la veías.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "Botía describe la percepción como un proceso activo, no pasivo: la mente no se limita a recibir lo que hay delante, sino que escoge a qué atiende, lo interpreta, lo compara con lo que ya conoce, rellena lo que falta y en ocasiones lo deforma.",
+    "cita_breve": "selecciona, interpreta, compara, completa y, en ocasiones, distorsiona",
+    "fuente_id": "audible-blog"
+  }
+}

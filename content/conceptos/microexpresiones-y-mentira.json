@@ -1,0 +1,21 @@
+{
+  "id": "microexpresiones-y-mentira",
+  "orden": 14,
+  "titulo": "Lo que dura un cuarto de segundo",
+  "gancho": "Existen, se pueden ver y no significan lo que las series te han contado.",
+  "familia": "lectura",
+  "visualizacion": "mirror-signal",
+  "explicacion_didactica": [
+    "Una microexpresión es un movimiento facial muy breve —del orden de una fracción de segundo— que aparece cuando una reacción emocional se escapa antes de que la persona la module. El fenómeno es real y se puede grabar y medir.",
+    "El salto injustificado viene después, cuando se convierte en un detector de mentiras. Una microexpresión indica que algo ha ocurrido emocionalmente. No indica qué, y desde luego no indica que la persona esté mintiendo. El miedo del inocente al que están acusando y el miedo del culpable a ser descubierto se parecen mucho por fuera.",
+    "Los datos acumulados sobre detección de mentiras son bastante desalentadores. La precisión media de un observador humano ronda el azar, y el entrenamiento en señales corporales mejora poco o nada. Peor aún: sube mucho la confianza del observador sin subir su acierto, lo que produce gente muy segura equivocándose más.",
+    "También conviene desmontar el catálogo de gestos con significado fijo. Brazos cruzados no significa cerrazón: a menudo significa frío, o que la silla no tiene reposabrazos. Mirar a un lado no señala invención: señala que se está recuperando algo de memoria. Fuera de contexto, un gesto no dice nada.",
+    "Lo que sí funciona no está en la cara. Es el contenido: pedir el relato en orden inverso, preguntar por detalles verificables y comprobables, aumentar la carga mental de sostener una historia inventada. Ahí las diferencias sí aparecen, y aparecen en lo que se dice, no en cómo se mueve una ceja."
+  ],
+  "nota_matiz": "La detección de mentiras a partir de señales no verbales tiene un respaldo empírico mucho más débil de lo que sugiere su popularidad: los metaanálisis sitúan el acierto humano cerca del nivel del azar, y el entrenamiento suele aumentar la confianza más que la precisión.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "tema_de_episodio",
+    "resumen": "El episodio trata cómo funcionan las microexpresiones, el subconsciente y el control mental, y se plantea desde tres preguntas: cómo leer a alguien, cómo detectar una mentira y cómo saber si te están manipulando sin que lo notes.",
+    "fuente_id": "regil-leer-la-mente"
+  }
+}

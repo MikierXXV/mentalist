@@ -1,0 +1,21 @@
+{
+  "id": "sugestion-hipnotica",
+  "orden": 12,
+  "titulo": "Hipnosis: enfocar, no dormir",
+  "gancho": "Ni sueño, ni pérdida de voluntad, ni chasquido de dedos. Atención muy estrecha y expectativa muy alta.",
+  "familia": "influencia",
+  "visualizacion": "resonance",
+  "explicacion_didactica": [
+    "La imagen popular de la hipnosis —alguien inconsciente, sin voluntad, obedeciendo órdenes— procede casi entera del espectáculo y del cine. Lo que se estudia en laboratorio se parece bastante poco a eso.",
+    "Lo que ocurre es una combinación de tres cosas ordinarias llevadas al extremo. Atención muy focalizada, hasta el punto de que el resto del entorno se difumina. Expectativa alta sobre lo que va a pasar, que es el ingrediente activo de casi cualquier sugestión. Y una disposición a dejar que las respuestas surjan sin la supervisión crítica habitual.",
+    "Con esos tres factores, algunas sugestiones producen efectos genuinos: alteraciones reales en cómo se siente el dolor, o la experiencia de que el propio brazo se levanta solo. La persona no lo está fingiendo. Su experiencia subjetiva es exactamente esa.",
+    "Pero hay dos límites que casi nunca se cuentan. El primero es la enorme variabilidad individual: la sugestionabilidad hipnótica es un rasgo estable y desigualmente repartido: hay quien responde muchísimo y quien no responde prácticamente nada, y no depende de ser más o menos inteligente ni más o menos crédulo. El segundo es que nadie hace bajo hipnosis algo que rechace de forma sostenida y profunda: el sujeto no está desconectado, sino muy concentrado y colaborando.",
+    "Y una advertencia con consecuencias reales: la hipnosis no sirve para recuperar recuerdos olvidados. Aumenta la confianza en lo que se recuerda sin aumentar su exactitud, y facilita la aparición de recuerdos falsos vividos con total sinceridad. Es la razón por la que muchos sistemas judiciales miran con mucha cautela el testimonio obtenido así."
+  ],
+  "nota_matiz": "El consenso actual entiende la hipnosis como un fenómeno de sugestión y atención focalizada, no como un estado de pérdida de la voluntad ni como un sueño.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "tema_de_episodio",
+    "resumen": "El episodio se dedica a la hipnosis, la sugestión y el lenguaje corporal como herramientas de influencia, con atención a cómo se aplican en el día a día y al riesgo de ser manipulado sin darse cuenta. Incluye demostraciones en directo durante la conversación.",
+    "fuente_id": "lfde-uri-sabat"
+  }
+}

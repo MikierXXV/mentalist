@@ -1,0 +1,22 @@
+{
+  "id": "sesgos-y-atencion-robada",
+  "orden": 10,
+  "titulo": "Recuperar el control de tu atención",
+  "gancho": "Hay industrias enteras cuyo producto eres tú mirando. No es una metáfora: es el modelo de negocio.",
+  "familia": "percepcion",
+  "visualizacion": "focus-field",
+  "explicacion_didactica": [
+    "Si la atención es un recurso escaso y casi todo lo que percibes depende de dónde la pongas, entonces quien decide dónde la pones tiene una influencia enorme sobre tu versión de la realidad. Y esa decisión, cada vez más, no la tomas tú.",
+    "Los mecanismos que se usan para capturarla no son misteriosos: recompensa impredecible —el mismo principio que hace adictiva una máquina tragaperras—, interrupción constante que impide entrar en profundidad, y una selección de contenidos optimizada no para informarte sino para retenerte. La indignación retiene mejor que el matiz. El sistema no tiene una opinión: tiene una métrica.",
+    "A eso se suma la maquinaria de atajos con la que ya venías de fábrica. Buscamos lo que confirma lo que pensábamos. Juzgamos la frecuencia por la facilidad con que se nos ocurre un ejemplo. Damos más peso al primer número que oímos. Ninguno de esos atajos es un defecto: son soluciones rápidas y baratas que funcionan la mayoría de las veces, y precisamente por eso son predecibles y explotables.",
+    "El pensamiento crítico, entendido en serio, no consiste en dudar de todo ni en tener más información. Consiste en meter fricción en los puntos donde el sistema automático decide solo: quién me está contando esto y qué gana, qué me haría cambiar de opinión, y si estoy reaccionando al contenido o a la emoción que trae puesta.",
+    "Y la palanca más eficaz es también la menos sofisticada: decidir de antemano a qué vas a atender. Cualquier bloque de tiempo protegido —sin interrupciones, con una sola cosa delante— vale más que cualquier técnica de concentración aplicada en medio del ruido."
+  ],
+  "experimento": "Mira ahora mismo cuántas veces has desbloqueado el móvil hoy. Casi ninguna de esas veces fue una decisión.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "El libro Inteligencia Natural se plantea, según su descripción editorial, como una guía para detectar influencias ocultas, sesgos y engaños mentales, reconocer las dinámicas de manipulación psicológica cotidiana, fortalecer el pensamiento crítico y recuperar el control de la propia atención, con ejercicios prácticos y técnicas trasladadas del mentalismo profesional a la vida diaria.",
+    "fuente_id": "libro-arcopress",
+    "fuentes_extra": ["nota-prensa-arcopress"]
+  }
+}

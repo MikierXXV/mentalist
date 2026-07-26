@@ -1,0 +1,22 @@
+{
+  "id": "lectura-fria",
+  "orden": 5,
+  "titulo": "Quién rellena los huecos",
+  "gancho": "El acierto lo pones tú. El otro solo tiene que dejar el espacio bien colocado.",
+  "familia": "lectura",
+  "visualizacion": "mirror-signal",
+  "explicacion_didactica": [
+    "La lectura fría es el conjunto de recursos que permiten dar la impresión de saber mucho sobre alguien a quien acabas de conocer. Y su ingrediente principal no está en quien habla, sino en quien escucha.",
+    "La pieza básica es la afirmación de doble filo: enunciados que describen una tensión que casi todo el mundo reconoce en sí mismo. «Hay una parte de ti que necesita a la gente y otra que necesita desaparecer un rato». «Eres exigente contigo, más de lo que los demás imaginan». Suenan específicas y no lo son: son ciertas para casi cualquiera, porque casi todos vivimos esas dos caras.",
+    "El oyente no percibe una frase genérica. Percibe un retrato, porque la completa con su propio material: recuerda el jueves concreto en que se sintió así y lo aporta como prueba. La sensación de precisión la fabrica él, con datos que el otro nunca tuvo.",
+    "A eso se suman dos cosas. La calibración: se lanza una afirmación tentativa y se observa la reacción —una pausa, un asentimiento, un cambio de postura— para reforzarla si acierta o reformularla si no. Y la memoria selectiva: recordamos los tres impactos y olvidamos los quince tiros fallados, así que el balance final siempre parece asombroso.",
+    "El punto importante es este: nada de esto requiere facultades especiales. Explica por completo la impresión de acierto sin necesidad de suponer nada paranormal. Y explica también por qué funciona mejor cuando la persona está removida: cuanto más quieres que alguien te entienda, más generoso eres rellenando los huecos."
+  ],
+  "experimento": "Lee esto: «te preocupa algo que aún no has decidido cómo abordar». Si has pensado en algo concreto, acabas de hacer todo el trabajo.",
+  "nota_matiz": "La lectura fría basta para explicar la impresión de acierto de una sesión de adivinación: no hace falta postular ninguna facultad especial para dar cuenta del resultado.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "tema_de_episodio",
+    "resumen": "En este episodio se aborda la lectura en frío como una de las herramientas centrales del mentalismo: obtener información que el propio sujeto entrega sin darse cuenta. La conversación recorre también la sugestión psicológica, la psicología del engaño y las señales no verbales, con demostraciones en directo sobre el anfitrión.",
+    "fuente_id": "roca-project-78"
+  }
+}

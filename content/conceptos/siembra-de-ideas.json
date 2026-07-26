@@ -1,0 +1,21 @@
+{
+  "id": "siembra-de-ideas",
+  "orden": 13,
+  "titulo": "Sembrar una idea y que la creas tuya",
+  "gancho": "Lo eficaz no es meterte una idea en la cabeza. Es que no recuerdes de dónde salió.",
+  "familia": "influencia",
+  "visualizacion": "mirror-signal",
+  "explicacion_didactica": [
+    "Una idea que llega marcada como ajena se evalúa. Una idea que se siente propia se defiende. Toda la diferencia está ahí, y el trabajo consiste en pasar la idea de la primera categoría a la segunda.",
+    "El mecanismo de base es el escurrimiento de la fuente: el contenido y su procedencia se guardan por separado, y la procedencia se pierde mucho antes. A los tres días recuerdas perfectamente el dato y ya no recuerdas si lo leíste, te lo contaron o lo dedujiste. En ese momento el dato queda huérfano y tu mente le asigna el origen más disponible, que sueles ser tú.",
+    "Encima está la preparación. Exponerte a un concepto activa durante un rato todo lo asociado a él, y eso cambia qué se te ocurre después sin cambiar en absoluto tu sensación de estar pensando libremente. Palabras dispersas en una conversación, un objeto colocado a la vista, una imagen de fondo: material que no fue atendido como argumento pero que sí influye en lo que aflora luego.",
+    "Y hay una tercera pieza, la más difícil de resistir: la pregunta que contiene la respuesta. «¿Y no crees que quizá deberíamos empezar por esto?» obliga a pensar en «esto» para poder responder. Aunque digas que no, ya lo has considerado, y considerarlo lo hace más disponible en la siguiente vuelta.",
+    "La defensa realista no es intentar blindarse: la siembra funciona precisamente porque no deja rastro. Es una pregunta que se hace después, cuando ya has decidido algo: ¿de dónde ha salido esto? Si no sabes responder, no significa que sea falso. Significa que no sabes de quién es."
+  ],
+  "experimento": "Cuando tengas una idea «tuya» sobre una compra, intenta reconstruir dónde la viste por primera vez. A veces aparece un anuncio.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "tema_de_episodio",
+    "resumen": "En este episodio se muestra en directo cómo influir en las respuestas del anfitrión sin que llegue a percibirlo, sembrando una idea de forma sutil de manera que la sienta como propia. La conversación aborda también el funcionamiento del subconsciente y las señales que delatan a quien intenta manipularnos.",
+    "fuente_id": "regil-leer-la-mente"
+  }
+}

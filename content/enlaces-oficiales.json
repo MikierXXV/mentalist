@@ -1,0 +1,25 @@
+{
+  "nota": "Enlaces a los canales oficiales de Javier Botía, para quien quiera profundizar o contactar con él. Este sitio no reproduce material audiovisual suyo: solo enlaza.",
+  "enlaces": [
+    {
+      "etiqueta": "Web oficial",
+      "descripcion": "Información y formulario de contacto y contrataciones.",
+      "url": "https://javierbotia.com/"
+    },
+    {
+      "etiqueta": "Inteligencia Natural (Arcopress)",
+      "descripcion": "Ficha del libro en la editorial: 256 páginas, ISBN 978-84-10354-73-9.",
+      "url": "https://almuzaralibros.com/fichalibro.php?libro=12671&edi=3"
+    },
+    {
+      "etiqueta": "Instagram",
+      "descripcion": "Cuenta oficial @javierbotia.oficial.",
+      "url": "https://www.instagram.com/javierbotia.oficial/"
+    },
+    {
+      "etiqueta": "YouTube",
+      "descripcion": "Canal oficial @JavierBotia.Oficial.",
+      "url": "https://www.youtube.com/@JavierBotia.Oficial"
+    }
+  ]
+}

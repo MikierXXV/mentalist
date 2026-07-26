@@ -1,0 +1,21 @@
+{
+  "id": "repeticion-y-creencia",
+  "orden": 7,
+  "titulo": "Repetido por muchos ≠ verdadero",
+  "gancho": "Tu cerebro confunde «me suena» con «es cierto». Y esa confusión se puede fabricar.",
+  "familia": "influencia",
+  "visualizacion": "resonance",
+  "explicacion_didactica": [
+    "Hay un atajo mental que casi nadie desactiva: si una afirmación nos resulta familiar, tendemos a darla por verdadera. Basta con haberla oído antes unas cuantas veces, aunque no recordemos dónde, quién la dijo ni si venía acompañada de algún dato.",
+    "El motivo es la fluidez. Procesar algo conocido cuesta menos esfuerzo, y ese ahorro se experimenta como una sensación agradable de encaje. El cerebro, que no tiene un medidor de verdad, usa esa sensación como sustituto: lo que se procesa fácil se siente correcto. El efecto es tan robusto que funciona incluso cuando la persona sabía la respuesta correcta de antemano.",
+    "A la repetición se le suma la aritmética social. Damos por hecho que si mucha gente sostiene algo, algo sabrán. Pero rara vez comprobamos si esas muchas voces son fuentes independientes o el eco de una sola: mil publicaciones que reenvían el mismo mensaje no son mil testimonios, son uno repetido mil veces. La sensación de consenso es fácil de simular.",
+    "Y encima no somos evaluadores neutrales. Lo que confirma lo que ya creíamos entra sin peaje; lo que lo contradice recibe un escrutinio severo. El miedo y la indignación aceleran todo el proceso: cuando algo nos activa emocionalmente, compartimos antes de verificar.",
+    "La defensa práctica no es desconfiar de todo, que es agotador e igual de manipulable. Es más barata: ante una afirmación que te suena mucho, preguntarte de dónde te suena. Si no puedes nombrar la fuente original, lo que tienes no es una creencia fundada; es una frase que has oído lo suficiente."
+  ],
+  "experimento": "Coge algo que «todo el mundo sabe» y rastrea la fuente original. A menudo el rastro se corta en un titular sin estudio detrás.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "Botía llama la atención sobre lo vulnerable que resulta el ser humano ante lo que muchos repiten: tendemos a creer una información por el hecho de que circule ampliamente. Señala además que sesgos, emociones y miedos moldean la percepción colectiva y nos vuelven susceptibles a la manipulación.",
+    "fuente_id": "vidanueva-fe"
+  }
+}

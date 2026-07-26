@@ -1,0 +1,22 @@
+{
+  "id": "desmontar-videntes",
+  "orden": 15,
+  "titulo": "Cómo se desmonta a un vidente",
+  "gancho": "Un mentalista te dice que va a fingir. El problema empieza cuando alguien cobra por no decírtelo.",
+  "familia": "lectura",
+  "visualizacion": "mirror-signal",
+  "explicacion_didactica": [
+    "La diferencia entre un mentalista y un vidente no está en la técnica. Puede ser exactamente la misma. Está en el contrato: uno declara que lo que hace es un espectáculo y el otro afirma que tiene un don, cobra en consecuencia y suele encontrar a su cliente en el peor momento de su vida.",
+    "Las herramientas son las que ya conoces. Afirmaciones que valen para casi todo el mundo pero suenan personales. Calibración sobre la reacción del otro. Preguntas disfrazadas de revelaciones. Y una memoria selectiva —la del cliente— que retendrá los tres aciertos y disolverá los veinte fallos.",
+    "Hay dos recursos añadidos que conviene reconocer. La lectura caliente: información obtenida de antemano, hoy trivial de conseguir en redes sociales, presentada como si viniera de otro sitio. Y las profecías que se cumplen solas: si te dicen que vas a conocer a alguien importante, empezarás a mirar a la gente que conoces con esa etiqueta puesta.",
+    "La comprobación decisiva no es pillar un fallo: cualquiera falla y siempre hay una explicación disponible. Es exigir precisión previa y verificable. No «veo un cambio importante» sino un nombre, una fecha o una cifra, dicha antes y sin margen para reinterpretarla después. Bajo esa condición, el fenómeno se desvanece de forma consistente.",
+    "Y por eso esto no es un asunto de curiosidad intelectual. Cuando alguien está roto por un duelo, una enfermedad o una ruptura, la fabricación de certezas a medida deja de ser un juego. Saber cómo se construye la impresión de acierto es, sobre todo, una forma de protección."
+  ],
+  "nota_matiz": "Ninguna de las técnicas descritas requiere facultades paranormales: bastan para reproducir el efecto completo, y así lo demuestran habitualmente los propios profesionales del mentalismo.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "tema_de_episodio",
+    "resumen": "Entre los asuntos del episodio figura desenmascarar los recursos que emplean los videntes y advertir del peligro de ser manipulado sin saberlo, junto a las técnicas de mentalismo, hipnosis y lenguaje corporal que se comentan a lo largo de la conversación.",
+    "fuente_id": "lfde-uri-sabat",
+    "fuentes_extra": ["roca-project-78"]
+  }
+}

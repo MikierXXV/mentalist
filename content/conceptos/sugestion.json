@@ -1,0 +1,22 @@
+{
+  "id": "sugestion",
+  "orden": 3,
+  "titulo": "Lo que te instalan sin avisar",
+  "gancho": "Nadie te convenció de esa idea. Simplemente llevas años oyéndola.",
+  "familia": "influencia",
+  "visualizacion": "resonance",
+  "explicacion_didactica": [
+    "Sugestión suena a hipnotizador de feria. Es mucho más aburrido y mucho más frecuente: es la tendencia a que una idea introducida desde fuera acabe siendo procesada como si hubiera nacido dentro.",
+    "El mecanismo básico es la expectativa. El cerebro no interpreta las señales en el vacío: las interpreta a la luz de lo que anticipa. Si te dicen que un vino es caro, las zonas cerebrales asociadas al placer responden más intensamente ante el mismo vino. No estás fingiendo que te gusta más. Te gusta más de verdad. La expectativa entró antes que el sabor y ordenó cómo se iba a leer.",
+    "El segundo mecanismo es la repetición. Una frase que oyes por primera vez se procesa con esfuerzo. La quinta vez, ya fluye. Y el cerebro confunde sistemáticamente esa fluidez con verdad: lo que resulta fácil de procesar se siente correcto. Por eso una afirmación repetida gana credibilidad sin aportar ni un dato nuevo.",
+    "El tercero es la fuente. Lo que dice alguien a quien admiramos, o alguien con autoridad aparente, entra con la guardia baja. No lo evaluamos igual. Le concedemos por adelantado el beneficio de la duda que negaríamos a un desconocido.",
+    "Junta los tres —expectativa, repetición y una fuente que respetas— y tienes la receta completa. Así se instalan las creencias sobre uno mismo que nunca se sometieron a examen: «se me dan mal los idiomas», «no valgo para hablar en público». Nadie te lo demostró. Te lo dijeron lo suficiente, temprano, y alguien que importaba."
+  ],
+  "experimento": "Elige una creencia que tengas sobre ti mismo y pregúntate quién la dijo la primera vez. Muchas veces hay un nombre y una edad concretos.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "Botía sostiene que la sugestión opera constantemente y sin que la notemos: nos sugestionan las expectativas que traemos, los entornos en los que estamos y las personas a las que admiramos. Y advierte de que una frase repetida lo suficiente termina convertida en una creencia instalada.",
+    "cita_breve": "nos sugestionan las expectativas, los entornos, las personas que admiramos",
+    "fuente_id": "audible-blog"
+  }
+}

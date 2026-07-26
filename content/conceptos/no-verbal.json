@@ -1,0 +1,23 @@
+{
+  "id": "no-verbal",
+  "orden": 8,
+  "titulo": "El cuerpo contesta antes que la boca",
+  "gancho": "Hay una conversación paralela ocurriendo, y ninguno de los dos la está manteniendo a propósito.",
+  "familia": "lectura",
+  "visualizacion": "mirror-signal",
+  "explicacion_didactica": [
+    "Mientras hablamos ocurre un segundo intercambio que casi nadie está gestionando de forma deliberada: postura, ritmo, distancia, tono, hacia dónde apuntan los pies, cuánto tarda alguien en responder. Ese canal se emite y se lee en gran medida fuera del foco consciente.",
+    "Un ejemplo bien documentado es el destello de cejas: una elevación brevísima, de una fracción de segundo, que hacemos al reconocer a alguien con quien no hay conflicto. Aparece en culturas muy distintas y pasa completamente inadvertida. Pero su ausencia no pasa inadvertida: si alguien te saluda con la cara inmóvil, registras algo raro, frío o levemente hostil, y normalmente no sabes decir qué ha sido.",
+    "Eso es lo característico del canal no verbal: produce una conclusión sin dejar rastro del razonamiento. Sales de una reunión con la sensación de que aquello no iba bien, o de que alguien no te acaba de convencer, y solo tienes la conclusión. La evidencia se procesó, la sensación llegó y los argumentos no.",
+    "Ahora la parte que suele contarse mal. El cuerpo no es un detector de mentiras: es un indicador de estados. Los cambios que se leen —tensión, pausas, cambios de ritmo, romper el contacto visual— señalan activación o incomodidad, y la incomodidad tiene muchas causas además de mentir. Ser observado ya basta.",
+    "Bien usado, el canal sirve para dos cosas honestas: darte cuenta de cuándo la otra persona se ha cerrado, y darte cuenta de qué estás emitiendo tú sin querer. Ambas mejoran conversaciones reales, que es más de lo que consigue cualquier catálogo de gestos con significado fijo."
+  ],
+  "nota_matiz": "No existe una cifra consensuada sobre qué porcentaje de la comunicación es no verbal: las que circulan proceden de estudios sobre situaciones muy concretas y se han generalizado en exceso. Lo sólido es que gesto, tono y ritmo modulan cómo se interpreta el mensaje, no que sustituyan a las palabras.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "Botía sostiene que el lenguaje corporal lo interpreta el subconsciente sin que intervengamos: pone como ejemplo que levantar las cejas al saludar genera confianza, mientras que omitir ese gesto produce rechazo. Relaciona con ello esa intuición difusa de que alguien «nos da mala espina» sin poder justificarla racionalmente.",
+    "cita_breve": "una mirada casi de psicópata",
+    "fuente_id": "cope-subconsciente",
+    "fuentes_extra": ["regil-leer-la-mente"]
+  }
+}

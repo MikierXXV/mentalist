@@ -1,0 +1,22 @@
+{
+  "id": "elicitacion",
+  "orden": 4,
+  "titulo": "Para saber, no preguntes: afirma",
+  "gancho": "La pregunta activa las defensas. El error, en cambio, activa las ganas de corregirlo.",
+  "familia": "lectura",
+  "visualizacion": "mirror-signal",
+  "explicacion_didactica": [
+    "Preguntar es la forma más obvia de obtener información y una de las peores. En cuanto alguien detecta que está siendo interrogado, aunque sea de forma amable, cambia de modo: calcula, filtra, decide cuánto conviene decir. La pregunta anuncia que hay algo en juego.",
+    "La elicitación invierte el movimiento. En vez de preguntar, se afirma algo —con naturalidad y con seguridad— que es ligeramente incorrecto. Y entonces entra en juego una de las pulsiones más fiables del ser humano: la incomodidad ante el error ajeno cuando uno sabe la respuesta correcta.",
+    "«Tengo entendido que en tu empresa el bonus lo cobráis en marzo». Si es en junio, corregirlo no se siente como confesar: se siente como precisar. La persona no está respondiendo a un interrogatorio; está arreglando un dato equivocado, que es algo que hacemos casi por reflejo y con cierto placer.",
+    "Debajo hay dos fuerzas conocidas. Una es el impulso de restaurar la exactitud: dejar correr una afirmación falsa sobre nuestro propio terreno cuesta un esfuerzo activo. La otra es el deseo de aparecer como quien sabe: corregir demuestra competencia, y demostrar competencia sienta bien.",
+    "El resultado es información entregada voluntariamente, con menos resistencia y más espontaneidad, por alguien que no siente que ha sido preguntado. Y aquí conviene la advertencia: esto se estudia igual para usarlo que para reconocerlo. Si en una conversación alguien afirma con aplomo cosas ligeramente equivocadas sobre tu vida, quizá no esté mal informado."
+  ],
+  "experimento": "La próxima vez que te den ganas de corregir a alguien, para medio segundo y pregúntate qué información estás a punto de regalar.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "Botía presenta la elicitación como una técnica propia de interrogadores profesionales: en lugar de preguntar, se afirma con autoridad algo incorrecto para que el interlocutor se corrija por su cuenta. Explica que existe una tendencia natural a querer enmendar lo que se afirma mal, y que el objetivo es reducir la resistencia y aumentar la espontaneidad de las respuestas mediante una conversación normal, no un interrogatorio.",
+    "cita_breve": "Para interrogar a alguien sin que se dé cuenta nunca le tienes que preguntar",
+    "fuente_id": "okdiario-elicitacion"
+  }
+}

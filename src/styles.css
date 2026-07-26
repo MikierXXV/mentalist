@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(201, 162, 39, 0.1),
+      transparent 70%
+    );
+    background-repeat: no-repeat;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.senalClara');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .contenedor {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .titulo-seccion {
+    @apply font-display text-3xl font-normal tracking-tight text-papel sm:text-4xl;
+  }
+
+  .texto-suave {
+    @apply text-bruma;
+  }
+
+  /* Tarjeta del índice de conceptos. */
+  .tarjeta {
+    @apply relative flex h-full w-full flex-col gap-3 rounded-lg border border-white/10
+      bg-white/[0.02] p-5 text-left transition-colors duration-300
+      hover:border-senal/50 hover:bg-white/[0.05];
+  }
+
+  .tarjeta__numero {
+    @apply font-display text-sm text-senal/70;
+  }
+
+  .tarjeta__titulo {
+    @apply font-display text-xl leading-snug text-papel;
+  }
+
+  .tarjeta__gancho {
+    @apply text-sm leading-relaxed text-bruma;
+  }
+
+  .distintivo {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1
+      text-[11px] uppercase tracking-wider;
+  }
+
+  .distintivo--texto {
+    @apply border-senal/40 text-senal;
+  }
+
+  .distintivo--podcast {
+    @apply border-dashed border-bruma/50 text-bruma;
+  }
+
+  /* Cuerpo de lectura de la ficha. */
+  .prosa p {
+    @apply mb-5 max-w-lectura text-[1.0625rem] leading-[1.75] text-papel/85;
+  }
+
+  .prosa p:last-child {
+    @apply mb-0;
+  }
+
+  /* Capa oficial: dos variantes visualmente distintas según la solidez de la fuente. */
+  .oficial {
+    @apply rounded-lg border p-5 sm:p-6;
+  }
+
+  .oficial--propia {
+    @apply border-senal/30 bg-senal/[0.06];
+  }
+
+  .oficial--episodio {
+    @apply border-dashed border-bruma/40 bg-white/[0.02];
+  }
+
+  .cita {
+    @apply my-4 border-l-2 border-senal pl-4 font-display text-lg italic leading-relaxed text-papel;
+  }
+
+  .nota-matiz {
+    @apply rounded-lg border-l-2 border-bruma/60 bg-white/[0.03] px-5 py-4
+      text-sm leading-relaxed text-bruma;
+  }
+
+  .enlace-fuente {
+    @apply inline-flex items-center gap-1.5 text-sm text-senal underline
+      decoration-senal/40 underline-offset-4 transition-colors hover:decoration-senal;
+  }
+
+  .boton {
+    @apply inline-flex items-center gap-2 rounded-full border border-senal/50 px-5 py-2.5
+      text-sm text-senal transition-colors hover:bg-senal hover:text-tinta;
+  }
+}
+
+/* Contenedor de las visualizaciones Three.js. */
+.lienzo-viz {
+  @apply relative aspect-[16/9] w-full overflow-hidden rounded-lg border border-white/10 bg-black/40;
+}
+
+.lienzo-viz canvas {
+  @apply block h-full w-full;
+}

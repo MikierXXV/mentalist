@@ -1,0 +1,21 @@
+{
+  "id": "atencion-selectiva",
+  "orden": 2,
+  "titulo": "Solo ves donde miras",
+  "gancho": "La atención no es un foco que ilumina la sala: es una linterna estrecha en una habitación a oscuras.",
+  "familia": "percepcion",
+  "visualizacion": "focus-field",
+  "explicacion_didactica": [
+    "Existe una sensación muy convincente y muy equivocada: la de que somos conscientes de todo lo que ocurre en nuestro campo de visión, y de que si algo llamativo pasara delante, lo veríamos sin remedio.",
+    "La investigación sobre ceguera por falta de atención dice lo contrario. Cuando las personas se concentran en una tarea concreta —contar pases de un balón, seguir un objeto—, una proporción enorme no advierte sucesos perfectamente visibles y objetivamente raros que ocurren en el centro de la escena. No es que los vean y los olviden: es que no llegan a existir para ellas.",
+    "La clave es que la atención es un recurso escaso y de suma cero. Lo que dedicas a un punto se lo estás quitando a todo lo demás. Y, a diferencia de una cámara, no guardas un archivo de lo que no atendiste: simplemente no hay nada ahí.",
+    "De ahí que dirigir la atención de alguien sea mucho más eficaz que ocultarle algo. No hay que esconder nada si la mirada del otro está, en ese instante exacto, ocupada en otro sitio. Un gesto amplio, una pregunta que obliga a pensar, una risa: cualquier cosa que consuma atención deja el resto del escenario en penumbra.",
+    "Lo interesante no es el truco, es la consecuencia cotidiana. La reunión en la que solo recuerdas el comentario que te molestó. El contrato del que solo leíste el precio. La conversación en la que ensayabas tu respuesta en lugar de escuchar. En todos esos casos la información estaba delante y tu linterna apuntaba a otra parte."
+  ],
+  "experimento": "Piensa en el último trayecto que hiciste a pie. Ahora intenta describir el suelo. Lo pisaste entero y no lo miraste ni una vez.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "Botía plantea que creemos ver todo lo que tenemos delante cuando en realidad solo percibimos aquello en lo que enfocamos, y subraya que un gesto o una palabra colocada en el instante preciso basta para cambiar cómo interpretamos una escena.",
+    "fuente_id": "audible-blog"
+  }
+}

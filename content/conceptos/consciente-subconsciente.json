@@ -1,0 +1,23 @@
+{
+  "id": "consciente-subconsciente",
+  "orden": 9,
+  "titulo": "El enano y el gigante",
+  "gancho": "Una parte de ti razona y cree que manda. La otra hace casi todo el trabajo y no consulta.",
+  "familia": "memoria",
+  "visualizacion": "reconstruction",
+  "explicacion_didactica": [
+    "La experiencia de tener una mente es engañosamente ordenada: parece que hay un yo que delibera, decide y ejecuta. Pero ese yo deliberante es una capa fina montada sobre una maquinaria enorme que funciona sola.",
+    "Casi todo lo que te mantiene operativo ocurre sin ti: el reconocimiento de una cara conocida, la gramática de la frase que estás a punto de decir, el equilibrio al bajar un escalón, la evaluación instantánea de si un sitio es seguro. Nada de eso se razona. Se resuelve antes, y llega ya resuelto.",
+    "La ventaja del procesamiento automático es la velocidad y el paralelo: puede atender muchas cosas a la vez y no se cansa. La ventaja del consciente es que puede pararse a pensar, considerar alternativas y decir que no. Su desventaja es que es lento, se agota y solo puede sostener una cosa a la vez.",
+    "Por eso, cuando ambos discrepan, no gana el que tiene razón: gana el que tiene fuerza. Puedes saber perfectamente que un avión es seguro y sentir el cuerpo en alerta durante todo el vuelo. El argumento correcto está ahí y no manda nada. La parte automática ya ha decidido que hay peligro y ha activado el organismo entero.",
+    "La lectura útil de esto no es que seas un pasajero sin voz. Es que la vía de acceso no es discutir. Lo automático se educa por exposición, por repetición y por experiencia corporal —hacer la cosa temida en dosis pequeñas y comprobar que no pasa nada—, no por convencerse a uno mismo con buenos razonamientos."
+  ],
+  "nota_matiz": "Las cifras que suelen circular —«usamos el 10 % del cerebro», «el consciente gobierna el 1 %», «el 90 % de la mente está por desbloquear»— son formulaciones divulgativas, no medidas. Lo que sí respalda la investigación es que la mayor parte del procesamiento mental ocurre fuera de la consciencia; ponerle un porcentaje concreto no tiene base.",
+  "explicacion_oficial": {
+    "tipo_atribucion": "formulacion_propia",
+    "resumen": "Botía recurre a una metáfora propia, la del enano y el gigante: la consciencia sería el enano —la lógica, la sensación de estar al mando— y el subconsciente, el gigante, incomparablemente más poderoso. De ahí su conclusión sobre quién gana cuando los dos van en direcciones distintas.",
+    "cita_breve": "si el gigante entra en pánico, el enano no tiene cómo agarrarlo",
+    "fuente_id": "cope-subconsciente",
+    "fuentes_extra": ["no-solo-exito"]
+  }
+}

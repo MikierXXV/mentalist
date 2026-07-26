@@ -1,0 +1,20 @@
+{
+  "id": "tecnica-no-poder",
+  "orden": 16,
+  "titulo": "Técnica, no superpoder",
+  "gancho": "Lo asombroso no desaparece al explicarlo. Cambia de sitio: pasa del mago al funcionamiento de tu mente.",
+  "familia": "memoria",
+  "visualizacion": "reconstruction",
+  "explicacion_didactica": [
+    "Conviene cerrar el recorrido por donde debería haber empezado. Todo lo anterior —percepción, atención, sugestión, lectura fría, memoria reconstructiva— describe cómo funciona una mente humana normal. Nada de ello exige suponer nada extraordinario.",
+    "El mentalismo, entendido como oficio, es la aplicación deliberada de ese conocimiento: observación entrenada, comprensión de cómo se dirige la atención, manejo del ritmo y de la expectativa, y muchísima práctica. Es una disciplina técnica, no una facultad.",
+    "Esto tiene una consecuencia que suele pasarse por alto: el efecto no vive en quien lo ejecuta, vive en quien lo presencia. La sensación de imposible la produce tu propio sistema de percepción cuando trabaja con la información que se le ha dado. El profesional no hace lo imposible; construye las condiciones para que tu mente concluya que ha ocurrido algo imposible.",
+    "Por eso saber cómo funciona no arruina el espectáculo. Un buen efecto sigue funcionando aunque conozcas los principios, igual que una buena película sigue emocionando aunque sepas que hay un guion. Lo que cambia es dónde pones el asombro.",
+    "Y queda la parte que sí importa fuera del teatro. Las mismas palancas que producen un momento de maravilla en un escenario, donde hay consentimiento y se entiende que es ficción, producen manipulación cuando se usan sobre alguien que no sabe que están en juego. Reconocerlas es lo único que separa una cosa de la otra."
+  ],
+  "explicacion_oficial": {
+    "tipo_atribucion": "tema_de_episodio",
+    "resumen": "El episodio se plantea como un intento explícito de los anfitriones de descubrir el procedimiento analizando cada movimiento, y enmarca lo que ocurre en términos de técnica, ciencia del comportamiento y observación, no de facultades sobrenaturales.",
+    "fuente_id": "el-circulo-control-mental"
+  }
+}

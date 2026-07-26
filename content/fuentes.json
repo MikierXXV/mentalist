@@ -1,0 +1,80 @@
+{
+  "audible-blog": {
+    "tipo": "web",
+    "titulo": "Mentalismo: entender lo que es, con Javier Botía",
+    "publicacion": "Blog de Audible.es",
+    "url": "https://www.audible.es/blog/mentalismo-javier-botia"
+  },
+  "okdiario-elicitacion": {
+    "tipo": "entrevista",
+    "titulo": "Javier Botía, campeón mundial de mentalismo: «Para interrogar a alguien sin que se dé cuenta nunca le tienes que preguntar»",
+    "publicacion": "OKDIARIO",
+    "url": "https://okdiario.com/curiosidades/javier-botia-campeon-mundial-mentalismo-interrogar-alguien-sin-que-cuenta-nunca-tienes-que-preguntar-16307068"
+  },
+  "cope-subconsciente": {
+    "tipo": "entrevista",
+    "titulo": "El mentalista Javier Botía desvela en su nuevo libro las claves de nuestro subconsciente",
+    "publicacion": "COPE",
+    "fecha": "2026-02-19",
+    "url": "https://www.cope.es/emisoras/comunidad-valenciana/valencia-provincia/valencia/noticias/mentalista-javier-botia-desvela-nuevo-libro-claves-nuestro-subconsciente-90-nuestra-mente-todavia-desbloquear-20260219_3310684.html"
+  },
+  "vidanueva-fe": {
+    "tipo": "entrevista",
+    "titulo": "Javier Botía: «Tener fe significa reconocer que no lo sabemos todo»",
+    "publicacion": "Vida Nueva",
+    "fecha": "2026-03-14",
+    "url": "https://www.vidanuevadigital.com/2026/03/14/javier-botia-tener-fe-significa-reconocer-que-no-lo-sabemos-todo/"
+  },
+  "libro-arcopress": {
+    "tipo": "libro",
+    "titulo": "Inteligencia Natural. Descubre tu poder mental",
+    "publicacion": "Arcopress (Almuzara Libros), 2026 · ISBN 978-84-10354-73-9",
+    "url": "https://almuzaralibros.com/fichalibro.php?libro=12671&edi=3"
+  },
+  "nota-prensa-arcopress": {
+    "tipo": "web",
+    "titulo": "Arcopress publica «Inteligencia natural», de Javier Botía",
+    "publicacion": "AQUÍ Medios de Comunicación",
+    "fecha": "2026-01-21",
+    "url": "https://aquimediosdecomunicacion.com/2026/01/21/arcopress-publica-inteligencia-natural-de-javier-botia/"
+  },
+  "roca-project-78": {
+    "tipo": "podcast",
+    "titulo": "#78 — Mentalista de élite: así controla tu mente sin que te enteres",
+    "publicacion": "Roca Project, con Carlos Roca",
+    "fecha": "2026-02-04",
+    "url": "https://podcasts.apple.com/us/podcast/78-mentalista-de-%C3%A9lite-as%C3%AD-controla-tu-mente-sin-que/id1738229736?i=1000748246240"
+  },
+  "lfde-uri-sabat": {
+    "tipo": "podcast",
+    "titulo": "Experto en mentalismo: hipnosis, telepatía y el poder de controlar mentes",
+    "publicacion": "La Fórmula del Éxito, con Uri Sabat",
+    "fecha": "2025-07-30",
+    "url": "https://podcasts.apple.com/es/podcast/experto-en-mentalismo-hipnosis-telepat%C3%ADa-y-el-poder/id1469066632?i=1000719781336"
+  },
+  "regil-leer-la-mente": {
+    "tipo": "podcast",
+    "titulo": "Cómo leer la mente, detectar mentiras y saber si te manipulan",
+    "publicacion": "El Podcast de Marco Antonio Regil",
+    "url": "https://www.ivoox.com/en/como-leer-mente-detectar-mentiras-saber-audios-mp3_rf_173875086_1.html"
+  },
+  "zoom-out-jordi-tena": {
+    "tipo": "podcast",
+    "titulo": "Mentalista: «puedo manipular tu mente en segundos sin que te des cuenta»",
+    "publicacion": "Zoom Out Podcast, con Jordi Tena",
+    "url": "https://open.spotify.com/episode/27m9lcvv97XkkeucWjNc2I"
+  },
+  "el-circulo-control-mental": {
+    "tipo": "podcast",
+    "titulo": "Javier Botía: la verdad del control mental",
+    "publicacion": "El Círculo Podcast",
+    "fecha": "2026-06-13",
+    "url": "https://podcasts.apple.com/us/podcast/javier-bot%C3%ADa-la-verdad-del-control-mental-por-fin-revela/id1732552353?i=1000772557629"
+  },
+  "no-solo-exito": {
+    "tipo": "podcast",
+    "titulo": "Mentalista top 1. Así manipulan tu mente",
+    "publicacion": "No Solo Éxito",
+    "url": "https://open.spotify.com/episode/2wynO2ZS6LRi5OHSlo6ofj"
+  }
+}
