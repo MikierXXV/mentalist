@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { aleatorio, crearNube, saturar } from './base';
+import { aleatorio, atenuar, crearNube, saturar } from './base';
 import type { Control, Paleta, VizContexto, VizInstancia } from './tipos';
 
 /**
@@ -61,6 +61,7 @@ export function init({ scene, paleta, estado }: VizContexto): VizInstancia {
 
   let base = new THREE.Color(paleta.tenue);
   let destello = new THREE.Color(paleta.acentoClaro);
+  let fondo = new THREE.Color(paleta.fondo);
   const color = new THREE.Color();
 
   let lenta = false;
@@ -94,12 +95,12 @@ export function init({ scene, paleta, estado }: VizContexto): VizInstancia {
         for (let i = 0; i < PUNTOS_ROSTRO; i++) {
           const respiro = 0.62 + Math.sin(t * 1.1 + i * 0.2) * 0.06;
 
-          color.copy(base).multiplyScalar(respiro);
+          atenuar(color.copy(base), fondo, respiro);
           color.lerp(destello, saturar(pesosIzq[i]! * brilloIzq));
           if (revelado && mentiroso === 0) color.lerp(destello, 0.12);
           atributo.setXYZ(i, color.r, color.g, color.b);
 
-          color.copy(base).multiplyScalar(respiro);
+          atenuar(color.copy(base), fondo, respiro);
           color.lerp(destello, saturar(pesosDer[i]! * brilloDer));
           if (revelado && mentiroso === 1) color.lerp(destello, 0.12);
           atributo.setXYZ(PUNTOS_ROSTRO + i, color.r, color.g, color.b);
@@ -129,6 +130,7 @@ export function init({ scene, paleta, estado }: VizContexto): VizInstancia {
     setPaleta(nueva: Paleta) {
       base = new THREE.Color(nueva.tenue);
       destello = new THREE.Color(nueva.acentoClaro);
+      fondo = new THREE.Color(nueva.fondo);
     },
     dispose() {
       scene.remove(nube.puntos);

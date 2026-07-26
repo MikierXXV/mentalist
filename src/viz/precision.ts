@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { aleatorio, crearNube, crearTrazo, saturar } from './base';
+import { aleatorio, atenuar, crearNube, crearTrazo, saturar } from './base';
 import type { Control, Paleta, VizContexto, VizInstancia } from './tipos';
 
 /**
@@ -52,6 +52,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
 
   let base = new THREE.Color(paleta.tenue);
   let acertado = new THREE.Color(paleta.acentoClaro);
+  let fondo = new THREE.Color(paleta.fondo);
   const color = new THREE.Color();
 
   let precision = 0.05;
@@ -84,7 +85,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
         if (atributo) {
           const borde = saturar(1 - Math.abs(anguloPunto) / Math.max(aperturaSuave, 0.001));
           color.copy(base).lerp(acertado, dentro ? 0.35 + borde * 0.65 : 0);
-          color.multiplyScalar(dentro ? 1 : 0.55);
+          atenuar(color, fondo, dentro ? 1 : 0.5);
           atributo.setXYZ(i, color.r, color.g, color.b);
         }
       }
@@ -106,6 +107,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
     setPaleta(nueva: Paleta) {
       base = new THREE.Color(nueva.tenue);
       acertado = new THREE.Color(nueva.acentoClaro);
+      fondo = new THREE.Color(nueva.fondo);
       cono.material.color.set(nueva.acento);
     },
     dispose() {

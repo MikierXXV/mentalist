@@ -60,6 +60,9 @@ for (const { archivo, datos } of conceptos) {
   if (!datos.visualizacion_alt?.trim()) {
     fallo('la visualización no tiene texto alternativo');
   }
+  if (!datos.ejemplo_real?.escena?.trim() || !datos.ejemplo_real?.texto?.trim()) {
+    fallo('el ejemplo de la vida real está incompleto');
+  }
   // La regresión que motivó rehacer las escenas: fichas compartiendo la misma.
   if (visualizaciones.has(datos.visualizacion)) {
     fallo(

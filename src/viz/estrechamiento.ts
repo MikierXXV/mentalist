@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { aleatorio, crearNube, crearTrazo, saturar } from './base';
+import { aleatorio, atenuar, crearNube, crearTrazo, saturar } from './base';
 import type { Control, Paleta, VizContexto, VizInstancia } from './tipos';
 
 /**
@@ -50,6 +50,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
 
   let base = new THREE.Color(paleta.tenue);
   let vivo = new THREE.Color(paleta.acentoClaro);
+  let fondo = new THREE.Color(paleta.fondo);
   const color = new THREE.Color();
 
   let foco = 0.2;
@@ -81,7 +82,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
             dentro,
           );
           color.copy(base).lerp(vivo, dentro * 0.85);
-          color.multiplyScalar(brillo);
+          atenuar(color, fondo, brillo);
           atributo.setXYZ(i, color.r, color.g, color.b);
         }
       }
@@ -112,6 +113,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
     setPaleta(nueva: Paleta) {
       base = new THREE.Color(nueva.tenue);
       vivo = new THREE.Color(nueva.acentoClaro);
+      fondo = new THREE.Color(nueva.fondo);
       marcoTunel.material.color.set(nueva.acento);
     },
     dispose() {

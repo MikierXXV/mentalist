@@ -29,21 +29,42 @@ export function renderEnlaces(): string {
   `;
 }
 
+/**
+ * Pie compacto.
+ *
+ * El aviso legal se conserva íntegro y legible sin interacción: es la
+ * salvaguarda de derechos del proyecto. Lo que baja es su peso visual —letra
+ * pequeña, dos columnas y menos aire— para que no compita con el contenido.
+ */
 export function renderFooter(): string {
   return /* html */ `
-    <footer class="linea mt-10 border-t py-12">
-      <div class="contenedor max-w-lectura text-sm leading-relaxed text-tenue">
-        <p>
-          Proyecto divulgativo independiente, sin vinculación oficial con Javier Botía,
-          con Arcopress ni con ninguno de los medios citados. Todas las explicaciones
-          didácticas son originales; los resúmenes de la capa oficial son paráfrasis
-          con enlace a la fuente, y las citas textuales son breves y aparecen siempre
-          atribuidas.
-        </p>
-        <p class="mt-4">
-          <em>Inteligencia Natural. Descubre tu poder mental</em> está publicado por
-          Arcopress (Almuzara Libros), ISBN 978-84-10354-73-9.
-        </p>
+    <footer class="linea mt-6 border-t">
+      <div class="contenedor py-8">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+          <p class="text-sm text-texto">
+            © ${new Date().getFullYear()} M. Gutiérrez
+            <span class="text-tenue"> · Todos los derechos reservados</span>
+          </p>
+          <p class="text-sm text-tenue">
+            Proyecto divulgativo independiente
+          </p>
+        </div>
+
+        <div
+          class="linea mt-5 grid gap-x-10 gap-y-3 border-t pt-5 text-xs leading-relaxed text-tenue/90 sm:grid-cols-2"
+        >
+          <p>
+            Sin vinculación oficial con Javier Botía, con Arcopress ni con ninguno de los
+            medios citados. Todas las explicaciones didácticas y los ejemplos son
+            originales; los resúmenes de la capa oficial son paráfrasis con enlace a la
+            fuente, y las citas textuales son breves y aparecen siempre atribuidas.
+          </p>
+          <p>
+            <em>Inteligencia Natural. Descubre tu poder mental</em> está publicado por
+            Arcopress (Almuzara Libros), ISBN 978-84-10354-73-9. El copyright de esta web
+            cubre su código y sus textos propios, no el material de las fuentes enlazadas.
+          </p>
+        </div>
       </div>
     </footer>
   `;

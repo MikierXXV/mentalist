@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { aleatorio, crearAro, crearNube, saturar } from './base';
+import { aleatorio, atenuar, crearAro, crearNube, saturar } from './base';
 import type { Paleta, VizContexto, VizInstancia } from './tipos';
 
 /**
@@ -49,6 +49,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
 
   let base = new THREE.Color(paleta.tenue);
   let ajena = new THREE.Color(paleta.acentoClaro);
+  let fondo = new THREE.Color(paleta.fondo);
   const color = new THREE.Color();
 
   estado('Ninguna idea sembrada todavía.');
@@ -78,7 +79,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
           Math.sin(a * 2) * 0.35,
         );
         if (atributo) {
-          color.copy(base).multiplyScalar(0.75 + Math.sin(t * 1.5 + i) * 0.12);
+          atenuar(color.copy(base), fondo, 0.75 + Math.sin(t * 1.5 + i) * 0.12);
           atributo.setXYZ(i, color.r, color.g, color.b);
         }
       }
@@ -90,7 +91,8 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
         const dato = sembradas[s];
         if (!dato) {
           nube.posicion.setXYZ(indice, 0, 0, -50);
-          if (atributo) atributo.setXYZ(indice, 0, 0, 0);
+          // Del color del fondo, no negro: sin mezcla aditiva se vería.
+          if (atributo) atributo.setXYZ(indice, fondo.r, fondo.g, fondo.b);
           continue;
         }
 
@@ -132,6 +134,7 @@ export function init({ scene, paleta, esMovil, estado }: VizContexto): VizInstan
     setPaleta(nueva: Paleta) {
       base = new THREE.Color(nueva.tenue);
       ajena = new THREE.Color(nueva.acentoClaro);
+      fondo = new THREE.Color(nueva.fondo);
       frontera.material.color.set(nueva.tenue);
     },
     dispose() {

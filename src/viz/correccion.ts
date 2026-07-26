@@ -61,6 +61,7 @@ export function init({ scene, paleta, esMovil }: VizContexto): VizInstancia {
 
   let base = new THREE.Color(paleta.tenue);
   let vivo = new THREE.Color(paleta.acentoClaro);
+  let fondo = new THREE.Color(paleta.fondo);
   const color = new THREE.Color();
 
   let afirmando = false;
@@ -91,8 +92,10 @@ export function init({ scene, paleta, esMovil }: VizContexto): VizInstancia {
         dentro ? p.profundidad * apert : 0,
       );
       if (atributo) {
+        // Las partículas fuera de juego se pintan del color del fondo, no de
+        // negro: sin mezcla aditiva, el negro sobre papel se ve perfectamente.
         if (dentro) color.copy(base).lerp(vivo, intensidad);
-        else color.setScalar(0);
+        else color.copy(fondo);
         atributo.setXYZ(i, color.r, color.g, color.b);
       }
     }
@@ -130,6 +133,7 @@ export function init({ scene, paleta, esMovil }: VizContexto): VizInstancia {
     setPaleta(nueva: Paleta) {
       base = new THREE.Color(nueva.tenue);
       vivo = new THREE.Color(nueva.acentoClaro);
+      fondo = new THREE.Color(nueva.fondo);
       emisor.material.color.set(nueva.tenue);
     },
     dispose() {

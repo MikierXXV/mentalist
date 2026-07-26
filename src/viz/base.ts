@@ -120,6 +120,74 @@ export function fbm(x: number, y: number, z: number, octavas = 4): number {
 
 /* --------------------------------------------------------------- geometría -- */
 
+/* -------------------------------------------------------------- mezcla -- */
+
+interface MaterialRegistrado {
+  material: THREE.Material;
+  opacidadBase: number;
+  tamanoBase: number;
+  aditivo: boolean;
+}
+
+/**
+ * Materiales vivos de todas las escenas montadas.
+ *
+ * La mezcla aditiva suma luz: sobre fondo oscuro produce el brillo que se
+ * busca, pero sobre papel satura hacia el blanco y la escena desaparece. Como
+ * eso afecta por igual a las dieciséis, el ajuste se centraliza aquí en vez de
+ * repetirse escena por escena: cada material se registra al crearse, se da de
+ * baja en su `dispose()` y el runtime reaplica el tema sobre todos.
+ */
+const registrados = new Set<MaterialRegistrado>();
+
+function ajustar(entrada: MaterialRegistrado, esClaro: boolean): void {
+  const { material, opacidadBase, tamanoBase, aditivo } = entrada;
+  const compensar = aditivo && esClaro;
+
+  material.blending = aditivo && !esClaro ? THREE.AdditiveBlending : THREE.NormalBlending;
+  // La suma de luz no solo aclaraba: engordaba el punto con su halo. Sin ella,
+  // las partículas quedan de un píxel, así que se compensan tamaño y opacidad.
+  material.opacity = compensar ? Math.min(1, opacidadBase * 1.35) : opacidadBase;
+  if (material instanceof THREE.PointsMaterial) {
+    material.size = compensar ? tamanoBase * 1.55 : tamanoBase;
+  }
+  material.needsUpdate = true;
+}
+
+function registrar(
+  material: THREE.Material,
+  opacidadBase: number,
+  tamanoBase: number,
+  aditivo: boolean,
+): void {
+  // El tema real lo aplica el runtime nada más volver de `init()`, así que aquí
+  // basta con dejar el material inscrito.
+  registrados.add({ material, opacidadBase, tamanoBase, aditivo });
+}
+
+function darDeBaja(material: THREE.Material): void {
+  for (const entrada of registrados) {
+    if (entrada.material === material) registrados.delete(entrada);
+  }
+}
+
+/** La llama el runtime al montar y en cada cambio de tema. */
+export function aplicarTemaAMateriales(esClaro: boolean): void {
+  for (const entrada of registrados) ajustar(entrada, esClaro);
+}
+
+/**
+ * Atenúa interpolando hacia el fondo, no hacia el negro.
+ *
+ * `multiplyScalar` oscurece, que en tema oscuro apaga pero en claro hace justo
+ * lo contrario de atenuar. Esto conserva el sentido en ambos.
+ *
+ * @param k 1 deja el color intacto, 0 lo funde con el fondo.
+ */
+export function atenuar(color: THREE.Color, fondo: THREE.Color, k: number): THREE.Color {
+  return color.lerp(fondo, 1 - saturar(k));
+}
+
 export interface NubeOpciones {
   tamano?: number;
   opacidad?: number;
@@ -151,15 +219,17 @@ export function crearNube(cantidad: number, opciones: NubeOpciones = {}): Nube {
     geometry.setAttribute('color', colorAttr);
   }
 
+  const opacidad = opciones.opacidad ?? 0.9;
+  const tamano = opciones.tamano ?? 0.06;
   const material = new THREE.PointsMaterial({
-    size: opciones.tamano ?? 0.06,
+    size: tamano,
     transparent: true,
-    opacity: opciones.opacidad ?? 0.9,
+    opacity: opacidad,
     depthWrite: false,
     vertexColors: colorAttr !== undefined,
     ...(opciones.colorFijo !== undefined ? { color: opciones.colorFijo } : {}),
-    ...(opciones.aditivo ? { blending: THREE.AdditiveBlending } : {}),
   });
+  registrar(material, opacidad, tamano, opciones.aditivo ?? false);
 
   const puntos = new THREE.Points(geometry, material);
 
@@ -170,6 +240,7 @@ export function crearNube(cantidad: number, opciones: NubeOpciones = {}): Nube {
     posicion: geometry.getAttribute('position') as THREE.BufferAttribute,
     ...(colorAttr ? { color: colorAttr } : {}),
     dispose() {
+      darDeBaja(material);
       geometry.dispose();
       material.dispose();
     },
@@ -196,6 +267,8 @@ export function crearAro(
     opacity: opacidad,
     side: THREE.DoubleSide,
   });
+  // No se registra: los aros nunca usan mezcla aditiva y varias escenas animan
+  // su opacidad, que el reajuste de tema pisaría.
   const malla = new THREE.Mesh(geometry, material);
   return {
     malla,

@@ -53,6 +53,16 @@ export interface ExplicacionOficial {
   fuentes_extra?: string[];
 }
 
+/**
+ * Situación cotidiana que ilustra el concepto. Es elaboración propia del sitio,
+ * no algo que cuente Javier Botía: la ficha lo indica explícitamente para que no
+ * se confunda con la capa oficial.
+ */
+export interface EjemploReal {
+  escena: string;
+  texto: string;
+}
+
 export interface Concepto {
   id: string;
   orden: number;
@@ -65,6 +75,7 @@ export interface Concepto {
   explicacion_didactica: string[];
   experimento?: string;
   nota_matiz?: string;
+  ejemplo_real: EjemploReal;
   explicacion_oficial: ExplicacionOficial;
 }
 
@@ -191,6 +202,10 @@ export function validarContenido(): string[] {
 
     if (!concepto.visualizacion_alt?.trim()) {
       errores.push(`${prefijo} la visualización no tiene texto alternativo`);
+    }
+
+    if (!concepto.ejemplo_real?.escena?.trim() || !concepto.ejemplo_real?.texto?.trim()) {
+      errores.push(`${prefijo} el ejemplo de la vida real está incompleto`);
     }
 
     // La regresión que motivó rehacerlas: varias fichas compartiendo escena.

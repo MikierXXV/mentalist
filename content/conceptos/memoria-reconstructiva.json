@@ -14,6 +14,10 @@
     "Nada de esto los hace menos vívidos. La confianza con la que sostenemos un recuerdo y su exactitud son cosas bastante independientes: se pueden implantar recuerdos completos de sucesos que no ocurrieron, y la persona los describe con detalle y emoción sinceros. Por eso la certeza no sirve como prueba de fidelidad, ni en un juicio ni en una discusión de pareja."
   ],
   "experimento": "Recuerda algo que cuentas a menudo y busca a alguien que estuviera allí. Las dos versiones han derivado, y ninguno de los dos miente.",
+  "ejemplo_real": {
+    "escena": "Una cena familiar contando la misma anécdota de siempre",
+    "texto": "Cuentas por enésima vez aquella avería en mitad de las vacaciones. Tu hermana te interrumpe: no fue en agosto sino en Semana Santa, y el que se quedó tirado fue el otro coche. Discutís convencidos los dos, y los dos sois sinceros. Lo que cada uno lleva veinte años recuperando no es la avería: es su última versión de la avería, retocada en cada cuenta."
+  },
   "explicacion_oficial": {
     "tipo_atribucion": "formulacion_propia",
     "resumen": "Botía explica que la memoria no funciona como los archivos de un ordenador: no recupera, reconstruye. Cada vez que evocamos algo lo volvemos a montar, de modo que lo que manejamos son reproducciones sucesivas antes que el suceso original.",

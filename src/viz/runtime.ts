@@ -1,4 +1,5 @@
 import { alCambiarTema, paletaViz } from '../tema';
+import { aplicarTemaAMateriales } from './base';
 import type { Control, Puntero, VizModulo } from './tipos';
 
 /**
@@ -202,6 +203,9 @@ export async function montarViz(
     estado,
     emitir,
   });
+  // La mezcla aditiva solo vale sobre fondo oscuro; se decide aquí, para todas
+  // las escenas vivas a la vez, en vez de en cada módulo.
+  aplicarTemaAMateriales(paletaViz().esClaro);
 
   if (opciones.controles) {
     if (modulo.controles?.length) {
@@ -216,6 +220,7 @@ export async function montarViz(
 
   const desuscribirTema = alCambiarTema((_, paleta) => {
     instancia.setPaleta?.(paleta);
+    aplicarTemaAMateriales(paleta.esClaro);
     if (!animacion) renderer.render(scene, camera);
   });
 

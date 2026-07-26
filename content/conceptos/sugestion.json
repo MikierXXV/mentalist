@@ -14,6 +14,10 @@
     "Junta los tres —expectativa, repetición y una fuente que respetas— y tienes la receta completa. Así se instalan las creencias sobre uno mismo que nunca se sometieron a examen: «se me dan mal los idiomas», «no valgo para hablar en público». Nadie te lo demostró. Te lo dijeron lo suficiente, temprano, y alguien que importaba."
   ],
   "experimento": "Elige una creencia que tengas sobre ti mismo y pregúntate quién la dijo la primera vez. Muchas veces hay un nombre y una edad concretos.",
+  "ejemplo_real": {
+    "escena": "La primera copa de una cena cara",
+    "texto": "El camarero anuncia la añada y el precio antes de servir. El vino te sabe mejor, y no estás fingiendo: la expectativa llegó antes que el sabor y decidió cómo ibas a leerlo. Meses después alguien te sirve el mismo vino sin decir nada y te parece correcto, sin más. No ha cambiado el vino, ha cambiado lo que te dijeron de él."
+  },
   "explicacion_oficial": {
     "tipo_atribucion": "formulacion_propia",
     "resumen": "Botía sostiene que la sugestión opera constantemente y sin que la notemos: nos sugestionan las expectativas que traemos, los entornos en los que estamos y las personas a las que admiramos. Y advierte de que una frase repetida lo suficiente termina convertida en una creencia instalada.",

@@ -14,6 +14,7 @@ export const CLAVE_ALMACEN = 'inteligencia-natural:tema';
 /** Los mismos valores que src/styles.css declara para cada tema. */
 const PALETAS = {
   oscuro: {
+    esClaro: false,
     fondo: 0x0b0d12,
     superficie: 0x141821,
     texto: 0xf4f1ea,
@@ -25,12 +26,18 @@ const PALETAS = {
     cerebro: 0x9aa3b8,
   },
   claro: {
+    // Las escenas necesitan saber en qué tema están: la mezcla aditiva y la
+    // atenuación hacia el negro solo funcionan sobre fondo oscuro.
+    esClaro: true,
     fondo: 0xf7f4ed,
     superficie: 0xffffff,
     texto: 0x1b1d24,
     tenue: 0x5f6470,
-    acento: 0x9a7b12,
-    acentoClaro: 0xc9a227,
+    // Oro más oscuro que el de la interfaz a propósito: esta paleta solo la
+    // consumen las escenas de Three.js, y el dorado vivo del CSS sobre papel
+    // deja las partículas casi invisibles. Los tokens del CSS no cambian.
+    acento: 0x8a6d0f,
+    acentoClaro: 0xa8851a,
     cerebro: 0xc4b6a4,
   },
 } as const;

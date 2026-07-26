@@ -14,6 +14,10 @@
     "El resultado es información entregada voluntariamente, con menos resistencia y más espontaneidad, por alguien que no siente que ha sido preguntado. Y aquí conviene la advertencia: esto se estudia igual para usarlo que para reconocerlo. Si en una conversación alguien afirma con aplomo cosas ligeramente equivocadas sobre tu vida, quizá no esté mal informado."
   ],
   "experimento": "La próxima vez que te den ganas de corregir a alguien, para medio segundo y pregúntate qué información estás a punto de regalar.",
+  "ejemplo_real": {
+    "escena": "Un café con un compañero de otro departamento",
+    "texto": "«Tengo entendido que a vosotros la revisión salarial os la hacen en enero.» No has preguntado nada. Y en lugar de callarse, contesta: «Qué va, en septiembre, y este año ni eso, que se ha congelado hasta marzo». Acabas de recibir tres datos que no habría dado si le hubieras preguntado directamente, porque corregir un error ajeno no se siente como confesar: se siente como poner las cosas en su sitio."
+  },
   "explicacion_oficial": {
     "tipo_atribucion": "formulacion_propia",
     "resumen": "Botía presenta la elicitación como una técnica propia de interrogadores profesionales: en lugar de preguntar, se afirma con autoridad algo incorrecto para que el interlocutor se corrija por su cuenta. Explica que existe una tendencia natural a querer enmendar lo que se afirma mal, y que el objetivo es reducir la resistencia y aumentar la espontaneidad de las respuestas mediante una conversación normal, no un interrogatorio.",

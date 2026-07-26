@@ -152,6 +152,25 @@ export function renderFicha(concepto: Concepto): string {
         </aside>`
     : '';
 
+  // Abierto y con tratamiento propio: ni la caja dorada de «Pruébalo» ni las dos
+  // variantes de la capa oficial, para que las tres capas se distingan de un vistazo.
+  const ejemplo = /* html */ `
+    <section class="mt-10 max-w-lectura" aria-labelledby="titulo-ejemplo">
+      <div class="rounded-lg border-l-2 border-acento/60 bg-[rgb(var(--velo)/0.04)] px-6 py-5">
+        <p id="titulo-ejemplo" class="text-xs uppercase tracking-wider text-acento">
+          Un ejemplo de la vida real
+        </p>
+        <p class="mt-3 font-display text-lg leading-snug text-texto">
+          ${esc(concepto.ejemplo_real.escena)}
+        </p>
+        <p class="mt-3 leading-relaxed text-texto/85">${esc(concepto.ejemplo_real.texto)}</p>
+        <p class="mt-4 text-xs text-tenue">
+          Situación escrita para este sitio a modo de ilustración. No procede de
+          Javier Botía ni de ninguna de las fuentes citadas.
+        </p>
+      </div>
+    </section>`;
+
   return /* html */ `
     <article class="contenedor py-14" data-ficha="${esc(concepto.id)}">
       <a class="enlace-fuente lg:hidden" href="#conceptos">← Volver al índice</a>
@@ -182,6 +201,7 @@ export function renderFicha(concepto: Concepto): string {
           <div class="prosa mt-10" data-anim="ficha">${parrafos}</div>
           ${experimento}
           ${matiz}
+          ${ejemplo}
 
           <figure class="bloque-viz mt-14" data-bloque-viz>
             <figcaption class="mb-3 text-xs uppercase tracking-wider text-acento">

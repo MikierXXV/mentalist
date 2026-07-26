@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { aleatorio, crearAro, crearNube } from './base';
+import { aleatorio, atenuar, crearAro, crearNube } from './base';
 import type { Control, Paleta, VizContexto, VizInstancia } from './tipos';
 
 /**
@@ -64,6 +64,7 @@ export function init({ scene, paleta, esMovil }: VizContexto): VizInstancia {
 
   let base = new THREE.Color(paleta.tenue);
   let realce = new THREE.Color(paleta.acentoClaro);
+  let fondo = new THREE.Color(paleta.fondo);
   const color = new THREE.Color();
 
   let conEtiqueta = false;
@@ -85,7 +86,7 @@ export function init({ scene, paleta, esMovil }: VizContexto): VizInstancia {
           // La etiquetada gana brillo y un latido propio, sin mover un vértice.
           color.copy(base).lerp(realce, mezcla * (0.65 + latido * 0.35));
         } else {
-          color.copy(base).multiplyScalar(1 - mezcla * 0.3);
+          atenuar(color.copy(base), fondo, 1 - mezcla * 0.3);
         }
         atributo.setXYZ(i, color.r, color.g, color.b);
       }
@@ -102,6 +103,7 @@ export function init({ scene, paleta, esMovil }: VizContexto): VizInstancia {
     setPaleta(nueva: Paleta) {
       base = new THREE.Color(nueva.tenue);
       realce = new THREE.Color(nueva.acentoClaro);
+      fondo = new THREE.Color(nueva.fondo);
       aroIzq.material.color.set(nueva.tenue);
     },
     dispose() {

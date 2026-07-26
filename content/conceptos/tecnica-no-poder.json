@@ -13,6 +13,10 @@
     "Por eso saber cómo funciona no arruina el espectáculo. Un buen efecto sigue funcionando aunque conozcas los principios, igual que una buena película sigue emocionando aunque sepas que hay un guion. Lo que cambia es dónde pones el asombro.",
     "Y queda la parte que sí importa fuera del teatro. Las mismas palancas que producen un momento de maravilla en un escenario, donde hay consentimiento y se entiende que es ficción, producen manipulación cuando se usan sobre alguien que no sabe que están en juego. Reconocerlas es lo único que separa una cosa de la otra."
   ],
+  "ejemplo_real": {
+    "escena": "Saliendo de un espectáculo",
+    "texto": "Discutís por la calle cómo pudo hacerlo, y ninguna explicación os convence. Lo llamativo es que la sensación de imposible no la generó él: la generaste tú, completando con tu propio sistema de percepción la información que se te fue entregando en el orden y el momento exactos. Él no hizo lo imposible; construyó las condiciones para que tu mente llegara sola a esa conclusión. Que sea técnica no lo hace menos admirable: lo hace aprendible, y también reconocible cuando se usa fuera de un teatro y sin avisar."
+  },
   "explicacion_oficial": {
     "tipo_atribucion": "tema_de_episodio",
     "resumen": "El episodio se plantea como un intento explícito de los anfitriones de descubrir el procedimiento analizando cada movimiento, y enmarca lo que ocurre en términos de técnica, ciencia del comportamiento y observación, no de facultades sobrenaturales.",

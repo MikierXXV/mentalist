@@ -14,6 +14,10 @@
     "Por eso la percepción se puede dirigir. Quien conoce las reglas con las que el cerebro completa los huecos puede elegir qué fragmentos te entrega y confiar en que tú harás el resto del trabajo. No hace falta engañar a tus ojos: basta con darles material para que tú mismo construyas la conclusión deseada."
   ],
   "experimento": "Fija la vista en una palabra de esta frase y, sin mover los ojos, intenta leer la línea de abajo. No puedes, aunque juraras que la veías.",
+  "ejemplo_real": {
+    "escena": "Conduciendo de noche por una carretera conocida",
+    "texto": "Llegas a casa y no recuerdas los últimos diez minutos. No es que fueras distraído: tu cerebro tenía un modelo tan bueno de esa carretera que casi no necesitó mirar. Iba comprobando que la realidad coincidiera con su predicción, no construyéndola desde cero. Por eso, cuando algo se sale del guion —un animal, un coche parado— das un volantazo tardío: no lo viste llegar porque no estaba en el modelo."
+  },
   "explicacion_oficial": {
     "tipo_atribucion": "formulacion_propia",
     "resumen": "Botía describe la percepción como un proceso activo, no pasivo: la mente no se limita a recibir lo que hay delante, sino que escoge a qué atiende, lo interpreta, lo compara con lo que ya conoce, rellena lo que falta y en ocasiones lo deforma.",
