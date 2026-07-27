@@ -41,6 +41,25 @@
     background-color: rgb(var(--color-fondo));
   }
 
+  /*
+   * En monitores grandes no basta con ensanchar: si la letra no crece, el texto
+   * se ve diminuto visto desde la distancia habitual. Subir el tamaño base
+   * arrastra todo el espaciado de Tailwind, que va en `rem`, y mantiene las
+   * proporciones. La columna de lectura está en `ch`, así que crece con la letra
+   * y la línea sigue teniendo 68 caracteres en lugar de alargarse.
+   */
+  @media (min-width: 1920px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -78,8 +97,14 @@
 }
 
 @layer components {
+  /*
+   * Escalera de anchos. Por encima de ~1660 px el contenido deja de crecer y
+   * queda centrado: recorrer con la vista de un borde a otro de un
+   * ultrapanorámico cansa, y las rejillas muy largas se leen peor.
+   */
   .contenedor {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8
+      2xl:max-w-7xl 3xl:max-w-[88rem] 3xl:px-12 4xl:max-w-[104rem];
   }
 
   .titulo-seccion {
@@ -200,6 +225,13 @@
   @apply superficie relative w-full overflow-hidden bg-[rgb(var(--color-fondo))];
   aspect-ratio: 16 / 9;
   min-height: 260px;
+  /*
+   * Tope de alto: en pantallas anchas, 16/9 sobre un contenedor de 1300 px
+   * daría un panel de más de 700 px que no cabe en una pantalla de 1080. La
+   * proporción cede y el panel queda más ancho y más bajo; las escenas lo
+   * soportan porque el runtime recalcula `camera.aspect` al redimensionar.
+   */
+  max-height: min(68vh, 620px);
 }
 
 .lienzo-viz canvas {

@@ -19,7 +19,7 @@ export function renderHero(): string {
         </p>
         <h1
           data-anim="hero"
-          class="max-w-4xl font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl"
+          class="max-w-4xl font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl 3xl:max-w-5xl 3xl:text-8xl"
         >
           Cómo te lee<br />una mente entrenada
         </h1>

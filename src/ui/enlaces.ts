@@ -24,7 +24,7 @@ export function renderEnlaces(): string {
     <section id="oficial" class="contenedor scroll-mt-16 py-20" aria-labelledby="titulo-oficial">
       <h2 id="titulo-oficial" class="titulo-seccion">Ir a la fuente</h2>
       <p class="mt-4 max-w-lectura leading-relaxed text-tenue">${esc(notaEnlaces)}</p>
-      <ul class="mt-10 grid gap-4 sm:grid-cols-2">${items}</ul>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">${items}</ul>
     </section>
   `;
 }

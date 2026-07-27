@@ -135,7 +135,7 @@ export function renderFuentes(): string {
         </div>
       </div>
 
-      <ul class="mt-8 grid gap-3" data-lista-fuentes>
+      <ul class="mt-8 grid gap-3 2xl:grid-cols-2" data-lista-fuentes>
         ${todas.map(filaFuente).join('')}
       </ul>
 

@@ -50,7 +50,7 @@ function capaOficial(concepto: Concepto): string {
     .join('');
 
   return /* html */ `
-    <details class="mt-12 max-w-lectura" data-oficial>
+    <details class="max-w-lectura" data-oficial>
       <summary
         class="cursor-pointer list-none rounded-lg border px-5 py-4 font-display text-lg
           ${esEpisodio ? 'border-dashed border-tenue/40 text-tenue hover:text-texto' : 'border-acento/40 text-acento hover:bg-acento/10'}"
@@ -80,8 +80,12 @@ function lateral(concepto: Concepto): string {
   const esEpisodio = concepto.explicacion_oficial.tipo_atribucion === 'tema_de_episodio';
 
   return /* html */ `
-    <aside class="hidden lg:block">
-      <div class="sticky top-24 flex flex-col gap-4 border-l pl-6 linea">
+    <!--
+      Ocupa solo la primera fila: así deja de ser pegajosa al llegar a la
+      visualización, que cruza las dos columnas, y no se solapan.
+    -->
+    <aside class="hidden lg:col-start-2 lg:row-start-1 lg:block">
+      <div class="linea sticky top-24 flex flex-col gap-4 border-l pl-6">
         <p class="font-display text-4xl text-acento/40">
           ${String(concepto.orden).padStart(2, '0')}
         </p>
@@ -124,7 +128,7 @@ function navegacion(concepto: Concepto): string {
       : '<span></span>';
 
   return /* html */ `
-    <nav class="mt-16 flex items-start justify-between gap-6 border-t pt-8 linea">
+    <nav class="linea mt-6 flex items-start justify-between gap-6 border-t pt-8">
       ${enlace(anterior, '← Anterior', 'items-start text-left')}
       ${enlace(siguiente, 'Siguiente →', 'items-end text-right')}
     </nav>
@@ -175,13 +179,28 @@ export function renderFicha(concepto: Concepto): string {
     <article class="contenedor py-14" data-ficha="${esc(concepto.id)}">
       <a class="enlace-fuente lg:hidden" href="#conceptos">← Volver al índice</a>
 
-      <div class="mt-6 grid gap-10 lg:mt-0 lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-14">
+      <!--
+        Rejilla de dos columnas donde el texto y la lateral forman un bloque
+        compacto, y la visualización y la navegación cruzan las dos.
+
+        En pantallas muy anchas la columna de texto se topa en 46rem en vez de
+        crecer sin fin: si ocupa todo el hueco disponible, la lateral se va al
+        borde derecho y queda un vacío enorme entre ambas. El bloque se centra y
+        es la visualización la que aprovecha el ancho.
+
+        Cada pieza lleva su columna explícita: con colocación automática, los
+        bloques irían cayendo alternativamente en la segunda columna.
+      -->
+      <div
+        class="mt-6 grid gap-10 lg:mt-0 lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-x-14
+          3xl:grid-cols-[minmax(0,46rem)_18rem] 3xl:justify-center 3xl:gap-x-16"
+      >
         <!--
           min-w-0: por defecto un hijo de rejilla no baja de su ancho de contenido
           mínimo, y basta un control con etiqueta larga para estirar la columna
           entera por encima del ancho de la pantalla.
         -->
-        <div class="min-w-0">
+        <div class="min-w-0 lg:col-start-1">
           <header data-anim="ficha">
             <p class="font-display text-sm text-acento/70 lg:hidden">
               ${String(concepto.orden).padStart(2, '0')}
@@ -202,30 +221,34 @@ export function renderFicha(concepto: Concepto): string {
           ${experimento}
           ${matiz}
           ${ejemplo}
-
-          <figure class="bloque-viz mt-14" data-bloque-viz>
-            <figcaption class="mb-3 text-xs uppercase tracking-wider text-acento">
-              Compruébalo tú
-            </figcaption>
-            <div
-              class="lienzo-viz"
-              data-viz="${esc(concepto.visualizacion)}"
-              role="img"
-              aria-label="${esc(concepto.visualizacion_alt)}"
-            >
-              <div class="esqueleto" data-esqueleto>${esc(concepto.visualizacion_alt)}</div>
-            </div>
-            <div data-controles-viz></div>
-            <p class="mt-3 max-w-lectura text-sm text-tenue">
-              ${esc(concepto.visualizacion_alt)}
-            </p>
-          </figure>
-
-          ${capaOficial(concepto)}
-          ${navegacion(concepto)}
         </div>
 
         ${lateral(concepto)}
+
+        <!--
+          Cruza las dos columnas. La lateral ocupa solo la primera fila, así que
+          al llegar aquí ya ha dejado de ser pegajosa y no se solapan.
+        -->
+        <figure class="bloque-viz mt-4 min-w-0 lg:col-span-2 lg:col-start-1" data-bloque-viz>
+          <figcaption class="mb-3 text-xs uppercase tracking-wider text-acento">
+            Compruébalo tú
+          </figcaption>
+          <div
+            class="lienzo-viz"
+            data-viz="${esc(concepto.visualizacion)}"
+            role="img"
+            aria-label="${esc(concepto.visualizacion_alt)}"
+          >
+            <div class="esqueleto" data-esqueleto>${esc(concepto.visualizacion_alt)}</div>
+          </div>
+          <div data-controles-viz></div>
+          <p class="mt-3 max-w-lectura text-sm text-tenue">
+            ${esc(concepto.visualizacion_alt)}
+          </p>
+        </figure>
+
+        <div class="min-w-0 lg:col-start-1">${capaOficial(concepto)}</div>
+        <div class="min-w-0 lg:col-span-2 lg:col-start-1">${navegacion(concepto)}</div>
       </div>
     </article>
   `;
