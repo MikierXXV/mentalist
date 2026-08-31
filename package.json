@@ -9,12 +9,16 @@
     "build": "npm run validar && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "validar": "node scripts/validar-contenido.mjs"
+    "validar": "node scripts/validar-contenido.mjs",
+    "preparar-cerebro": "node scripts/preparar-cerebro.mjs",
+    "verificar": "node scripts/verificar-navegador.mjs"
   },
   "devDependencies": {
     "@types/node": "^20.17.0",
     "@types/three": "^0.171.0",
     "autoprefixer": "^10.4.20",
+    "playwright-core": "^1.62.1",
+    "pngjs": "^7.0.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",

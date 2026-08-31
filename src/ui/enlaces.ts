@@ -64,6 +64,22 @@ export function renderFooter(): string {
             Arcopress (Almuzara Libros), ISBN 978-84-10354-73-9. El copyright de esta web
             cubre su código y sus textos propios, no el material de las fuentes enlazadas.
           </p>
+          <p class="sm:col-span-2">
+            Modelo 3D del cerebro:
+            <a
+              class="underline decoration-tenue/40 underline-offset-2 hover:decoration-tenue"
+              href="https://sketchfab.com/3d-models/human-brain-c9c9d4d671b94345952d012cc2ea7a24"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Human Brain</a>, de AH (@agher), bajo
+            <a
+              class="underline decoration-tenue/40 underline-offset-2 hover:decoration-tenue"
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >CC BY 4.0</a>. Modificado: se le han retirado las texturas y los materiales, se
+            han reducido los índices y se pinta con el material de este sitio.
+          </p>
         </div>
       </div>
     </footer>

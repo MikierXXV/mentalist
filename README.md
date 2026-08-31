@@ -87,6 +87,28 @@ npm run preview    # sirve dist/ localmente
 
 Requiere Node 20 o superior.
 
+## El modelo 3D del cerebro
+
+El repositorio versiona `public/modelos/cerebro-web.glb` (1,3 MB), que es lo que carga el sitio.
+No hace falta hacer nada para desarrollar ni para desplegar.
+
+Solo si hay que regenerarlo —por ejemplo para cambiar de modelo—:
+
+1. Descargar de Sketchfab [Human Brain, de AH (@agher)](https://sketchfab.com/3d-models/human-brain-c9c9d4d671b94345952d012cc2ea7a24)
+   en formato **GLB** (requiere cuenta) y dejarlo en `modelos-fuente/cerebro.glb`.
+   Esa carpeta está en `.gitignore` y, sobre todo, está fuera de `public/`: Vite copia
+   `public/` entera a `dist/`, así que dejar ahí el original lo publicaría también.
+2. `npm run preparar-cerebro`
+
+El script se queda solo con la geometría —tres mallas: cerebro, cerebelo y tronco—, descarta las
+nueve texturas embebidas y baja los índices a 16 bits: de 8 MB a 1,3 MB. Las texturas no se usan
+porque el cerebro se pinta con el shader del sitio, para heredar su paleta y el resalte por regiones.
+
+Si el archivo faltara, [`src/viz/cerebro-modelo.ts`](src/viz/cerebro-modelo.ts) devuelve `null` y las
+escenas recurren a la geometría procedural de
+[`src/viz/cerebro-geometria.ts`](src/viz/cerebro-geometria.ts), de modo que la sección nunca se queda
+vacía.
+
 ## Despliegue
 
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) construye y publica en GitHub
@@ -123,8 +145,13 @@ El tema sigue la preferencia del sistema y se puede forzar desde la cabecera; la
 recuerda. Un script en línea del `<head>` lo aplica antes del primer pintado para que nadie
 reciba un fogonazo blanco.
 
-## Créditos de las fuentes
+## Créditos
 
 Todas las fuentes usadas aparecen enlazadas en la sección **Fuentes** del sitio y en
 `content/fuentes.json`. El libro citado es *Inteligencia Natural. Descubre tu poder mental*
 (Arcopress, sello de Almuzara Libros, 2026, ISBN 978-84-10354-73-9).
+
+Modelo 3D: [«Human Brain»](https://sketchfab.com/3d-models/human-brain-c9c9d4d671b94345952d012cc2ea7a24)
+de AH (@agher), bajo [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+**Modificado**: se le han retirado las texturas y los materiales, se han reducido los índices a 16
+bits y se pinta con el material de este sitio.

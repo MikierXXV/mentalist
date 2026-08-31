@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { crearCerebro } from './cerebro-geometria';
+import { crearCerebro, type Cerebro } from './cerebro-geometria';
+import { cargarCerebroModelo } from './cerebro-modelo';
 import { ETIQUETAS, REGIONES } from './regiones';
 import type { Paleta, Puntero, VizContexto, VizInstancia } from './tipos';
 
@@ -20,13 +21,19 @@ export const pista =
  * ilumina la parte de atrás y el usuario no ve nada.
  */
 const ORIENTACIONES: Record<number, { giro: number; inclinacion: number }> = {
-  0: { giro: 0, inclinacion: 0 }, // frontal
-  1: { giro: 0.5, inclinacion: -0.62 }, // parietal, desde arriba
-  2: { giro: -1.5, inclinacion: 0.1 }, // temporal, de perfil
-  3: { giro: Math.PI, inclinacion: 0 }, // occipital, por detrás
-  4: { giro: Math.PI, inclinacion: 0.55 }, // cerebelo, detrás y desde abajo
-  5: { giro: 2.6, inclinacion: 0.95 }, // tronco, desde abajo
+  0: { giro: -0.55, inclinacion: 0.05 }, // frontal, de frente y algo girado
+  1: { giro: -0.9, inclinacion: 0.6 }, // parietal, desde arriba
+  2: { giro: -1.5, inclinacion: 0.08 }, // temporal, de perfil
+  3: { giro: Math.PI - 0.5, inclinacion: 0.05 }, // occipital, por detrás
+  4: { giro: Math.PI - 0.35, inclinacion: -0.32 }, // cerebelo, detrás y desde abajo
+  5: { giro: -2.5, inclinacion: -0.75 }, // tronco, desde abajo
 };
+
+/**
+ * Vista de entrada: tres cuartos lateral. Es la que hace reconocible un cerebro
+ * de un vistazo; de frente se ven dos lóbulos y poco más.
+ */
+const GIRO_REPOSO = -1.15;
 
 export function init({
   scene,
@@ -37,15 +44,33 @@ export function init({
 }: VizContexto): VizInstancia {
   camera.position.set(0, 0.05, 2.75);
 
-  const cerebro = crearCerebro({
-    // Por debajo de este nivel el ruido se alía contra la densidad de vértices
-    // y los surcos se ven como facetas en vez de como relieve.
-    detalle: esMovil ? 14 : 26,
-    base: paleta.cerebro,
-    realce: paleta.acentoClaro,
-    opacidad: 1,
+  const colores = { base: paleta.cerebro, realce: paleta.acentoClaro, opacidad: 1 };
+
+  /*
+   * El modelo llega por red, pero `init()` es síncrono: el cerebro se monta en
+   * cuanto está disponible y hasta entonces `update()` no tiene nada que hacer.
+   * La sección mantiene su esqueleto hasta que llega el evento «listo», así que
+   * el lienzo no se queda en blanco mientras tanto.
+   */
+  let cerebro: Cerebro | null = null;
+  let desmontado = false;
+
+  void cargarCerebroModelo(colores).then((cargado) => {
+    if (desmontado) {
+      cargado?.dispose();
+      return;
+    }
+    cerebro =
+      cargado ??
+      crearCerebro({
+        // Por debajo de este nivel el ruido se alía contra la densidad de
+        // vértices y los surcos se ven como facetas en vez de como relieve.
+        detalle: esMovil ? 14 : 26,
+        ...colores,
+      });
+    scene.add(cerebro.grupo);
+    emitir('listo', cargado ? 'modelo' : 'procedural');
   });
-  scene.add(cerebro.grupo);
 
   const raycaster = new THREE.Raycaster();
   const ndc = new THREE.Vector2();
@@ -56,7 +81,7 @@ export function init({
   let inclinacion = 0;
 
   const anunciar = (indice: number) => {
-    if (indice === regionActiva) return;
+    if (indice === regionActiva || !cerebro) return;
     regionActiva = indice;
     cerebro.setRegionActiva(indice);
     emitir('region', indice >= 0 ? REGIONES[indice] : null);
@@ -64,14 +89,16 @@ export function init({
 
   return {
     update(t, puntero: Puntero) {
+      if (!cerebro) return;
+
       // Con una zona fijada manda su orientación; si no, el cursor la modula
       // sobre una deriva lenta que evita que el modelo parezca congelado.
       const fijado = regionFijada >= 0 ? ORIENTACIONES[regionFijada] : undefined;
       const objetivoGiro = fijado
         ? fijado.giro
         : puntero.activo
-          ? -0.35 + puntero.x * 0.85
-          : -0.35 + Math.sin(t * 0.16) * 0.5;
+          ? GIRO_REPOSO + puntero.x * 0.9
+          : GIRO_REPOSO + Math.sin(t * 0.16) * 0.35;
       const objetivoInclinacion = fijado
         ? fijado.inclinacion
         : puntero.activo
@@ -125,9 +152,13 @@ export function init({
       if (regionFijada < 0) anunciar(-1);
     },
     setPaleta(nueva: Paleta) {
-      cerebro.setColores(nueva.cerebro, nueva.acentoClaro);
+      colores.base = nueva.cerebro;
+      colores.realce = nueva.acentoClaro;
+      cerebro?.setColores(nueva.cerebro, nueva.acentoClaro);
     },
     dispose() {
+      desmontado = true;
+      if (!cerebro) return;
       scene.remove(cerebro.grupo);
       cerebro.dispose();
     },

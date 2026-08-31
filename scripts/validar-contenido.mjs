@@ -63,6 +63,10 @@ for (const { archivo, datos } of conceptos) {
   if (!datos.ejemplo_real?.escena?.trim() || !datos.ejemplo_real?.texto?.trim()) {
     fallo('el ejemplo de la vida real está incompleto');
   }
+  // Estuvieron en 9 de 16 sin criterio aparente; ahora se exigen en todas.
+  if (!datos.experimento?.trim()) {
+    fallo('falta el «Pruébalo»');
+  }
   // La regresión que motivó rehacer las escenas: fichas compartiendo la misma.
   if (visualizaciones.has(datos.visualizacion)) {
     fallo(

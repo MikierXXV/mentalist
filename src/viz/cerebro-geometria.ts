@@ -2,8 +2,12 @@ import * as THREE from 'three';
 import { crestas } from './base';
 
 /**
- * Geometría del cerebro, generada por código: sin modelos externos, sin licencias
- * de terceros que verificar y sin varios megas de descarga.
+ * Geometría del cerebro generada por código.
+ *
+ * Es el respaldo: el sitio carga un modelo real (ver `cerebro-modelo.ts`) y solo
+ * recurre a esto si el archivo no está o falla la descarga, de modo que la
+ * sección nunca se queda vacía. También aporta el material y el ensamblado que
+ * el modelo reutiliza.
  *
  * La forma sale de un icosaedro subdividido, llevado a elipsoide y desplazado con
  * ruido fractal en cresta para labrar las circunvoluciones. Cada vértice lleva un
@@ -12,7 +16,7 @@ import { crestas } from './base';
  */
 
 /** Región de un punto en coordenadas del elipsoide, antes de deformar. */
-function regionDe(y: number, z: number): number {
+export function regionDe(y: number, z: number): number {
   if (z > 0.34) return 0; // frontal
   if (z < -0.42) return 3; // occipital
   if (y < -0.18) return 2; // temporal
@@ -68,7 +72,11 @@ const fragmentShader = /* glsl */ `
   }
 `;
 
-function crearMaterial(base: number, realce: number, opacidad: number): THREE.ShaderMaterial {
+export function crearMaterial(
+  base: number,
+  realce: number,
+  opacidad: number,
+): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
     vertexShader,
     fragmentShader,
@@ -215,23 +223,23 @@ export interface Cerebro {
   dispose(): void;
 }
 
-export function crearCerebro(opciones: {
-  detalle: number;
+export interface OpcionesCerebro {
   base: number;
   realce: number;
   opacidad: number;
-}): Cerebro {
-  const { detalle, base, realce, opacidad } = opciones;
+}
+
+/**
+ * Envuelve un conjunto de geometrías —vengan de aquí o del modelo importado— en
+ * el objeto que consumen las escenas: un grupo, los objetivos de raycasting y
+ * los mandos de color y de región activa.
+ */
+export function ensamblarCerebro(
+  geometrias: THREE.BufferGeometry[],
+  { base, realce, opacidad }: OpcionesCerebro,
+): Cerebro {
   const grupo = new THREE.Group();
   const partes: MallaCerebro[] = [];
-
-  const geometrias: THREE.BufferGeometry[] = [
-    crearHemisferio(detalle, 1),
-    crearHemisferio(detalle, -1),
-    crearPuente(detalle),
-    crearCerebelo(detalle),
-    crearTronco(),
-  ];
 
   for (const geometry of geometrias) {
     const material = crearMaterial(base, realce, opacidad);
@@ -263,4 +271,18 @@ export function crearCerebro(opciones: {
       }
     },
   };
+}
+
+export function crearCerebro(opciones: OpcionesCerebro & { detalle: number }): Cerebro {
+  const { detalle } = opciones;
+  return ensamblarCerebro(
+    [
+      crearHemisferio(detalle, 1),
+      crearHemisferio(detalle, -1),
+      crearPuente(detalle),
+      crearCerebelo(detalle),
+      crearTronco(),
+    ],
+    opciones,
+  );
 }

@@ -1,5 +1,9 @@
 node_modules/
 dist/
+
+# Modelo original descargado de Sketchfab (8 MB). Lo que se versiona y se
+# publica es el reducido que genera scripts/preparar-cerebro.mjs.
+modelos-fuente/
 .DS_Store
 *.local
 .vite/

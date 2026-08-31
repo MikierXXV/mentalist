@@ -113,10 +113,17 @@ export function activarCerebro(raiz: HTMLElement): VizMontada | undefined {
   let fijada: number | null = null;
 
   void montarViz(lienzo, 'cerebro', {
-    alEstarLista() {
-      lienzo.querySelector('[data-esqueleto]')?.remove();
-    },
     alEmitir(nombre, dato) {
+      // El modelo llega por red: el esqueleto se retira cuando el cerebro está
+      // montado, no en el primer fotograma, para no dejar el lienzo en blanco.
+      if (nombre === 'listo') {
+        lienzo.querySelector('[data-esqueleto]')?.remove();
+        // Queda anotado si se está pintando el modelo o el respaldo procedural:
+        // los dos dibujan un cerebro, así que sin esto no hay forma de saber
+        // desde fuera —ni en una prueba— cuál de los dos se está viendo.
+        lienzo.dataset.origen = String(dato);
+        return;
+      }
       if (nombre !== 'region') return;
       if (fijada !== null) return;
       const indice =

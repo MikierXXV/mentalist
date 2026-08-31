@@ -73,7 +73,7 @@ export interface Concepto {
   /** Descripción textual de la escena; el lienzo es decorativo. */
   visualizacion_alt: string;
   explicacion_didactica: string[];
-  experimento?: string;
+  experimento: string;
   nota_matiz?: string;
   ejemplo_real: EjemploReal;
   explicacion_oficial: ExplicacionOficial;
@@ -206,6 +206,10 @@ export function validarContenido(): string[] {
 
     if (!concepto.ejemplo_real?.escena?.trim() || !concepto.ejemplo_real?.texto?.trim()) {
       errores.push(`${prefijo} el ejemplo de la vida real está incompleto`);
+    }
+
+    if (!concepto.experimento?.trim()) {
+      errores.push(`${prefijo} falta el «Pruébalo»`);
     }
 
     // La regresión que motivó rehacerlas: varias fichas compartiendo escena.
