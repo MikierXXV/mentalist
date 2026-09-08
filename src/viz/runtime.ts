@@ -55,6 +55,11 @@ export interface OpcionesMontaje {
   alEstarLista?: () => void;
   /** Recibe los eventos que emite la escena (ver `VizContexto.emitir`). */
   alEmitir?: (nombre: string, dato: unknown) => void;
+  /**
+   * Tope de densidad de píxel. El fondo del hero lo baja: al 16 % de opacidad
+   * la resolución no se aprecia y en un móvil se ahorra la mitad del trabajo.
+   */
+  densidadMaxima?: number;
 }
 
 function pintarControles(
@@ -170,7 +175,7 @@ export async function montarViz(
     alpha: true,
     powerPreference: 'low-power',
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, opciones.densidadMaxima ?? 2));
   renderer.setClearColor(0x000000, 0);
   contenedor.appendChild(renderer.domElement);
 

@@ -220,6 +220,22 @@
   }
 }
 
+/*
+ * Fondo del hero. La máscara evita el corte duro del lienzo contra el texto en
+ * móvil; por encima de `sm` ocupa todo el hero y no hace falta.
+ */
+.fondo-hero {
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent);
+  mask-image: linear-gradient(to bottom, #000 62%, transparent);
+}
+
+@media (min-width: 640px) {
+  .fondo-hero {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
 /* Lienzos de las visualizaciones. */
 .lienzo-viz {
   @apply superficie relative w-full overflow-hidden bg-[rgb(var(--color-fondo))];

@@ -6,9 +6,14 @@ export function renderHero(): string {
       <!--
         Cerebro ambiental: misma geometría que la sección interactiva, muy
         atenuada y sin raycasting. Decorativo, así que no se anuncia.
+
+        En móvil se confina a la franja superior y se desvanece hacia abajo: a
+        pantalla completa caía justo detrás de los botones y del aviso legal, y
+        les restaba legibilidad.
       -->
       <div
-        class="pointer-events-none absolute inset-0 opacity-70"
+        class="fondo-hero pointer-events-none absolute inset-x-0 top-0 h-[58%] opacity-70
+          sm:inset-0 sm:h-auto"
         data-viz-fondo
         aria-hidden="true"
       ></div>

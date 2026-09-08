@@ -92,6 +92,18 @@ export const FAMILIAS: Record<Familia, string> = {
   memoria: 'Memoria y decisión',
 };
 
+/**
+ * Nombre corto para los botones de filtro. El completo se queda en el
+ * encabezado de cada familia, así que no se pierde nada y en móvil los filtros
+ * pasan de cuatro filas a dos.
+ */
+export const FAMILIAS_CORTAS: Record<Familia, string> = {
+  percepcion: 'Percepción',
+  influencia: 'Sugestión',
+  lectura: 'Lectura',
+  memoria: 'Memoria',
+};
+
 export const ETIQUETA_TIPO_FUENTE: Record<TipoFuente, string> = {
   libro: 'Libro',
   entrevista: 'Entrevista',

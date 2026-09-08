@@ -6,7 +6,7 @@ import { montarCabecera } from './ui/cabecera';
 import { retirarCargador } from './ui/cargador';
 import { renderHero } from './ui/hero';
 import { activarCerebro, renderCerebro } from './ui/cerebro-seccion';
-import { renderIndice } from './ui/indice';
+import { activarIndice, renderIndice } from './ui/indice';
 import { renderFicha } from './ui/ficha';
 import { activarFuentes, renderFuentes } from './ui/fuentes';
 import { renderEnlaces, renderFooter } from './ui/enlaces';
@@ -85,7 +85,14 @@ function montarEscenasInicio(): void {
 
   const fondo = app!.querySelector<HTMLElement>('[data-viz-fondo]');
   if (fondo) {
-    void montarViz(fondo, 'cerebro-fondo').then((montada) => {
+    void montarViz(fondo, 'cerebro-fondo', {
+      densidadMaxima: 1.5,
+      // La escena publica cuánto ocupa el modelo en pantalla; queda en el DOM
+      // para que las pruebas puedan comprobar que no se recorta.
+      alEmitir(nombre, dato) {
+        if (nombre === 'encuadre') fondo.dataset.encuadre = String(dato);
+      },
+    }).then((montada) => {
       if (montada) escenas.push(montada);
     });
   }
@@ -109,6 +116,7 @@ async function enrutar(): Promise<void> {
     app!.innerHTML = renderInicio();
     document.title =
       'Inteligencia Natural — conceptos de percepción, sugestión y persuasión';
+    activarIndice(app!);
     activarFuentes(app!);
     montarEscenasInicio();
   }

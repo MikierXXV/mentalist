@@ -302,6 +302,74 @@ console.log('\n== anchos ==');
   await ctx.close();
 }
 
+console.log('\n== móvil ==');
+{
+  const ctx = await nav.newContext({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 2,
+    isMobile: true,
+    hasTouch: true,
+  });
+  const p = await ctx.newPage();
+  p.setDefaultTimeout(15000);
+  p.on('pageerror', (e) => fallo(`pageerror (móvil): ${e.message}`));
+
+  await p.goto(BASE, { waitUntil: 'networkidle' });
+  await p.waitForTimeout(5000);
+
+  await paso('el cerebro de fondo entra entero en el encuadre', async () => {
+    // La escena proyecta las esquinas de la caja del modelo a coordenadas de
+    // pantalla y publica hasta dónde llegan. Mirarlo a ojo no distingue
+    // "recortado" de "el modelo es así".
+    const dato = await p.locator('[data-viz-fondo]').getAttribute('data-encuadre');
+    if (!dato) throw new Error('la escena no publicó su encuadre');
+    const [x, y] = dato.split('x').map(Number);
+    if (x > 1 || y > 1) throw new Error(`se sale: ${x} de ancho, ${y} de alto`);
+    return `ocupa ${Math.round(x * 100)} % del ancho y ${Math.round(y * 100)} % del alto`;
+  });
+
+  await paso('el fondo no invade el texto del hero', async () => {
+    const r = await p.evaluate(() => {
+      const fondo = document.querySelector('[data-viz-fondo]').getBoundingClientRect();
+      const nota = document.querySelector('main header p:last-of-type').getBoundingClientRect();
+      return { finFondo: Math.round(fondo.bottom), inicioNota: Math.round(nota.top) };
+    });
+    if (r.finFondo > r.inicioNota) {
+      throw new Error(`el fondo llega a ${r.finFondo}px y el aviso empieza en ${r.inicioNota}px`);
+    }
+    return `fondo hasta ${r.finFondo}px, aviso desde ${r.inicioNota}px`;
+  });
+
+  await paso('el filtro por familia acorta el índice', async () => {
+    const alto = () =>
+      p.evaluate(() =>
+        Math.round(document.querySelector('#conceptos').getBoundingClientRect().height),
+      );
+    const ventana = await p.evaluate(() => window.innerHeight);
+    const antes = await alto();
+    await p.locator('[data-familia="lectura"]').tap();
+    await p.waitForTimeout(700);
+    const despues = await alto();
+    const visibles = await p.locator('[data-grupo]:not([hidden])').count();
+    if (visibles !== 1) throw new Error(`quedan ${visibles} familias visibles`);
+    if (despues >= antes) throw new Error('el índice no se acorta');
+    return `de ${(antes / ventana).toFixed(1)} a ${(despues / ventana).toFixed(1)} pantallas`;
+  });
+
+  await paso('la tarjeta pierde la fila del distintivo', async () => {
+    await p.locator('[data-familia="todas"]').tap();
+    await p.waitForTimeout(700);
+    const alto = await p.evaluate(() =>
+      Math.round(document.querySelector('[data-tarjeta]').getBoundingClientRect().height),
+    );
+    // Con el distintivo en fila propia, la primera tarjeta medía 211 px.
+    if (alto > 195) throw new Error(`la primera tarjeta mide ${alto}px`);
+    return `${alto}px de alto`;
+  });
+
+  await ctx.close();
+}
+
 /* ------------------------------------------------------ movimiento reducido -- */
 
 console.log('\n== movimiento reducido ==');
