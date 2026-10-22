@@ -2,9 +2,28 @@ import {
   conceptosPorFamilia,
   FAMILIAS_CORTAS,
   obtenerFuente,
+  reels,
+  reelsDeFamilia,
   type Concepto,
+  type Familia,
 } from '../content';
 import { esc, rutaConcepto } from './dom';
+import { renderMiniaturaReel } from './reel';
+
+/** Tira de reels bajo las tarjetas de cada familia; se desliza en horizontal. */
+function tiraReels(familia: Familia): string {
+  const deLaFamilia = reelsDeFamilia(familia);
+  if (!deLaFamilia.length) return '';
+  return /* html */ `
+    <div class="mt-6">
+      <p class="text-xs uppercase tracking-wider text-tenue" id="tira-${familia}">
+        Reels · en menos de un minuto
+      </p>
+      <ul class="tira-reels" aria-labelledby="tira-${familia}">
+        ${deLaFamilia.map(renderMiniaturaReel).join('')}
+      </ul>
+    </div>`;
+}
 
 function distintivoFuente(concepto: Concepto): string {
   const esEpisodio =
@@ -80,6 +99,7 @@ export function renderIndice(): string {
           <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4xl:grid-cols-5">
             ${grupo.conceptos.map(tarjeta).join('')}
           </ul>
+          ${tiraReels(grupo.familia)}
         </section>
       `,
     )
@@ -96,6 +116,14 @@ export function renderIndice(): string {
         «Fuente textual» significa que la fuente recoge palabras suyas. «Podcast»,
         que solo consta que el tema se trata en ese episodio.
       </p>
+      ${
+        reels.length
+          ? `<p class="mt-3 max-w-lectura text-sm leading-relaxed text-tenue">
+               Algunos conceptos tienen además un reel de menos de un minuto.
+               <a class="enlace-fuente" href="#/reels">Ver los ${reels.length} reels →</a>
+             </p>`
+          : ''
+      }
 
       <div
         class="mt-8 flex flex-wrap gap-2"

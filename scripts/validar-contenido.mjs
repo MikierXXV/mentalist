@@ -7,13 +7,14 @@
  * desarrollo, pero ejecutable sin navegador para poder usarla en CI antes del
  * build. Sale con código 1 si algo incumple.
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR_CONCEPTOS = join(RAIZ, 'content', 'conceptos');
 const MAX_PALABRAS_CITA = 15;
+const MAX_BYTES_REEL = 8 * 1024 * 1024;
 const TIPOS_ATRIBUCION = ['formulacion_propia', 'tema_de_episodio'];
 const FAMILIAS = ['percepcion', 'influencia', 'lectura', 'memoria'];
 
@@ -137,6 +138,31 @@ for (const [, lista] of bloqueConceptos) {
   }
 }
 
+// Reels: los genera scripts/importar-reels.mjs. Cada uno cuelga de un concepto
+// que exista, sus archivos están en public/ y lleva lo que hace falta para que
+// el vídeo sea accesible sin verlo.
+const rutaReels = join(RAIZ, 'content', 'reels.json');
+const reels = existsSync(rutaReels) ? leerJson(rutaReels).reels ?? [] : [];
+const conceptosConReel = new Set();
+for (const reel of reels) {
+  const fallo = (mensaje) => errores.push(`reels.json [${reel.concepto}]: ${mensaje}`);
+  if (!idsConcepto.has(reel.concepto)) fallo('concepto inexistente');
+  if (conceptosConReel.has(reel.concepto)) fallo('el concepto ya tiene otro reel');
+  conceptosConReel.add(reel.concepto);
+  if (!reel.titulo?.trim()) fallo('sin título');
+  if (!reel.descripcion?.trim()) fallo('sin descripción accesible');
+  if (!Array.isArray(reel.transcripcion) || !reel.transcripcion.length) fallo('sin transcripción');
+  if (!(reel.duracion > 0)) fallo('duración no válida');
+  for (const campo of ['video', 'poster', 'miniatura']) {
+    if (!reel[campo] || !existsSync(join(RAIZ, 'public', reel[campo]))) {
+      fallo(`falta el archivo de "${campo}": public/${reel[campo]}`);
+    }
+  }
+  if (reel.bytes > MAX_BYTES_REEL) {
+    fallo(`pesa ${(reel.bytes / 1048576).toFixed(1)} MB; el máximo es ${MAX_BYTES_REEL / 1048576} MB`);
+  }
+}
+
 if (errores.length) {
   console.error(`\n✗ ${errores.length} problema(s) de contenido:\n`);
   for (const error of errores) console.error(`  · ${error}`);
@@ -154,5 +180,6 @@ console.log(
     `${visualizaciones.size} visualizaciones distintas · ` +
     `${Object.keys(fuentes).length} fuentes · ` +
     `${conCita} con cita textual · ` +
-    `${episodios} enmarcados como tema de episodio`,
+    `${episodios} enmarcados como tema de episodio · ` +
+    `${reels.length} reels`,
 );

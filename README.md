@@ -109,6 +109,27 @@ escenas recurren a la geometría procedural de
 [`src/viz/cerebro-geometria.ts`](src/viz/cerebro-geometria.ts), de modo que la sección nunca se queda
 vacía.
 
+## Los reels
+
+Cada concepto puede tener un reel: un vídeo vertical de menos de un minuto que se ve en su ficha,
+en la tira de su familia en el índice y en la página `#/reels`. Se producen fuera de este
+repositorio, en `videos-cortos/reel/reels/<id>/` (`salida/<id>.mp4`, `salida/<id>-portada.png` y
+`post.md`), y se traen con:
+
+```bash
+npm run importar-reels               # importa lo nuevo o cambiado; ignora lo que aún no existe
+npm run importar-reels -- --forzar   # vuelve a transcodificar todo
+```
+
+Necesita `ffmpeg` y `ffprobe` en el PATH. El script transcodifica cada vídeo a 720×1280 con un
+bitrate calculado para no pasar de 6,5 MB, genera dos pósters WebP (720 y 360 px) en `public/reels/`
+y escribe `content/reels.json` con el título, la descripción accesible y las fuentes de `post.md`, y
+la transcripción de `guion.json`. Ese manifiesto no se edita a mano. La correspondencia entre
+carpeta y concepto está al principio del script: los cuatro primeros reels se llaman como su familia.
+
+`npm run validar` comprueba que cada reel cuelgue de un concepto que exista, que estén sus archivos,
+que traiga descripción y transcripción y que no pase de 8 MB.
+
 ## Despliegue
 
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) construye y publica en GitHub

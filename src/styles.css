@@ -236,6 +236,164 @@
   }
 }
 
+/*
+ * Reels. Vídeo vertical 9:16; el ancho se limita también por el alto de la
+ * ventana para que, en un portátil apaisado, el vídeo entero quepa en pantalla.
+ */
+.reel {
+  @apply flex flex-col gap-4;
+}
+
+/* En la rejilla de la página de reels, el pie no se ensancha más que el vídeo. */
+.reel--columna {
+  @apply mx-auto max-w-[20rem] sm:mx-0;
+}
+
+.reel--columna .reel__pantalla {
+  @apply sm:mx-0;
+}
+
+.reel--lado {
+  @apply sm:flex-row sm:items-start sm:gap-6;
+}
+
+.reel__pantalla {
+  @apply superficie relative mx-auto shrink-0 overflow-hidden bg-[rgb(var(--color-fondo))];
+  aspect-ratio: 9 / 16;
+  width: min(100%, 20rem, calc(78svh * 9 / 16));
+}
+
+.reel--lado .reel__pantalla {
+  width: min(100%, 16rem, calc(78svh * 9 / 16));
+}
+
+@media (min-width: 640px) {
+  .reel--lado .reel__pantalla {
+    @apply mx-0;
+  }
+}
+
+.reel__fachada,
+.reel__video {
+  @apply absolute inset-0 block h-full w-full;
+}
+
+.reel__video {
+  @apply bg-black object-contain;
+}
+
+.reel__fachada img {
+  @apply h-full w-full object-cover transition-transform duration-500;
+}
+
+.reel__fachada:hover img {
+  transform: scale(1.03);
+}
+
+.reel__fachada:focus-visible {
+  outline-offset: -4px;
+}
+
+/* Siempre sobre el póster, que es oscuro en ambos temas: colores fijos. */
+.reel__play {
+  @apply absolute bottom-2 left-2 grid h-12 w-12 place-items-center rounded-full pl-0.5
+    shadow-lg transition-transform duration-300;
+  background: rgb(201 162 39 / 0.92);
+  color: rgb(11 13 18);
+}
+
+.reel__fachada:hover .reel__play {
+  transform: scale(1.08);
+}
+
+.reel__duracion {
+  @apply absolute bottom-2 right-2 rounded px-1.5 py-0.5 text-xs tabular-nums;
+  background: rgb(0 0 0 / 0.7);
+  color: rgb(255 255 255);
+}
+
+.reel__pie {
+  @apply min-w-0 flex-1;
+}
+
+.reel__titulo {
+  @apply font-display text-lg leading-snug text-texto;
+}
+
+/* Enlaces de las tarjetas de reel: objetivo táctil de 44 px. */
+.reel__pie .enlace-fuente,
+.reel-dialogo__texto .enlace-fuente {
+  @apply min-h-[44px];
+}
+
+.reel__detalles {
+  @apply mt-3 text-sm leading-relaxed text-texto/85;
+}
+
+.reel__detalles summary {
+  @apply cursor-pointer py-3 text-sm text-acento underline decoration-acento/40
+    underline-offset-4 hover:decoration-acento;
+}
+
+.reel__transcripcion {
+  @apply mt-2 list-inside space-y-1 text-texto/80;
+}
+
+/* Tira de miniaturas de cada familia en el índice. */
+.tira-reels {
+  @apply mt-3 flex snap-x gap-4 overflow-x-auto pb-3;
+  scrollbar-width: thin;
+}
+
+.reel-mini {
+  @apply w-36 shrink-0 snap-start;
+}
+
+/* Alto automático: con `h-full` el alto dependería de la fila de la tira y el título se cortaría. */
+.reel-mini .reel__fachada {
+  @apply superficie relative h-auto overflow-hidden;
+  aspect-ratio: 9 / 16;
+}
+
+.reel-mini .reel__play {
+  @apply h-9 w-9;
+}
+
+.reel-mini .reel__play svg {
+  @apply h-5 w-5;
+}
+
+.reel-mini__titulo {
+  @apply mt-2 text-sm leading-snug text-tenue;
+}
+
+.reel-dialogo {
+  @apply m-auto max-h-[100svh] max-w-[100vw] overflow-visible bg-transparent p-0 text-texto;
+}
+
+.reel-dialogo::backdrop {
+  background: rgb(0 0 0 / 0.8);
+}
+
+.reel-dialogo__marco {
+  @apply superficie relative flex max-h-[96svh] w-[min(94vw,46rem)] flex-col gap-5
+    overflow-y-auto bg-[rgb(var(--color-fondo))] p-4 pt-16 sm:flex-row sm:p-6;
+}
+
+.reel-dialogo .reel__pantalla {
+  width: min(100%, 20rem, calc(82svh * 9 / 16));
+}
+
+.reel-dialogo__texto {
+  @apply min-w-0 flex-1 sm:pt-8;
+}
+
+.reel-dialogo__cerrar {
+  @apply absolute right-2 top-2 z-10 grid h-11 w-11 place-items-center rounded-full
+    border text-lg text-tenue linea hover:text-texto;
+  background: rgb(var(--color-fondo) / 0.85);
+}
+
 /* Lienzos de las visualizaciones. */
 .lienzo-viz {
   @apply superficie relative w-full overflow-hidden bg-[rgb(var(--color-fondo))];

@@ -2,9 +2,25 @@ import {
   conceptos,
   FAMILIAS,
   obtenerFuente,
+  reelDeConcepto,
   type Concepto,
 } from '../content';
 import { esc, formatearFecha, rutaConcepto } from './dom';
+import { renderReel } from './reel';
+
+/** El reel resume la ficha: va tras el ejemplo, antes de la visualización. */
+function bloqueReel(concepto: Concepto): string {
+  const reel = reelDeConcepto(concepto.id);
+  if (!reel) return '';
+  return /* html */ `
+    <section id="reel" class="mt-10 max-w-lectura scroll-mt-20" aria-labelledby="titulo-reel">
+      <p id="titulo-reel" class="mb-4 text-xs uppercase tracking-wider text-acento">
+        En menos de un minuto
+      </p>
+      ${renderReel(reel, { disposicion: 'lado' })}
+      <a class="enlace-fuente mt-5" href="#/reels">Ver todos los reels →</a>
+    </section>`;
+}
 
 function capaOficial(concepto: Concepto): string {
   const oficial = concepto.explicacion_oficial;
@@ -221,6 +237,7 @@ export function renderFicha(concepto: Concepto): string {
           ${experimento}
           ${matiz}
           ${ejemplo}
+          ${bloqueReel(concepto)}
         </div>
 
         ${lateral(concepto)}

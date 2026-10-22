@@ -1,6 +1,6 @@
 import './styles.css';
 
-import { conceptos, obtenerConcepto, validarContenido } from './content';
+import { conceptos, obtenerConcepto, reels, validarContenido } from './content';
 import { seguirPreferenciaDelSistema } from './tema';
 import { montarCabecera } from './ui/cabecera';
 import { retirarCargador } from './ui/cargador';
@@ -10,6 +10,8 @@ import { activarIndice, renderIndice } from './ui/indice';
 import { renderFicha } from './ui/ficha';
 import { activarFuentes, renderFuentes } from './ui/fuentes';
 import { renderEnlaces, renderFooter } from './ui/enlaces';
+import { activarReels, cerrarDialogoReel } from './ui/reel';
+import { renderPaginaReels } from './ui/pagina-reels';
 import {
   animarDetalles,
   animarVista,
@@ -102,10 +104,15 @@ async function enrutar(): Promise<void> {
   for (const escena of escenas) escena.destruir();
   escenas = [];
   limpiarAnimaciones();
+  cerrarDialogoReel();
 
   const id = idDesdeHash();
+  const esReels = window.location.hash === '#/reels';
 
-  if (id) {
+  if (esReels) {
+    app!.innerHTML = renderPaginaReels();
+    document.title = 'Reels · Inteligencia Natural';
+  } else if (id) {
     const concepto = obtenerConcepto(id);
     app!.innerHTML = concepto ? renderFicha(concepto) : renderNoEncontrado();
     document.title = concepto
@@ -127,7 +134,7 @@ async function enrutar(): Promise<void> {
   // El posicionamiento va después de animarVista: ScrollTrigger.refresh()
   // restaura el scroll previo, así que hacerlo antes no serviría de nada.
   requestAnimationFrame(() => {
-    if (id) {
+    if (id || esReels) {
       window.scrollTo({ top: 0, behavior: 'auto' });
       return;
     }
@@ -154,6 +161,7 @@ if (import.meta.env.DEV) {
 
 seguirPreferenciaDelSistema();
 montarCabecera();
+activarReels(reels);
 
 // Se monta una sola vez, fuera del router: el aviso legal debe estar en todas
 // las vistas, y en las fichas es donde más falta hace.

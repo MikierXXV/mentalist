@@ -1,5 +1,6 @@
 import fuentesRaw from '../content/fuentes.json';
 import enlacesRaw from '../content/enlaces-oficiales.json';
+import reelsRaw from '../content/reels.json';
 
 /** Tipo de fuente pública de la que procede la capa oficial. */
 export type TipoFuente = 'libro' | 'entrevista' | 'video' | 'web' | 'podcast';
@@ -85,6 +86,26 @@ export interface EnlaceOficial {
   url: string;
 }
 
+/**
+ * Vídeo vertical corto sobre un concepto. Lo genera `scripts/importar-reels.mjs`
+ * a partir del post de cada reel; las rutas son relativas a `public/`.
+ */
+export interface Reel {
+  concepto: string;
+  titulo: string;
+  /** Descripción de lo que se ve, tomada del texto alternativo del post. */
+  descripcion: string;
+  fuentes: string;
+  /** Lo que dice la voz, frase a frase. */
+  transcripcion: string[];
+  /** Segundos. */
+  duracion: number;
+  video: string;
+  poster: string;
+  miniatura: string;
+  bytes: number;
+}
+
 export const FAMILIAS: Record<Familia, string> = {
   percepcion: 'Percepción y atención',
   influencia: 'Sugestión e influencia',
@@ -136,8 +157,21 @@ export const enlacesOficiales: EnlaceOficial[] = (
 
 export const notaEnlaces: string = (enlacesRaw as { nota: string }).nota;
 
+/** En el orden de los conceptos, no en el de importación. */
+export const reels: Reel[] = (reelsRaw as { reels: Reel[] }).reels
+  .filter((reel) => conceptos.some((c) => c.id === reel.concepto))
+  .sort((a, b) => obtenerConcepto(a.concepto)!.orden - obtenerConcepto(b.concepto)!.orden);
+
 export function obtenerConcepto(id: string): Concepto | undefined {
   return conceptos.find((concepto) => concepto.id === id);
+}
+
+export function reelDeConcepto(id: string): Reel | undefined {
+  return reels.find((reel) => reel.concepto === id);
+}
+
+export function reelsDeFamilia(familia: Familia): Reel[] {
+  return reels.filter((reel) => obtenerConcepto(reel.concepto)?.familia === familia);
 }
 
 export function obtenerFuente(id: string): Fuente | undefined {

@@ -3,6 +3,7 @@ import { alternarTema, temaActual } from '../tema';
 const ENLACES = [
   { href: '#cerebro', texto: 'Mapa' },
   { href: '#conceptos', texto: 'Conceptos' },
+  { href: '#/reels', texto: 'Reels' },
   { href: '#fuentes', texto: 'Fuentes' },
   { href: '#oficial', texto: 'Enlaces' },
 ];

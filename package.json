@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "validar": "node scripts/validar-contenido.mjs",
     "preparar-cerebro": "node scripts/preparar-cerebro.mjs",
+    "importar-reels": "node scripts/importar-reels.mjs",
     "verificar": "node scripts/verificar-navegador.mjs"
   },
   "devDependencies": {
