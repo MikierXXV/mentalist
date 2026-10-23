@@ -418,7 +418,7 @@
         "Las dos dicen: «Yo no he sido».",
         "Una de ellas miente. ¿Cuál?",
         "La nerviosa decía la verdad.",
-        "Estaba nerviosa porque la miraban.",
+        "Ella estaba nerviosa porque la miraban.",
         "En doscientos seis estudios…",
         "acertamos un cincuenta y cuatro por ciento.",
         "Casi cara o cruz.",
@@ -429,15 +429,15 @@
         "y sentirte seguro no te hace acertar.",
         "Los aeropuertos de Estados Unidos lo probaron a lo grande.",
         "Un informe oficial no encontró pruebas de que sirviera.",
-        "Ayuda más escuchar qué se cuenta, y comprobarlo.",
+        "Ayuda más a escuchar el relato, y comprobarlo.",
         "Envíaselo a quien presume de pillarte."
       ],
-      "duracion": 42,
+      "duracion": 44,
       "video": "reels/microexpresiones-y-mentira.mp4",
       "poster": "reels/microexpresiones-y-mentira.webp",
       "miniatura": "reels/microexpresiones-y-mentira-mini.webp",
-      "bytes": 2915688,
-      "huella": "8483842-1792682504073|501591-1792682504635"
+      "bytes": 2966405,
+      "huella": "8628843-1792758343783|505541-1792758344244"
     },
     {
       "concepto": "desmontar-videntes",
@@ -458,19 +458,19 @@
         "Cada una puntuó las veinticinco lecturas…",
         "sin saber cuál era la suya.",
         "Salvo en un caso, la suya no les encajó más.",
-        "Segunda prueba: concretar antes.",
+        "La segunda prueba es concretar antes.",
         "Un nombre. Una fecha. Una cifra.",
         "Un premio llegó a un millón de dólares.",
         "En cincuenta años, nadie lo ganó.",
         "Si te acierta, apunta también los fallos.",
         "Envíaselo a quien está pensando en ir a un vidente."
       ],
-      "duracion": 42,
+      "duracion": 43,
       "video": "reels/desmontar-videntes.mp4",
       "poster": "reels/desmontar-videntes.webp",
       "miniatura": "reels/desmontar-videntes-mini.webp",
-      "bytes": 3298963,
-      "huella": "9498729-1792684115798|605480-1792684116245"
+      "bytes": 3399566,
+      "huella": "9795960-1792758496319|602318-1792758496750"
     },
     {
       "concepto": "sugestion-hipnotica",
@@ -492,19 +492,19 @@
         "atención muy enfocada…",
         "y más respuesta a la sugestión.",
         "Y no a todos les pasa igual.",
-        "Unos responden muchísimo. Otros, casi nada.",
+        "Algunos responden muchísimo. Otros, casi nada.",
         "Y es un rasgo bastante estable.",
         "Ojo: con hipnosis recuerdas más…",
         "pero también inventas más.",
-        "Da más seguridad, no más exactitud.",
+        "Te da más seguridad, no más exactitud.",
         "Envíaselo a quien cree que la hipnosis es magia."
       ],
-      "duracion": 44,
+      "duracion": 46,
       "video": "reels/sugestion-hipnotica.mp4",
       "poster": "reels/sugestion-hipnotica.webp",
       "miniatura": "reels/sugestion-hipnotica-mini.webp",
-      "bytes": 3148945,
-      "huella": "9072848-1792683622538|449987-1792683623166"
+      "bytes": 3259722,
+      "huella": "9461412-1792758637748|451155-1792758638235"
     },
     {
       "concepto": "siembra-de-ideas",
@@ -515,7 +515,7 @@
         "No pienses en un oso blanco.",
         "Tarde. Ya está dentro.",
         "Para no pensarlo, tienes que vigilarlo.",
-        "Y vigilarlo lo trae de vuelta.",
+        "Pero vigilarlo lo trae de vuelta.",
         "Lo midió un experimento clásico.",
         "Sembrar una idea no es meterla.",
         "Es que olvides de dónde vino.",
@@ -531,12 +531,12 @@
         "no la hace tuya.",
         "Envíaselo a quien siempre dice: «se me ocurrió a mí»."
       ],
-      "duracion": 40,
+      "duracion": 42,
       "video": "reels/siembra-de-ideas.mp4",
       "poster": "reels/siembra-de-ideas.webp",
       "miniatura": "reels/siembra-de-ideas-mini.webp",
-      "bytes": 2973035,
-      "huella": "8565566-1792683834823|361869-1792683835281"
+      "bytes": 3114860,
+      "huella": "8870509-1792758769282|361306-1792758769681"
     }
   ]
 }
