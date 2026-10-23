@@ -258,27 +258,27 @@
         "La otra trabaja sola, y no te consulta.",
         "Un mentalista lo llama el enano y el gigante.",
         "Ahora tú: dime el color en voz alta.",
-        "No la palabra. Rápido.",
+        "Solo el color, no la palabra. Rápido.",
         "Sigue, hasta el final.",
         "¿Notas el freno?",
-        "Leer va solo, y se cuela.",
+        "Leer ocurre solo, y se cuela.",
         "Se llama el efecto Stroop.",
         "Saberlo no lo apaga.",
         "Ni con práctica se borra del todo.",
         "Con el miedo pasa algo parecido.",
-        "Saber que es seguro no siempre basta.",
+        "Saber que algo es seguro no siempre basta.",
         "Al gigante no se le convence discutiendo.",
         "Se le entrena:",
         "poco a poco,",
         "haciéndolo.",
         "Envíaselo a quien cree que lo controla todo."
       ],
-      "duracion": 42,
+      "duracion": 47,
       "video": "reels/consciente-subconsciente.mp4",
       "poster": "reels/consciente-subconsciente.webp",
       "miniatura": "reels/consciente-subconsciente-mini.webp",
-      "bytes": 4161212,
-      "huella": "11754612-1792678795836|397525-1792678796346"
+      "bytes": 4329403,
+      "huella": "12761437-1792745823115|399608-1792745823668"
     },
     {
       "concepto": "ilusion-de-eleccion-libre",
@@ -304,12 +304,12 @@
         "Sentir que decides no te dice cómo decidiste.",
         "Envíaselo a quien cree que decide con libertad."
       ],
-      "duracion": 39,
+      "duracion": 43,
       "video": "reels/ilusion-de-eleccion-libre.mp4",
       "poster": "reels/ilusion-de-eleccion-libre.webp",
       "miniatura": "reels/ilusion-de-eleccion-libre-mini.webp",
-      "bytes": 2490194,
-      "huella": "7175625-1792690255421|362984-1792690255959"
+      "bytes": 2637377,
+      "huella": "7665377-1792745978982|364886-1792745979368"
     },
     {
       "concepto": "tecnica-no-poder",
@@ -328,19 +328,19 @@
         "Es aritmética: tu número se anula.",
         "Pero el asombro fue real.",
         "Y lo pusiste tú.",
-        "El efecto no vive en el mago:",
-        "vive en quien mira.",
+        "El efecto no está en el mago:",
+        "está en quien mira.",
         "Es técnica. No es un poder.",
         "En un escenario, con permiso, es magia.",
         "Sin avisar, es manipulación.",
         "Envíaselo a quien cree en la telepatía."
       ],
-      "duracion": 37,
+      "duracion": 39,
       "video": "reels/tecnica-no-poder.mp4",
       "poster": "reels/tecnica-no-poder.webp",
       "miniatura": "reels/tecnica-no-poder-mini.webp",
-      "bytes": 2425487,
-      "huella": "7094810-1792682361324|536057-1792682361715"
+      "bytes": 2534444,
+      "huella": "7392142-1792746143921|536677-1792746144354"
     },
     {
       "concepto": "lectura-fria",
@@ -400,12 +400,12 @@
         "Eso sí: no es un detector de mentiras.",
         "Envíaselo a quien nunca alza las cejas."
       ],
-      "duracion": 38,
+      "duracion": 41,
       "video": "reels/no-verbal.mp4",
       "poster": "reels/no-verbal.webp",
       "miniatura": "reels/no-verbal-mini.webp",
-      "bytes": 2547593,
-      "huella": "7639300-1792689652839|565698-1792689653492"
+      "bytes": 2639452,
+      "huella": "7919462-1792746285152|562245-1792746285625"
     },
     {
       "concepto": "microexpresiones-y-mentira",
