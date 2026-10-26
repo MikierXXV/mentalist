@@ -108,7 +108,7 @@ console.log('\n== arranque ==');
     return 'sí';
   });
 
-  await p.goto(BASE, { waitUntil: 'networkidle' });
+  await p.goto(BASE, { waitUntil: 'load' });
   await paso('16 tarjetas en 4 familias', async () => {
     const t = await p.locator('[data-tarjeta]').count();
     const f = await p.locator('section[aria-labelledby^="familia-"]').count();
@@ -122,7 +122,7 @@ console.log('\n== arranque ==');
     await p.waitForTimeout(500);
     const cambiado = await p.evaluate(() => document.documentElement.dataset.theme);
     if (cambiado === inicial) throw new Error('no cambió');
-    await p.reload({ waitUntil: 'networkidle' });
+    await p.reload({ waitUntil: 'load' });
     await p.waitForTimeout(600);
     const tras = await p.evaluate(() => document.documentElement.dataset.theme);
     if (tras !== cambiado) throw new Error('no persistió');
@@ -152,7 +152,7 @@ console.log('\n== arranque ==');
 for (const esquema of ['dark', 'light']) {
   console.log(`\n== cerebro (${esquema}) ==`);
   const { ctx, p } = await nuevaPagina({ colorScheme: esquema });
-  await p.goto(BASE, { waitUntil: 'networkidle' });
+  await p.goto(BASE, { waitUntil: 'load' });
   await irA(p, '#cerebro');
   await p.waitForSelector('[data-viz-cerebro] canvas', { timeout: 30000 });
   await p.waitForTimeout(3500);
@@ -215,19 +215,19 @@ for (const esquema of ['dark', 'light']) {
   let flojas = 0;
 
   for (const id of ids) {
-    await p.goto(`${BASE}#/concepto/${id}`, { waitUntil: 'networkidle' });
+    await p.goto(`${BASE}#/concepto/${id}`, { waitUntil: 'load' });
     try {
       const viz = await p.locator('[data-viz]').getAttribute('data-viz');
       if (vistas.has(viz)) throw new Error(`visualización repetida: ${viz}`);
       vistas.add(viz);
 
-      // Orden del DOM: prosa, ejemplo, visualización, capa oficial.
+      // Orden del DOM: visualización, prosa, escena, capa oficial.
       const orden = await p.evaluate(() => {
         const n = [
-          document.querySelector('.prosa'),
-          document.querySelector('[aria-labelledby="titulo-ejemplo"]'),
           document.querySelector('[data-bloque-viz]'),
-          document.querySelector('details[data-oficial]'),
+          document.querySelector('.prosa'),
+          document.querySelector('#escena'),
+          document.querySelector('#fuente'),
         ];
         if (n.some((x) => !x)) return 'falta alguno de los bloques';
         for (let i = 0; i < n.length - 1; i++) {
@@ -239,7 +239,7 @@ for (const esquema of ['dark', 'light']) {
       });
       if (orden !== 'ok') throw new Error(orden);
 
-      if (!(await p.locator('aside:has-text("Pruébalo")').count())) {
+      if (!(await p.locator('#pruebalo').count())) {
         throw new Error('falta el Pruébalo');
       }
 
@@ -270,12 +270,12 @@ console.log('\n== anchos ==');
   for (const ancho of [...ANCHOS_PEQUENOS, ...ANCHOS_GRANDES]) {
     await paso(`${ancho} px sin desbordamiento`, async () => {
       await p.setViewportSize({ width: ancho, height: 900 });
-      await p.goto(BASE, { waitUntil: 'networkidle' });
+      await p.goto(BASE, { waitUntil: 'load' });
       await p.waitForTimeout(1200);
       const portada = await p.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
       );
-      await p.goto(`${BASE}#/concepto/sesgos-y-atencion-robada`, { waitUntil: 'networkidle' });
+      await p.goto(`${BASE}#/concepto/sesgos-y-atencion-robada`, { waitUntil: 'load' });
       await p.waitForTimeout(1200);
       const ficha = await p.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -314,7 +314,7 @@ console.log('\n== móvil ==');
   p.setDefaultTimeout(15000);
   p.on('pageerror', (e) => fallo(`pageerror (móvil): ${e.message}`));
 
-  await p.goto(BASE, { waitUntil: 'networkidle' });
+  await p.goto(BASE, { waitUntil: 'load' });
   await p.waitForTimeout(5000);
 
   await paso('el cerebro de fondo entra entero en el encuadre', async () => {
@@ -362,8 +362,8 @@ console.log('\n== móvil ==');
     const alto = await p.evaluate(() =>
       Math.round(document.querySelector('[data-tarjeta]').getBoundingClientRect().height),
     );
-    // Con el distintivo en fila propia, la primera tarjeta medía 211 px.
-    if (alto > 195) throw new Error(`la primera tarjeta mide ${alto}px`);
+    // Con el distintivo en fila propia medía 211 px; la línea del reel suma 1 px de margen.
+    if (alto > 200) throw new Error(`la primera tarjeta mide ${alto}px`);
     return `${alto}px de alto`;
   });
 
@@ -377,7 +377,7 @@ console.log('\n== movimiento reducido ==');
   const { ctx, p } = await nuevaPagina({ reducedMotion: 'reduce' });
 
   await paso('la visualización queda en un fotograma estático', async () => {
-    await p.goto(`${BASE}#/concepto/memoria-reconstructiva`, { waitUntil: 'networkidle' });
+    await p.goto(`${BASE}#/concepto/memoria-reconstructiva`, { waitUntil: 'load' });
     await irA(p, '[data-bloque-viz]');
     await p.waitForSelector('[data-viz] canvas', { timeout: 15000 });
     await p.waitForTimeout(1500);
@@ -389,7 +389,7 @@ console.log('\n== movimiento reducido ==');
   });
 
   await paso('el cerebro también se congela', async () => {
-    await p.goto(BASE, { waitUntil: 'networkidle' });
+    await p.goto(BASE, { waitUntil: 'load' });
     await irA(p, '#cerebro');
     await p.waitForSelector('[data-viz-cerebro] canvas', { timeout: 30000 });
     await p.waitForTimeout(2500);

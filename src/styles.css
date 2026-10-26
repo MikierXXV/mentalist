@@ -20,6 +20,11 @@
     --opacidad-borde: 0.1;
     --velo: 255 255 255;
     --aura: 0.1;
+    /* Acento por familia: contraste AA verificado sobre fondo, superficie y tinte del 11 %. */
+    --color-fam-percepcion: 232 200 90;
+    --color-fam-influencia: 182 156 255;
+    --color-fam-lectura: 95 207 191;
+    --color-fam-memoria: 255 155 130;
   }
 
   :root[data-theme='light'] {
@@ -34,6 +39,10 @@
     --opacidad-borde: 0.14;
     --velo: 27 29 36;
     --aura: 0.05;
+    --color-fam-percepcion: 126 96 9;
+    --color-fam-influencia: 106 75 208;
+    --color-fam-lectura: 23 118 106;
+    --color-fam-memoria: 176 68 39;
   }
 
   html {

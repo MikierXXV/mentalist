@@ -2,6 +2,7 @@ import {
   conceptosPorFamilia,
   FAMILIAS_CORTAS,
   obtenerFuente,
+  reelDeConcepto,
   reels,
   reelsDeFamilia,
   type Concepto,
@@ -9,6 +10,11 @@ import {
 } from '../content';
 import { esc, rutaConcepto } from './dom';
 import { renderMiniaturaReel } from './reel';
+
+function duracionReel(concepto: Concepto): string {
+  const reel = reelDeConcepto(concepto.id);
+  return reel ? `<span class="tarjeta__reel">▶ Reel · ${reel.duracion} s</span>` : '';
+}
 
 /** Tira de reels bajo las tarjetas de cada familia; se desliza en horizontal. */
 function tiraReels(familia: Familia): string {
@@ -40,18 +46,19 @@ function tarjeta(concepto: Concepto): string {
   const numero = String(concepto.orden).padStart(2, '0');
   return /* html */ `
     <li data-anim="tarjeta">
-      <a class="tarjeta group" href="${rutaConcepto(concepto.id)}" data-tarjeta="${esc(concepto.id)}">
+      <a class="tarjeta group" data-fam="${concepto.familia}" href="${rutaConcepto(concepto.id)}" data-tarjeta="${esc(concepto.id)}">
         <!--
           Número y distintivo comparten línea. Con el distintivo en fila propia,
           cada una de las 16 tarjetas gastaba una tercera fila en móvil para una
           distinción secundaria.
         -->
         <span class="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span class="tarjeta__numero">${numero}</span>
+          <span class="tarjeta__sigla">${numero}</span>
           ${distintivoFuente(concepto)}
         </span>
-        <h3 class="tarjeta__titulo group-hover:text-acentoClaro">${esc(concepto.titulo)}</h3>
+        <h3 class="tarjeta__titulo">${esc(concepto.titulo)}</h3>
         <p class="tarjeta__gancho">${esc(concepto.gancho)}</p>
+        ${duracionReel(concepto)}
       </a>
     </li>
   `;
@@ -73,9 +80,11 @@ export function renderIndice(): string {
         <button
           type="button"
           class="pildora"
+          ${f.id === 'todas' ? '' : `data-fam="${esc(f.id)}"`}
           data-familia="${esc(f.id)}"
           aria-pressed="${indice === 0}"
         >
+          ${f.id === 'todas' ? '' : '<i class="pildora__punto" aria-hidden="true"></i>'}
           ${esc(f.titulo)}
           <span class="pildora__cuenta">${f.cuenta}</span>
         </button>`,
@@ -88,14 +97,16 @@ export function renderIndice(): string {
         <section
           class="mt-12 first:mt-0"
           data-grupo="${grupo.familia}"
+          data-fam="${grupo.familia}"
           aria-labelledby="familia-${grupo.familia}"
         >
-          <h3
-            id="familia-${grupo.familia}"
-            class="linea mb-6 border-b pb-3 font-display text-sm uppercase tracking-[0.2em] text-acento"
-          >
-            ${esc(grupo.titulo)}
-          </h3>
+          <div class="fam-cab">
+            <i class="fam-cab__punto" aria-hidden="true"></i>
+            <h3 id="familia-${grupo.familia}" class="font-display text-2xl leading-tight">
+              ${esc(grupo.titulo)}
+            </h3>
+            <span class="fam-cab__cuenta">${grupo.conceptos.length}</span>
+          </div>
           <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4xl:grid-cols-5">
             ${grupo.conceptos.map(tarjeta).join('')}
           </ul>

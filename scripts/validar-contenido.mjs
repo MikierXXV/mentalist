@@ -79,6 +79,13 @@ for (const { archivo, datos } of conceptos) {
   if (!Array.isArray(datos.explicacion_didactica) || !datos.explicacion_didactica.length) {
     fallo('sin explicación didáctica');
   }
+  // Opcional: qué párrafo es la analogía (la ficha lo muestra en «Piénsalo así»).
+  if (datos.analogia_indice !== undefined) {
+    const i = datos.analogia_indice;
+    if (!Number.isInteger(i) || i < 0 || i >= (datos.explicacion_didactica?.length ?? 0)) {
+      fallo(`analogia_indice fuera de rango: ${i} (hay ${datos.explicacion_didactica?.length ?? 0} párrafos)`);
+    }
+  }
   if (ordenes.has(datos.orden)) {
     fallo(`orden ${datos.orden} duplicado con ${ordenes.get(datos.orden)}`);
   }

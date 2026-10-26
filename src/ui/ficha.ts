@@ -8,21 +8,54 @@ import {
 import { esc, formatearFecha, rutaConcepto } from './dom';
 import { renderReel } from './reel';
 
-/** El reel resume la ficha: va tras el ejemplo, antes de la visualización. */
+/*
+ * Ficha en bloques. Los títulos de bloque son texto de interfaz; el contenido de
+ * la ficha (gancho, párrafos, experimento, escena, capa oficial) sale tal cual
+ * del JSON, solo repartido. `scripts/comprobar-texto-fichas.mjs` lo verifica.
+ */
+
+const ICONOS = {
+  lista: '<path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/>',
+  bombilla:
+    '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+  matraz: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/>',
+  escena: '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z"/>',
+  libro:
+    '<path d="M12 6.5C10.5 5 8 4.2 4 4.2V18c4 0 6.5.8 8 2.3 1.5-1.5 4-2.3 8-2.3V4.2c-4 0-6.5.8-8 2.3z"/><path d="M12 6.5v13.8"/>',
+  vis: '<path d="M3 20h18M6 20V11M12 20V5M18 20v-7"/>',
+  reel: '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="m10.5 9.5 4 2.5-4 2.5z"/>',
+  mapa: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+} as const;
+
+function icono(nombre: keyof typeof ICONOS, clase = 'ficha-ico'): string {
+  return `<svg class="${clase}" viewBox="0 0 24 24" aria-hidden="true">${ICONOS[nombre]}</svg>`;
+}
+
+/** Cabecera de bloque: icono tintado con el acento de la familia + título. */
+function cabecera(id: string, titulo: string, ico: keyof typeof ICONOS): string {
+  return `<h2 id="titulo-${id}" class="ficha-bloque__titulo"><span class="ficha-bloque__ico">${icono(ico)}</span>${esc(titulo)}</h2>`;
+}
+
+interface Seccion {
+  id: string;
+  titulo: string;
+}
+
+/** El reel resume la ficha: va tras la visualización, en un bloque propio. */
 function bloqueReel(concepto: Concepto): string {
   const reel = reelDeConcepto(concepto.id);
   if (!reel) return '';
   return /* html */ `
-    <section id="reel" class="mt-10 max-w-lectura scroll-mt-20" aria-labelledby="titulo-reel">
-      <p id="titulo-reel" class="mb-4 text-xs uppercase tracking-wider text-acento">
-        En menos de un minuto
-      </p>
-      ${renderReel(reel, { disposicion: 'lado' })}
-      <a class="enlace-fuente mt-5" href="#/reels">Ver todos los reels →</a>
+    <section id="reel" class="ficha-bloque ficha-bloque--reel" aria-labelledby="titulo-reel">
+      ${cabecera('reel', 'En menos de un minuto', 'reel')}
+      <div class="ficha-reel">
+        ${renderReel(reel, { disposicion: 'lado' })}
+      </div>
+      <a class="enlace-fuente mt-4" href="#/reels">Ver todos los reels →</a>
     </section>`;
 }
 
-function capaOficial(concepto: Concepto): string {
+function bloqueOficial(concepto: Concepto): string {
   const oficial = concepto.explicacion_oficial;
   const esEpisodio = oficial.tipo_atribucion === 'tema_de_episodio';
   const fuente = obtenerFuente(oficial.fuente_id);
@@ -65,65 +98,27 @@ function capaOficial(concepto: Concepto): string {
     })
     .join('');
 
+  const distintivo = fuente
+    ? `<span class="${esEpisodio ? 'distintivo distintivo--podcast' : 'distintivo distintivo--texto'}">
+         ${esEpisodio ? 'Podcast' : 'Fuente textual'}
+       </span>`
+    : '';
+
   return /* html */ `
-    <details class="max-w-lectura" data-oficial>
-      <summary
-        class="cursor-pointer list-none rounded-lg border px-5 py-4 font-display text-lg
-          ${esEpisodio ? 'border-dashed border-tenue/40 text-tenue hover:text-texto' : 'border-acento/40 text-acento hover:bg-acento/10'}"
-      >
-        <span class="inline-flex items-center gap-2">
-          <span aria-hidden="true">${esEpisodio ? '🎙' : '＋'}</span>
-          ${esc(rotulo)}
-        </span>
-      </summary>
-      <div
-        class="oficial ${esEpisodio ? 'oficial--episodio' : 'oficial--propia'} mt-3"
-        data-oficial-cuerpo
-      >
+    <section id="fuente" class="ficha-bloque" aria-labelledby="titulo-fuente">
+      ${cabecera('fuente', 'Qué dice la fuente', 'libro')}
+      <div class="oficial ${esEpisodio ? 'oficial--episodio' : 'oficial--propia'}" data-oficial-cuerpo>
+        <p class="mb-3 flex flex-wrap items-center gap-3 font-display text-lg text-acento">
+          ${esc(rotulo)} ${distintivo}
+        </p>
+        ${fuente ? `<p class="mb-3 text-sm text-tenue">Fuente: ${esc(fuente.publicacion)}</p>` : ''}
         ${aviso}
         <p class="leading-relaxed text-texto/90">${esc(oficial.resumen)}</p>
         ${cita}
         ${atribucionCita}
         <ul class="mt-5 space-y-3 border-t pt-4 linea">${enlaces}</ul>
       </div>
-    </details>
-  `;
-}
-
-/** Columna lateral pegajosa: en escritorio la mitad derecha quedaba vacía. */
-function lateral(concepto: Concepto): string {
-  const fuente = obtenerFuente(concepto.explicacion_oficial.fuente_id);
-  const esEpisodio = concepto.explicacion_oficial.tipo_atribucion === 'tema_de_episodio';
-
-  return /* html */ `
-    <!--
-      Ocupa solo la primera fila: así deja de ser pegajosa al llegar a la
-      visualización, que cruza las dos columnas, y no se solapan.
-    -->
-    <aside class="hidden lg:col-start-2 lg:row-start-1 lg:block">
-      <div class="linea sticky top-24 flex flex-col gap-4 border-l pl-6">
-        <p class="font-display text-4xl text-acento/40">
-          ${String(concepto.orden).padStart(2, '0')}
-        </p>
-        <div>
-          <p class="text-xs uppercase tracking-wider text-tenue">Familia</p>
-          <p class="mt-1 text-sm text-texto">${esc(FAMILIAS[concepto.familia])}</p>
-        </div>
-        ${
-          fuente
-            ? `<div>
-                 <p class="text-xs uppercase tracking-wider text-tenue">Fuente</p>
-                 <p class="mt-1 text-sm text-texto">${esc(fuente.publicacion)}</p>
-                 <span class="mt-2 inline-block ${esEpisodio ? 'distintivo distintivo--podcast' : 'distintivo distintivo--texto'}">
-                   ${esEpisodio ? 'Podcast' : 'Fuente textual'}
-                 </span>
-               </div>`
-            : ''
-        }
-        <a class="enlace-fuente" href="#conceptos">← Todos los conceptos</a>
-      </div>
-    </aside>
-  `;
+    </section>`;
 }
 
 function navegacion(concepto: Concepto): string {
@@ -144,25 +139,50 @@ function navegacion(concepto: Concepto): string {
       : '<span></span>';
 
   return /* html */ `
-    <nav class="linea mt-6 flex items-start justify-between gap-6 border-t pt-8">
+    <nav class="linea mt-14 flex items-start justify-between gap-6 border-t pt-8" aria-label="Otras fichas">
       ${enlace(anterior, '← Anterior', 'items-start text-left')}
       ${enlace(siguiente, 'Siguiente →', 'items-end text-right')}
     </nav>
   `;
 }
 
+function indice(secciones: Seccion[]): { escritorio: string; movil: string } {
+  const enlaces = secciones
+    .map((s) => `<li><a href="#${s.id}" data-ir="${s.id}">${esc(s.titulo)}</a></li>`)
+    .join('');
+  return {
+    escritorio: /* html */ `
+      <aside class="ficha-toc" aria-label="En esta página">
+        <p class="ficha-toc__titulo">En esta página</p>
+        <ol>${enlaces}</ol>
+      </aside>`,
+    movil: /* html */ `
+      <details class="ficha-toc-movil">
+        <summary>En esta página</summary>
+        <nav aria-label="En esta página"><ol>${enlaces}</ol></nav>
+      </details>`,
+  };
+}
+
 export function renderFicha(concepto: Concepto): string {
+  const reel = reelDeConcepto(concepto.id);
+  const iAnalogia = concepto.analogia_indice;
+  const analogia = iAnalogia === undefined ? undefined : concepto.explicacion_didactica[iAnalogia];
   const parrafos = concepto.explicacion_didactica
+    .filter((_, i) => i !== iAnalogia)
     .map((p) => `<p>${esc(p)}</p>`)
     .join('');
 
-  const experimento = concepto.experimento
-    ? /* html */ `
-        <aside class="mt-8 max-w-lectura rounded-lg border border-acento/25 bg-acento/[0.06] px-5 py-4">
-          <p class="mb-1 text-xs uppercase tracking-wider text-acento">Pruébalo</p>
-          <p class="text-[0.95rem] leading-relaxed text-texto/85">${esc(concepto.experimento)}</p>
-        </aside>`
-    : '';
+  const secciones: Seccion[] = [{ id: 'viz', titulo: 'Compruébalo tú' }];
+  if (reel) secciones.push({ id: 'reel', titulo: 'En menos de un minuto' });
+  secciones.push({ id: 'como', titulo: 'Cómo funciona' });
+  if (analogia !== undefined) secciones.push({ id: 'analogia', titulo: 'Piénsalo así' });
+  secciones.push(
+    { id: 'pruebalo', titulo: 'Pruébalo' },
+    { id: 'escena', titulo: 'Una escena real' },
+    { id: 'fuente', titulo: 'Qué dice la fuente' },
+  );
+  const toc = indice(secciones);
 
   const matiz = concepto.nota_matiz
     ? /* html */ `
@@ -172,101 +192,133 @@ export function renderFicha(concepto: Concepto): string {
         </aside>`
     : '';
 
-  // Abierto y con tratamiento propio: ni la caja dorada de «Pruébalo» ni las dos
-  // variantes de la capa oficial, para que las tres capas se distingan de un vistazo.
-  const ejemplo = /* html */ `
-    <section class="mt-10 max-w-lectura" aria-labelledby="titulo-ejemplo">
-      <div class="rounded-lg border-l-2 border-acento/60 bg-[rgb(var(--velo)/0.04)] px-6 py-5">
-        <p id="titulo-ejemplo" class="text-xs uppercase tracking-wider text-acento">
-          Un ejemplo de la vida real
-        </p>
-        <p class="mt-3 font-display text-lg leading-snug text-texto">
-          ${esc(concepto.ejemplo_real.escena)}
-        </p>
-        <p class="mt-3 leading-relaxed text-texto/85">${esc(concepto.ejemplo_real.texto)}</p>
-        <p class="mt-4 text-xs text-tenue">
-          Situación escrita para este sitio a modo de ilustración. No procede de
-          Javier Botía ni de ninguna de las fuentes citadas.
-        </p>
+  const bloqueAnalogia =
+    analogia === undefined
+      ? ''
+      : /* html */ `
+    <section id="analogia" class="ficha-bloque" aria-labelledby="titulo-analogia">
+      ${cabecera('analogia', 'Piénsalo así', 'bombilla')}
+      <div class="ficha-analogia">
+        <span class="ficha-analogia__ico">${icono('mapa', 'ficha-ico ficha-ico--grande')}</span>
+        <p>${esc(analogia)}</p>
       </div>
     </section>`;
 
   return /* html */ `
-    <article class="contenedor py-14" data-ficha="${esc(concepto.id)}">
-      <a class="enlace-fuente lg:hidden" href="#conceptos">← Volver al índice</a>
+    <article class="contenedor ficha py-8 sm:py-12" data-ficha="${esc(concepto.id)}" data-fam="${esc(concepto.familia)}">
+      <nav class="ficha-migas" aria-label="Migas">
+        <a href="#conceptos">Todos los conceptos</a>
+        <span aria-hidden="true">/</span>
+        <span class="ficha-etiqueta"><i aria-hidden="true"></i>${esc(FAMILIAS[concepto.familia])}</span>
+      </nav>
 
-      <!--
-        Rejilla de dos columnas donde el texto y la lateral forman un bloque
-        compacto, y la visualización y la navegación cruzan las dos.
-
-        En pantallas muy anchas la columna de texto se topa en 46rem en vez de
-        crecer sin fin: si ocupa todo el hueco disponible, la lateral se va al
-        borde derecho y queda un vacío enorme entre ambas. El bloque se centra y
-        es la visualización la que aprovecha el ancho.
-
-        Cada pieza lleva su columna explícita: con colocación automática, los
-        bloques irían cayendo alternativamente en la segunda columna.
-      -->
-      <div
-        class="mt-6 grid gap-10 lg:mt-0 lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-x-14
-          3xl:grid-cols-[minmax(0,46rem)_18rem] 3xl:justify-center 3xl:gap-x-16"
-      >
-        <!--
-          min-w-0: por defecto un hijo de rejilla no baja de su ancho de contenido
-          mínimo, y basta un control con etiqueta larga para estirar la columna
-          entera por encima del ancho de la pantalla.
-        -->
-        <div class="min-w-0 lg:col-start-1">
-          <header data-anim="ficha">
-            <p class="font-display text-sm text-acento/70 lg:hidden">
-              ${String(concepto.orden).padStart(2, '0')}
-            </p>
-            <h1 class="mt-2 max-w-3xl font-display text-4xl leading-tight tracking-tight sm:text-5xl">
+      <div class="ficha__rejilla">
+        <!-- min-w-0: un hijo de rejilla no baja de su ancho de contenido mínimo. -->
+        <div class="min-w-0">
+          <header class="ficha-cab" data-anim="ficha">
+            <p class="ficha-cab__num">${String(concepto.orden).padStart(2, '0')}</p>
+            <h1 class="font-display text-4xl leading-tight tracking-tight sm:text-5xl">
               ${esc(concepto.titulo)}
             </h1>
-            <p class="mt-5 max-w-lectura text-lg leading-relaxed text-tenue">
-              ${esc(concepto.gancho)}
-            </p>
+            <div class="ficha-idea">
+              <p class="ficha-idea__rotulo">En una frase</p>
+              <p>${esc(concepto.gancho)}</p>
+            </div>
           </header>
 
+          ${toc.movil}
+
           <!--
-            El texto va primero a propósito: la visualización remata la lectura en
-            vez de competir con ella. Se precarga en segundo plano mientras se lee.
+            Cruza todo el ancho de la columna. El marco da cabecera y rejilla de
+            puntos al lienzo; «Qué estás viendo» es la descripción textual.
           -->
-          <div class="prosa mt-10" data-anim="ficha">${parrafos}</div>
-          ${experimento}
-          ${matiz}
-          ${ejemplo}
+          <section id="viz" class="ficha-bloque" aria-labelledby="titulo-viz">
+            ${cabecera('viz', 'Compruébalo tú', 'vis')}
+            <figure class="bloque-viz ficha-marco" data-bloque-viz>
+              <div class="lienzo-viz" data-viz="${esc(concepto.visualizacion)}"
+                role="img" aria-label="${esc(concepto.visualizacion_alt)}">
+                <div class="esqueleto" data-esqueleto>${esc(concepto.visualizacion_alt)}</div>
+              </div>
+              <div data-controles-viz></div>
+              <figcaption class="ficha-marco__pie">${esc(concepto.visualizacion_alt)}</figcaption>
+            </figure>
+          </section>
+
           ${bloqueReel(concepto)}
+
+          <section id="como" class="ficha-bloque" aria-labelledby="titulo-como">
+            ${cabecera('como', 'Cómo funciona', 'lista')}
+            <div class="prosa">${parrafos}</div>
+            ${matiz}
+          </section>
+
+          ${bloqueAnalogia}
+
+          <section id="pruebalo" class="ficha-bloque" aria-labelledby="titulo-pruebalo">
+            ${cabecera('pruebalo', 'Pruébalo', 'matraz')}
+            <div class="ficha-prueba"><p>${esc(concepto.experimento)}</p></div>
+          </section>
+
+          <section id="escena" class="ficha-bloque" aria-labelledby="titulo-escena">
+            ${cabecera('escena', 'Una escena real', 'escena')}
+            <div class="ficha-escena">
+              <p class="ficha-escena__titulo">${esc(concepto.ejemplo_real.escena)}</p>
+              <p>${esc(concepto.ejemplo_real.texto)}</p>
+              <p class="mt-4 text-xs text-tenue">
+                Situación escrita para este sitio a modo de ilustración. No procede de
+                Javier Botía ni de ninguna de las fuentes citadas.
+              </p>
+            </div>
+          </section>
+
+          ${bloqueOficial(concepto)}
+          ${navegacion(concepto)}
         </div>
 
-        ${lateral(concepto)}
-
-        <!--
-          Cruza las dos columnas. La lateral ocupa solo la primera fila, así que
-          al llegar aquí ya ha dejado de ser pegajosa y no se solapan.
-        -->
-        <figure class="bloque-viz mt-4 min-w-0 lg:col-span-2 lg:col-start-1" data-bloque-viz>
-          <figcaption class="mb-3 text-xs uppercase tracking-wider text-acento">
-            Compruébalo tú
-          </figcaption>
-          <div
-            class="lienzo-viz"
-            data-viz="${esc(concepto.visualizacion)}"
-            role="img"
-            aria-label="${esc(concepto.visualizacion_alt)}"
-          >
-            <div class="esqueleto" data-esqueleto>${esc(concepto.visualizacion_alt)}</div>
-          </div>
-          <div data-controles-viz></div>
-          <p class="mt-3 max-w-lectura text-sm text-tenue">
-            ${esc(concepto.visualizacion_alt)}
-          </p>
-        </figure>
-
-        <div class="min-w-0 lg:col-start-1">${capaOficial(concepto)}</div>
-        <div class="min-w-0 lg:col-span-2 lg:col-start-1">${navegacion(concepto)}</div>
+        ${toc.escritorio}
       </div>
     </article>
   `;
+}
+
+/** Índice «En esta página»: salto suave sin tocar el hash (que es la ruta) y sección actual. */
+export function activarFicha(raiz: HTMLElement): void {
+  const enlaces = Array.from(raiz.querySelectorAll<HTMLAnchorElement>('[data-ir]'));
+  if (!enlaces.length) return;
+  const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const marcar = (id: string) => {
+    for (const a of enlaces) {
+      if (a.dataset.ir === id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    }
+  };
+
+  for (const a of enlaces) {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const destino = raiz.querySelector<HTMLElement>(`#${a.dataset.ir}`);
+      if (!destino) return;
+      destino.scrollIntoView({ behavior: reducido ? 'auto' : 'smooth', block: 'start' });
+      marcar(destino.id);
+      a.closest('details')?.removeAttribute('open');
+    });
+  }
+
+  const secciones = enlaces
+    .map((a) => raiz.querySelector<HTMLElement>(`#${a.dataset.ir}`))
+    .filter((s): s is HTMLElement => Boolean(s));
+  const visibles = new Set<string>();
+  const observador = new IntersectionObserver(
+    (entradas) => {
+      for (const e of entradas) {
+        if (e.isIntersecting) visibles.add(e.target.id);
+        else visibles.delete(e.target.id);
+      }
+      const primero = secciones.find((s) => visibles.has(s.id));
+      if (primero) marcar(primero.id);
+    },
+    { rootMargin: '-15% 0px -65% 0px' },
+  );
+  secciones.forEach((s) => observador.observe(s));
 }

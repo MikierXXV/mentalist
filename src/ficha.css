@@ -1,0 +1,262 @@
+/*
+ * Ficha en bloques (maquetas/ficha-A.html). El acento `--ac` lo define
+ * `[data-fam]` en carrusel.css; aquí solo se consume.
+ */
+.ficha {
+  --ac: rgb(var(--color-fam-percepcion));
+  --ac-rgb: var(--color-fam-percepcion);
+}
+.ficha[data-fam='influencia'] { --ac: rgb(var(--color-fam-influencia)); --ac-rgb: var(--color-fam-influencia); }
+.ficha[data-fam='lectura'] { --ac: rgb(var(--color-fam-lectura)); --ac-rgb: var(--color-fam-lectura); }
+.ficha[data-fam='memoria'] { --ac: rgb(var(--color-fam-memoria)); --ac-rgb: var(--color-fam-memoria); }
+
+.ficha-migas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgb(var(--color-tenue));
+}
+.ficha-migas a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.ficha-migas a:hover { color: rgb(var(--color-texto)); }
+
+.ficha-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 1.75rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgb(var(--color-borde) / var(--opacidad-borde));
+  border-radius: 99px;
+  font-size: 0.72rem;
+}
+.ficha-etiqueta i { width: 8px; height: 8px; border-radius: 50%; background: var(--ac); }
+
+/* Rejilla: columna de lectura + índice lateral pegajoso en escritorio. */
+.ficha__rejilla { margin-top: 0.5rem; }
+@media (min-width: 1024px) {
+  .ficha__rejilla {
+    display: grid;
+    grid-template-columns: minmax(0, 48rem) 13rem;
+    justify-content: space-between;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+.ficha-cab__num {
+  font: 600 0.8rem ui-monospace, Consolas, monospace;
+  color: var(--ac);
+}
+.ficha-cab h1 { margin-top: 0.5rem; text-wrap: balance; }
+
+.ficha-idea {
+  margin-top: 1.5rem;
+  max-width: 68ch;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 3px solid var(--ac);
+}
+.ficha-idea__rotulo {
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-tenue));
+}
+.ficha-idea p:last-child {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+/* Bloques */
+.ficha-bloque { margin-top: 3rem; scroll-margin-top: 5.5rem; }
+.ficha-bloque__titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-family: Georgia, serif;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+.ficha-bloque__ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  color: var(--ac);
+  background: rgb(var(--ac-rgb) / 0.18);
+}
+.ficha-ico {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ficha-ico--grande { width: 1.6rem; height: 1.6rem; }
+
+.ficha-bloque .prosa p { max-width: 68ch; }
+
+.ficha-analogia {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1.4rem;
+  border-radius: 16px;
+  background: rgb(var(--ac-rgb) / 0.09);
+  border: 1px solid rgb(var(--ac-rgb) / 0.3);
+}
+.ficha-analogia__ico {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  color: var(--ac);
+  background: rgb(var(--color-superficie));
+  border: 1px solid rgb(var(--ac-rgb) / 0.35);
+}
+.ficha-analogia p { line-height: 1.65; max-width: 68ch; }
+@media (max-width: 480px) { .ficha-analogia { grid-template-columns: 1fr; } }
+
+.ficha-prueba {
+  padding: 1.25rem;
+  border-radius: 16px;
+  border: 1px dashed var(--ac);
+  background: rgb(var(--color-superficie));
+}
+.ficha-prueba p { max-width: 68ch; line-height: 1.65; }
+
+.ficha-escena {
+  padding: 1.4rem;
+  border-radius: 16px;
+  background: rgb(var(--color-superficie));
+  border: 1px solid rgb(var(--color-borde) / var(--opacidad-borde));
+}
+.ficha-escena p { max-width: 68ch; line-height: 1.65; }
+.ficha-escena__titulo {
+  margin-bottom: 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ac);
+}
+
+/* Capa oficial: mismo acento de familia en la barra de la cita. */
+.ficha .oficial .cita { border-color: var(--ac); }
+.ficha .oficial .text-acento { color: var(--ac); }
+
+/* Marco de la visualización: lienzo sobre rejilla de puntos y descripción debajo. */
+.ficha-marco {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgb(var(--color-borde) / var(--opacidad-borde));
+  background: rgb(var(--color-superficie));
+  padding: 0.75rem 0.75rem 0;
+}
+.ficha-marco .lienzo-viz {
+  background:
+    radial-gradient(circle at 1px 1px, rgb(var(--color-borde) / var(--opacidad-borde)) 1px, transparent 1.2px) 0 0 / 18px 18px,
+    rgb(var(--color-fondo));
+  border-radius: 12px;
+}
+.ficha-marco__pie {
+  margin: 0.75rem 0.25rem 0.9rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--ac);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgb(var(--color-tenue));
+}
+
+/*
+ * Reel: bloque propio con el vídeo entero (9:16, sin recortar). El ancho se
+ * limita también por el alto de la ventana para no ocupar media pantalla.
+ */
+.ficha-reel {
+  padding: 1.1rem;
+  border-radius: 16px;
+  background: rgb(var(--color-fondo));
+  border: 1px solid rgb(var(--color-borde) / var(--opacidad-borde));
+}
+.ficha-reel .reel--lado .reel__pantalla {
+  width: min(100%, 14rem, calc(72svh * 9 / 16));
+}
+@media (max-width: 639px) {
+  .ficha-reel .reel--lado .reel__pantalla { width: min(100%, 17rem, calc(72svh * 9 / 16)); }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .ficha-reel .reel--lado .reel__pantalla { width: min(100%, 14rem, calc(80svh * 9 / 16)); }
+}
+
+/* Índice «En esta página» */
+.ficha-toc { display: none; }
+@media (min-width: 1024px) {
+  .ficha-toc {
+    display: block;
+    position: sticky;
+    top: 6rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+  }
+  .ficha-toc ol { list-style: none; padding: 0; margin: 0; border-left: 1px solid rgb(var(--color-borde) / var(--opacidad-borde)); }
+  .ficha-toc a {
+    display: block;
+    padding: 0.4rem 0.75rem;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: rgb(var(--color-tenue));
+    text-decoration: none;
+  }
+  .ficha-toc a:hover { color: rgb(var(--color-texto)); }
+  .ficha-toc a[aria-current] { color: rgb(var(--color-texto)); border-color: var(--ac); font-weight: 600; }
+}
+.ficha-toc__titulo {
+  margin-bottom: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-tenue));
+}
+
+.ficha-toc-movil {
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgb(var(--color-borde) / var(--opacidad-borde));
+  background: rgb(var(--color-superficie));
+}
+@media (min-width: 1024px) { .ficha-toc-movil { display: none; } }
+.ficha-toc-movil summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  list-style: none;
+}
+.ficha-toc-movil summary::after { content: '＋'; margin-left: auto; color: var(--ac); }
+.ficha-toc-movil[open] summary::after { content: '−'; }
+.ficha-toc-movil ol { list-style: none; margin: 0; padding: 0 0.5rem 0.5rem; }
+.ficha-toc-movil a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  text-decoration: none;
+  color: rgb(var(--color-tenue));
+}
+.ficha-toc-movil a:hover { color: rgb(var(--color-texto)); }

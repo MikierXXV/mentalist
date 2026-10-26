@@ -74,6 +74,12 @@ export interface Concepto {
   /** Descripción textual de la escena; el lienzo es decorativo. */
   visualizacion_alt: string;
   explicacion_didactica: string[];
+  /**
+   * Opcional: posición del párrafo de `explicacion_didactica` que es una
+   * analogía. La ficha lo muestra aparte, en «Piénsalo así»; sin él, todos los
+   * párrafos van en «Cómo funciona».
+   */
+  analogia_indice?: number;
   experimento: string;
   nota_matiz?: string;
   ejemplo_real: EjemploReal;
@@ -244,6 +250,14 @@ export function validarContenido(): string[] {
 
     if (!concepto.explicacion_didactica.length) {
       errores.push(`${prefijo} sin explicación didáctica`);
+    }
+
+    const ai = concepto.analogia_indice;
+    if (
+      ai !== undefined &&
+      (!Number.isInteger(ai) || ai < 0 || ai >= concepto.explicacion_didactica.length)
+    ) {
+      errores.push(`${prefijo} analogia_indice fuera de rango: ${ai}`);
     }
 
     if (!concepto.visualizacion_alt?.trim()) {

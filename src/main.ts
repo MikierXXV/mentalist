@@ -1,4 +1,5 @@
 import './styles.css';
+import './ficha.css';
 
 import { conceptos, obtenerConcepto, reels, validarContenido } from './content';
 import { seguirPreferenciaDelSistema } from './tema';
@@ -7,7 +8,8 @@ import { retirarCargador } from './ui/cargador';
 import { renderHero } from './ui/hero';
 import { activarCerebro, renderCerebro } from './ui/cerebro-seccion';
 import { activarIndice, renderIndice } from './ui/indice';
-import { renderFicha } from './ui/ficha';
+import { activarCarrusel, desmontarCarrusel } from './ui/carrusel';
+import { activarFicha, renderFicha } from './ui/ficha';
 import { activarFuentes, renderFuentes } from './ui/fuentes';
 import { renderEnlaces, renderFooter } from './ui/enlaces';
 import { activarReels, cerrarDialogoReel } from './ui/reel';
@@ -105,6 +107,7 @@ async function enrutar(): Promise<void> {
   escenas = [];
   limpiarAnimaciones();
   cerrarDialogoReel();
+  desmontarCarrusel();
 
   const id = idDesdeHash();
   const esReels = window.location.hash === '#/reels';
@@ -118,12 +121,16 @@ async function enrutar(): Promise<void> {
     document.title = concepto
       ? `${concepto.titulo} · Inteligencia Natural`
       : 'Concepto no encontrado · Inteligencia Natural';
-    if (concepto) void montarVizFicha();
+    if (concepto) {
+      activarFicha(app!);
+      void montarVizFicha();
+    }
   } else {
     app!.innerHTML = renderInicio();
     document.title =
       'Inteligencia Natural — conceptos de percepción, sugestión y persuasión';
     activarIndice(app!);
+    activarCarrusel(app!);
     activarFuentes(app!);
     montarEscenasInicio();
   }
